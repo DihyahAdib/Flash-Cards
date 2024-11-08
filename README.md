@@ -1,0 +1,2 @@
+Im learning Korean and Arabic and thought it would be cool to create my own website that allows me to store, and see the definition of the vocab i learn from these languages.
+its not finished but right now i just have the storing it locally for each person who uses this and ability to add words to the list, i might make it more intuitive later but this was just a small project i thought would be cool to do so no major updates.
