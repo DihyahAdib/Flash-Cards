@@ -7,27 +7,27 @@
         <title>Quiz yourself | Flash Cards</title>
     </head>
     <body>
-        <main>
-            <textarea-spaces>
-                <label for="text-area">Foreign Language :</label>
-                <textarea class="texty" id="text-area" placeholder="Enter vocabulary..."></textarea>
-                <label for="definition-area">Your Language :</label>
-                <textarea class="texty" id="definition-area" placeholder="Enter definition..."></textarea>
-                
-                <button-stuff>
-                    <button class="activator-buttons" id="input-vocab">Add Word</button>
-                    <button class="activator-buttons" id="remove-vocab">Remove All</button>
-                    <button class="activator-buttons" id="remove-one">Remove One Word</button>
-                </button-stuff>
-            </textarea-spaces>
+        <grid-grid>
 
+            <grid-item-1>
+                <label><span>Foreign Language :</span><textarea class="texty" id="text-area" placeholder="Enter vocabulary..."></textarea></label>
 
-            <div id="container">
-                <h2>Word Bank | </h2>
-                <div id="words-container"></div>
-            </div>
+                <label><span>Your Language :</span><textarea class="texty" id="definition-area" placeholder="Enter definition..."></textarea></label>
+            </grid-item-1>
+
+            <grid-item-2>
+                <button class="activator-buttons" id="input-vocab">Add Word</button>
+                <button class="activator-buttons" id="remove-vocab">Remove All</button>
+                <button class="activator-buttons" id="remove-one">Remove One Word</button>
+            </grid-item-2>
             
-        </main>
+            <grid-item-3>
+                <h2>Word Bank</h2>
+                <div id="words-container"></div>
+            </grid-item-3>
+
+        </grid-grid>
+
     </body>
     <script type="module" src="constants.js"></script>
     <script type="module" src="script.js"></script>
