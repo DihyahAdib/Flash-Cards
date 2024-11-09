@@ -8,13 +8,22 @@
     </head>
     <body>
         <main>
-            <textarea id="text-area" placeholder="Enter vocabulary... "></textarea>
+            <textarea-spaces>
+                <label for="text-area">Foreign Language :</label>
+                <textarea class="texty" id="text-area" placeholder="Enter vocabulary..."></textarea>
+                <label for="definition-area">Your Language :</label>
+                <textarea class="texty" id="definition-area" placeholder="Enter definition..."></textarea>
+                
+                <button-stuff>
+                    <button class="activator-buttons" id="input-vocab">Add Word</button>
+                    <button class="activator-buttons" id="remove-vocab">Remove All</button>
+                    <button class="activator-buttons" id="remove-one">Remove One Word</button>
+                </button-stuff>
+            </textarea-spaces>
 
-            <button id="input-vocab">Add Word</button>
-            <button id="remove-vocab">Remove</button>
-            
+
             <div id="container">
-                <h2>vocabulary</h2>
+                <h2>Word Bank | </h2>
                 <div id="words-container"></div>
             </div>
             

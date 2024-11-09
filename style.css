@@ -1,65 +1,115 @@
-* {
-    margin: 0%;
-    padding: 0%;
-    box-sizing: border-box;
+@font-face {
+    font-family: "Comforta";
+    src: url(./Fonts/Comfortaa-Light.ttf);
+}
+@font-face {
+    font-family: "Comforta-Bold";
+    src: url(./Fonts/Comfortaa-Bold.ttf);
+}
+@font-face {
+    font-family: "Nexa";
+    src: url(./Fonts/Nexa-Heavy.ttf);
+}
+@font-face {
+    font-family: "Dreams";
+    src: url(./Fonts/CaviarDreams.ttf);
 }
 
 body {
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
     background-color: rgb(134, 134, 180);
 }
 
 main {
-    display: grid;
-    grid-template-columns: 3fr 0.5fr 0.5fr;
-    flex-direction: column;
-    align-content: flex-start;
-    align-items: start;
-    justify-content: center;
-    border: 5px solid black;
+    background-color: rgba(146, 146, 146, 0.500);
+    border: 6px solid black;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 1280px;
-    height: 720px;
+    width: 1300px;
+    height: 770px;
 }
 
-button {
-    background: rgb(171, 135, 214);
-    font-size: 16px;
-    color: black;
-    margin: 13px;
-    padding: 5px;
+textarea-spaces {
+    display: grid;
+    grid-template-columns:20% 28%;
+    margin-left: 10px;
+    font-weight: 700;
+    justify-items: center;
+    align-items: center;
     border: none;
-    border-radius: 13px;
-    width: 100px;
-    height: 100px;
-    transition: box-shadow 0.3s ease;
 }
+label {
+    display: inline-block;
+    text-wrap:nowrap;
+    text-align: right;
+    font-family: Arial, sans-serif;
+    color: #000000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 22px;
+  }
+.texty {
+    font-family: "Nexa";
+    overflow: hidden;
+    margin: 12px;
+    padding: 3px;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+    font-size: 33px;
+    width: 10em;
+    height: 1.4em;
+}
+
+button-stuff {
+    display: grid;
+    grid-template-columns: repeat(3, 0.1fr);
+    /* justify-content: center; */
+}
+.activator-buttons {
+    font-family: "Comforta-Bold";
+    font-size: 20px;
+    margin: 10px;
+    padding: 8px;
+    border: none;
+    border-radius: 10px;
+    width: 128px;
+    height: 72px;
+    transition: box-shadow 0.28s ease;
+}
+
+#input-vocab {
+    color: azure;
+    background: rgb(171, 135, 214);
+}
+#remove-vocab {
+    color: azure;
+    background: rgb(141, 0, 28);
+}
+#remove-one {
+    color: azure;
+    background: rgb(104, 127, 202);
+}
+
 button:hover {
     box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.15),
     -10px 10px 10px rgba(0, 0, 0, 0.18);
 }
 
-#text-area {
-    overflow: hidden;
-    scroll-behavior: none;
-    margin: 12px;
-    border-radius: 10px;
-    resize: none;
-    font-size: 40px;
-    size-adjust:unset;
-    width: 14em;
-    height: 1.4em;
-}
-
 #container {
+    font-family: "Comforta-Bold";
+    display: flex;
     font-size: 26px;
     text-align: center;
     margin: 10px;
-    padding-top: 15px;
-    border: 1px solid #ddd;
+    padding: 15px;
+    border: 4px solid #000000;
     border-radius: 10px;
+    width: auto;
 }
 
 #words-container {
@@ -69,13 +119,13 @@ button:hover {
 }
 
 .new-element {
-    height: 2.5em;
     text-align: center;
     font-size: 30px;
     margin-top: 10px;
-    flex: 1;
     font-size: 16px;
     padding: 9px;
+    border: none;
     border-radius: 8px 12px;
     background-color: aliceblue;
+    transition: box-shadow 0.25s ease;
 }
