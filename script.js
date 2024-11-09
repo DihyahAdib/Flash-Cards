@@ -1,5 +1,7 @@
 // script.js
-import { storeWords, buttons, elements } from "./constants.js";
+import { buttons, elements } from "./constants.js";
+
+let storeWords = JSON.parse(localStorage.getItem("storeWords")) || [];
 
 function displayWords() {
   elements.wordsContainer.innerHTML = "";
@@ -7,6 +9,13 @@ function displayWords() {
   storeWords.forEach(({ word, definition }) => {
     const wordbutton = document.createElement("button");
     wordbutton.textContent = `${word} : ${definition}`;
+    wordbutton.onclick = function() {
+        this.remove();
+        storeWords = storeWords.filter(function({word: storedWord, definition: storedDefinition}) {
+            return !(word === storedWord && definition === storedDefinition)
+        });
+        save();
+    };
     wordbutton.style.fontWeight = 'bold';
     wordbutton.style.fontSize = '26px';
     elements.wordsContainer.appendChild(wordbutton);
@@ -20,7 +29,7 @@ buttons.input.addEventListener("click", function () {
 
   if (word && definition) {
     storeWords.push({ word, definition });
-    localStorage.setItem("storeWords", JSON.stringify(storeWords));
+    save();
     elements.textArea.value = "";
     elements.definitionArea.value = "";
     displayWords();
@@ -37,8 +46,12 @@ buttons.removeInput.addEventListener("click", function () {
 
 buttons.removeOne.addEventListener("click", function () {
   storeWords.pop();
-  localStorage.setItem("storeWords", JSON.stringify(storeWords));
+  save();
   displayWords();
 });
 
 displayWords();
+
+function save() {
+    localStorage.setItem("storeWords", JSON.stringify(storeWords));
+}
