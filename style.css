@@ -32,7 +32,7 @@ grid-grid {
     align-items: center;
     grid-template-columns: 50% 50%;
     grid-template-rows: 185px 500px;
-    background-color: rgba(146, 146, 146, 0.500);
+    background-color: rgb(104, 127, 202);
     border: 6px solid black;
     
 }
@@ -60,8 +60,6 @@ grid-item-1 {
     }
 }
 
-
-
 .texty {
     flex-grow: 1;
     font-family: "Nexa";
@@ -76,39 +74,43 @@ grid-item-1 {
     height: 1.4em;
 }
 
-grid-item-2 {
+button-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
+    height: 150px;
 }
+
+.button-wrapper {
+    display: flex;
+    gap: 10px; /* Space between the first three buttons */
+}
+
 .activator-buttons {
     font-family: "Comforta-Bold";
     font-size: 20px;
     margin: 10px;
     padding: 8px;
-    border: none;
-    border-radius: 10px;
+    border: 3px rgba(0, 0, 0, 0.355) solid;
+    background: rgba(0, 0, 0, 0.200);
+    transition: color 0.1s ease, background 0.28s ease; 
+}
+
+#input-vocab, #remove-one, #remove-vocab {
+    border-radius: 25px 25px;
     width: 128px;
-    height: 72px;
-    transition: box-shadow 0.28s ease;
+    height: 70px;
 }
 
-#input-vocab {
-    color: azure;
-    background: rgb(171, 135, 214);
-}
-#remove-vocab {
-    color: azure;
-    background: rgb(141, 0, 28);
-}
-#remove-one {
-    color: azure;
-    background: rgb(104, 127, 202);
+#pick-mode {
+    border-radius: 25px 25px;
+    width: 350px;
+    height: 70px;
 }
 
-button:hover {
-    box-shadow: 12px 12px 12px rgba(0, 0, 0, 0.15),
-    -10px 10px 10px rgba(0, 0, 0, 0.18);
+.activator-buttons:hover {
+    color: rgba(255, 255, 255, 0.908);
+    background: rgba(0, 0, 0, 0.640);
 }
 
 grid-item-3 {
@@ -139,4 +141,69 @@ grid-item-3 {
     border-radius: 8px 12px;
     background-color: aliceblue;
     transition: box-shadow 0.25s ease;
+}
+
+/* Dimmed overlay *//* Modal box styling */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none; 
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 30%;
+    height: 40%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    opacity: 0;
+    transform: scale(0.7);
+    animation: scaleIn 0.4s forwards;
+
+    & h2 {
+        font-family: "Nexa";
+    }
+}
+
+/* Scale-in animation */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Slide-in animation (alternative to scale) */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px); /* Start slightly above */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Slide down into place */
+    }
+}
+
+#close-modal {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    border-radius: 40%;
+    text-align: center;
+    background: rgb(138, 0, 0);
+    padding: 8px 16px;
 }

@@ -15,11 +15,25 @@
                 <label><span>Your Language :</span><textarea class="texty" id="definition-area" placeholder="Enter definition..."></textarea></label>
             </grid-item-1>
 
-            <grid-item-2>
-                <button class="activator-buttons" id="input-vocab">Add Word</button>
-                <button class="activator-buttons" id="remove-vocab">Remove All</button>
-                <button class="activator-buttons" id="remove-one">Remove One Word</button>
-            </grid-item-2>
+            <div class="overlay" id="overlay">
+                <div class="modal">
+                    <button class="activator-buttons" id="close-modal">X</button>
+                    <h2>Pick Mode</h2>
+                    <p>each mode represents different modifiers for the general Flash Card mode</p>
+                    <button class="activator-buttons" id="casual">Casual Mode</button>
+                    <button class="activator-buttons" id="timed">Timed Mode</button>
+                    <button class="activator-buttons" id="memo-mode">Memorization Mode</button>
+                </div>
+            </div>
+            
+            <button-container>
+                <div class="button-wrapper">
+                    <button class="activator-buttons" id="input-vocab">Add Word</button>
+                    <button class="activator-buttons" id="remove-one">Remove One Word</button>
+                    <button class="activator-buttons" id="remove-vocab">Remove All</button>
+                </div>
+                <button class="activator-buttons" id="pick-mode">Pick Mode</button>
+            </button-container>
             
             <grid-item-3>
                 <h2>Word Bank</h2>

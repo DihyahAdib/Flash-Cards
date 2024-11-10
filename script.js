@@ -50,6 +50,19 @@ buttons.removeOne.addEventListener("click", function () {
   displayWords();
 });
 
+document.getElementById("pick-mode").addEventListener("click", function() {
+  const overlay = document.getElementById("overlay");
+  overlay.style.display = "flex";
+  overlay.querySelector('.modal').style.animation = "scaleIn 0.4s forwards";
+});
+
+document.getElementById("close-modal").addEventListener("click", function() {
+  const overlay = document.getElementById("overlay")
+  overlay.querySelector('.modal').style.animation = "none";
+  overlay.style.display = "none";
+});
+
+
 displayWords();
 
 function save() {
