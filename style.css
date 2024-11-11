@@ -22,7 +22,7 @@ body {
     height: 100vh;
     margin: 0;
     box-sizing: border-box;
-    background: linear-gradient(180deg, rgb(0, 0, 0), rgb(39, 39, 39), rgb(0, 0, 0));
+    background: rgb(35, 35, 35);
     background-size: 100% 100%;
 }
 
@@ -41,7 +41,7 @@ grid-grid {
     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.6);
 }
 
-grid-item-1 {
+text-areas {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -87,7 +87,7 @@ button-container {
 
 .button-wrapper {
     display: flex;
-    gap: 10px; /* Space between the first three buttons */
+    gap: 10px;
 }
 
 .activator-buttons {
@@ -111,13 +111,10 @@ button-container {
     height: 70px;
 }
 
-#timed {
-    background: rgba(0, 0, 0, 0.200);
+#timed, #memo-mode, #casual {
+    background: rgba(0, 0, 0, 0.402);
 }
 
-#memo-mode {
-    background: rgba(0, 0, 0, 0.200);
-}
 
 #close-modal {
     position: absolute;
@@ -139,6 +136,14 @@ button-container {
 #pick-mode:hover {
     background: rgba(0, 0, 0, 0.640);
 }
+
+#casual:hover,
+#timed:hover,
+#memo-mode:hover {
+    color: aliceblue;
+    background: rgba(0, 0, 0, 0.640);
+}
+
 
 word-bank {
     justify-self: center;
