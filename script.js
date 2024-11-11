@@ -50,18 +50,25 @@ buttons.removeOne.addEventListener("click", function () {
   displayWords();
 });
 
-document.getElementById("pick-mode").addEventListener("click", function() {
-  const overlay = document.getElementById("overlay");
-  overlay.style.display = "flex";
-  overlay.querySelector('.modal').style.animation = "scaleIn 0.4s forwards";
+buttons.pickMode.addEventListener("click", function() {
+  elements.overlay.style.display = "flex";
+  elements.modal.style.animation = "scaleIn 0.68s forwards";
 });
 
-document.getElementById("close-modal").addEventListener("click", function() {
-  const overlay = document.getElementById("overlay")
-  overlay.querySelector('.modal').style.animation = "none";
-  overlay.style.display = "none";
+elements.closeModal.addEventListener("click", function() {
+  elements.modal.style.animation = "scaleOut 0.58s forwards";
+
+  elements.modal.addEventListener("animationend", function handleAnimationEnd() {
+    elements.overlay.style.display = "none";
+
+    elements.modal.removeEventListener("animationend", handleAnimationEnd);
+  })
+  
 });
 
+function casualMode() {
+  
+}
 
 displayWords();
 

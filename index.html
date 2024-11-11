@@ -7,24 +7,23 @@
         <title>Quiz yourself | Flash Cards</title>
     </head>
     <body>
-        <grid-grid>
+        <div class="overlay" id="overlay">
+            <div class="modal">
+                <button class="activator-buttons" id="close-modal">X</button>
+                <h2>Pick Mode</h2>
+                <p>each mode represents different modifiers for the general Flash Card mode</p>
+                <button class="activator-buttons" id="casual">Casual Mode</button>
+                <button class="activator-buttons" id="timed">Timed Mode</button>
+                <button class="activator-buttons" id="memo-mode">Memorization Mode</button>
+            </div>
+        </div>
+        <grid-grid class="glass">
 
             <grid-item-1>
                 <label><span>Foreign Language :</span><textarea class="texty" id="text-area" placeholder="Enter vocabulary..."></textarea></label>
 
                 <label><span>Your Language :</span><textarea class="texty" id="definition-area" placeholder="Enter definition..."></textarea></label>
             </grid-item-1>
-
-            <div class="overlay" id="overlay">
-                <div class="modal">
-                    <button class="activator-buttons" id="close-modal">X</button>
-                    <h2>Pick Mode</h2>
-                    <p>each mode represents different modifiers for the general Flash Card mode</p>
-                    <button class="activator-buttons" id="casual">Casual Mode</button>
-                    <button class="activator-buttons" id="timed">Timed Mode</button>
-                    <button class="activator-buttons" id="memo-mode">Memorization Mode</button>
-                </div>
-            </div>
             
             <button-container>
                 <div class="button-wrapper">
@@ -35,10 +34,10 @@
                 <button class="activator-buttons" id="pick-mode">Pick Mode</button>
             </button-container>
             
-            <grid-item-3>
+            <word-bank>
                 <h2>Word Bank</h2>
                 <div id="words-container"></div>
-            </grid-item-3>
+            </word-bank>
 
         </grid-grid>
 
