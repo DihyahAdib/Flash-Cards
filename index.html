@@ -10,11 +10,15 @@
         <div class="overlay" id="overlay">
             <div class="modal">
                 <button class="activator-buttons" id="close-modal">X</button>
+                <h3 class="current-mode">Current Mode: <span id="mode-name"></span></h3>
                 <h2>Pick Mode</h2>
-                <p>each mode represents different modifiers for the general Flash Card mode</p>
-                <button class="activator-buttons" id="casual">Casual Mode</button>
-                <button class="activator-buttons" id="timed">Timed Mode</button>
-                <button class="activator-buttons" id="memo-mode">Memorization Mode</button>
+                <p>Each mode represents different modifiers for the general Flash Card mode.</p>
+                <container-for-modes>
+                    <button class="activator-buttons" id="cover">Cover Mode</button>
+                    <button class="activator-buttons" id="casual">Casual Mode</button>
+                    <button class="activator-buttons" id="timed">Timed Mode</button>
+                    <button class="activator-buttons" id="memo-mode">Memorization Mode</button>
+                </container-for-modes>
             </div>
         </div>
         <grid-grid class="glass">
@@ -36,6 +40,7 @@
             
             <word-bank>
                 <h2>Word Bank</h2>
+                <p>Clicking a specific word WILL remove it.</p>
                 <div id="words-container"></div>
             </word-bank>
 
