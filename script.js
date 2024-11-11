@@ -85,22 +85,30 @@ export function coverMode() {
     save();
   });
   console.log("Cover mode activated: definitions hidden.");
-  const modeNameElement = document.getElementById("mode-name");
-  modeNameElement.innerText = currentModeName[0].name;
-  modeNameElement.style.color = "green";
+  elements.modeNameElement.innerText = currentModeName[0].name;
+  elements.modeNameElement.style.color = "green";
   save();
 };
 
 export function casualMode() {
-  console.log("Casual");
+  console.log("Casual mode activated:");
+  elements.modeNameElement.innerText = currentModeName[1].name;
+  elements.modeNameElement.style.color = "orange";
+  save();
 };
 
 export function timedMode() {
-  console.log("Timed");
+  console.log("Timed mode activated:");
+  elements.modeNameElement.innerText = currentModeName[2].name;
+  elements.modeNameElement.style.color = "blue";
+  save();
 };
 
 export function memorizationMode() {
-  console.log("memo");
+  console.log("Memorization mode activated:");
+  elements.modeNameElement.innerText = currentModeName[3].name;
+  elements.modeNameElement.style.color = "red";
+  save();
 };
 
 displayWords();

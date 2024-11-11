@@ -22,6 +22,7 @@ export const elements = {
   modalExplain: document.querySelector("#modal-explanation"),
   overlay: document.getElementById("overlay"),
   closeModal: document.getElementById("close-modal"),
+  modeNameElement: document.getElementById("mode-name"),
   currentMode: document.querySelector(".current-mode")
 };
 
