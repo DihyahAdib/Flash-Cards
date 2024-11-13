@@ -64,7 +64,7 @@ text-areas {
     }
 }
 
-.texty {
+input {
     flex-grow: 1;
     font-family: "Nexa";
     overflow: hidden;
@@ -178,10 +178,10 @@ word-bank {
 }
 
 .new-element {
+    font-weight: bold;
     text-align: center;
-    font-size: 30px;
+    font-size: 26px;
     margin: 12px;
-    font-size: 16px;
     padding: 9px;
     border: none;
     border-radius: 8px 12px;
