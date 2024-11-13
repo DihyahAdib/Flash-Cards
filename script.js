@@ -84,19 +84,34 @@ $("#memo-mode").onclick = () => memorizationMode();
 $("#cover").addEventListener("mouseover", function() {
   elements.modalExplain.style.visibility = "visible";
   elements.modalExplain.style.animation = "slideIn 0.6s forwards";
-})
+  elements.currentModeExplain.innerText = currentModeName[0].name;
+  elements.currentModeExplain.style.color = currentModeName[0].color;
+  elements.explainArea.innerText = currentModeName[0].Description;
+});
+
 $("#casual").addEventListener("mouseover", function() {
   elements.modalExplain.style.visibility = "visible";
   elements.modalExplain.style.animation = "slideIn 0.6s forwards";
-})
+  elements.currentModeExplain.innerText = currentModeName[1].name;
+  elements.currentModeExplain.style.color = currentModeName[1].color;
+  elements.explainArea.innerText = currentModeName[1].Description;
+});
+
 $("#timed").addEventListener("mouseover", function() {
   elements.modalExplain.style.visibility = "visible";
   elements.modalExplain.style.animation = "slideIn 0.6s forwards";
-})
+  elements.currentModeExplain.innerText = currentModeName[2].name;
+  elements.currentModeExplain.style.color = currentModeName[2].color;
+  elements.explainArea.innerText = currentModeName[2].Description;
+});
+
 $("#memo-mode").addEventListener("mouseover", function() {
   elements.modalExplain.style.visibility = "visible";
   elements.modalExplain.style.animation = "slideIn 0.6s forwards";
-})
+  elements.currentModeExplain.innerText = currentModeName[3].name;
+  elements.currentModeExplain.style.color = currentModeName[3].color;
+  elements.explainArea.innerText = currentModeName[3].Description;
+});
 
 export function coverMode() {
   const wordButtons = elements.wordsContainer.querySelectorAll("button.new-element");
@@ -105,30 +120,36 @@ export function coverMode() {
     button.textContent = `${word}`;
     save();
   });
-  console.log("Cover mode activated: definitions hidden.");
+
   elements.modeNameElement.innerText = currentModeName[0].name;
-  elements.modeNameElement.style.color = "green";
+  elements.modeNameElement.style.color = currentModeName[0].color;
   save();
 };
 
 export function casualMode() {
-  console.log("Casual mode activated:");
+  const wordButtons = elements.wordsContainer.querySelectorAll("button.new-element");
   elements.modeNameElement.innerText = currentModeName[1].name;
-  elements.modeNameElement.style.color = "orange";
-  save();
+  elements.modeNameElement.style.color = currentModeName[1].color;
+
+  wordButtons.forEach(button => {
+    const word = button.dataset.word;
+    const definition = button.dataset.definition;
+    button.textContent = `${word} : ${definition}`;
+    save();
+  });
 };
 
 export function timedMode() {
-  console.log("Timed mode activated:");
+
   elements.modeNameElement.innerText = currentModeName[2].name;
-  elements.modeNameElement.style.color = "blue";
+  elements.modeNameElement.style.color = currentModeName[2].color;
   save();
 };
 
 export function memorizationMode() {
-  console.log("Memorization mode activated:");
+
   elements.modeNameElement.innerText = currentModeName[3].name;
-  elements.modeNameElement.style.color = "red";
+  elements.modeNameElement.style.color = currentModeName[3].color;
   save();
 };
 

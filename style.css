@@ -231,14 +231,17 @@ button.new-element:hover {
 }
 
 .modal-explanation {
+    overflow: auto;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
     background-color: white;
     padding: 20px;
     border-radius: 10px;
     position: fixed;
-    top: 5%;
-    right: 10%;
-    width: 25%;
-    height: 80%;
+    top: 1%;
+    right: 15%;
+    width: 45%;
+    height: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     opacity: 0;
@@ -248,7 +251,7 @@ button.new-element:hover {
         font-family: "Nexa";
     }
     & p {
-        font-family: "Dreams";
+        font-family: "Comforta-bold";
         font-weight: 600;
     }
     & h3 {
