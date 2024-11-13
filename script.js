@@ -120,7 +120,7 @@ $("#timed").on("mouseover", function () {
   $("#explaination-area").text(currentModeName[2].Description);
 });
 
-$("#memo-mode").on("mouseover", function () {
+$("#memo-mode").on("mouseover", function() {
   $(".modal-explanation").css({
     visibility: "visible",
     animation: "slideIn 0.6s forwards",
@@ -132,7 +132,7 @@ $("#memo-mode").on("mouseover", function () {
 });
 
 export function coverMode() {
-  $("button.new-element").each(() => {
+  $("button.new-element").each( function() {
     console.log($(this).data("word"));
     $(this).text($(this).data("word"));
   });
