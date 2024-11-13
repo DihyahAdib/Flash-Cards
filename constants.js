@@ -19,9 +19,10 @@ export const elements = {
   definitionArea: document.querySelector("#definition-area"),
   wordsContainer: document.querySelector("#words-container"),
   modal: document.querySelector(".modal"),
-  modalExplain: document.querySelector("#modal-explanation"),
+  modalExplain: document.querySelector(".modal-explanation"),
   overlay: document.getElementById("overlay"),
   closeModal: document.getElementById("close-modal"),
+  closeExplainbtn: document.getElementById("close-modal-explanation"),
   modeNameElement: document.getElementById("mode-name"),
   currentMode: document.querySelector(".current-mode")
 };

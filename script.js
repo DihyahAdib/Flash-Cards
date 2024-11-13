@@ -65,10 +65,15 @@ elements.closeModal.addEventListener("click", function() {
   
   elements.modal.addEventListener("animationend", function handleAnimationEnd() {
     elements.overlay.style.display = "none";
-
     elements.modal.removeEventListener("animationend", handleAnimationEnd);
   });
-  
+});
+
+elements.closeExplainbtn.addEventListener("click", function() {
+  elements.modalExplain.style.animation = "slideOut 0.6s forwards";
+  elements.modal.addEventListener("animationend", function handleAnimationEnd() {
+    elements.modal.removeEventListener("animationend", handleAnimationEnd);
+  });
 });
 
 $("#cover").onclick = () => coverMode();
@@ -76,9 +81,25 @@ $("#casual").onclick = () => casualMode();
 $("#timed").onclick = () => timedMode();
 $("#memo-mode").onclick = () => memorizationMode();
 
+$("#cover").addEventListener("mouseover", function() {
+  elements.modalExplain.style.visibility = "visible";
+  elements.modalExplain.style.animation = "slideIn 0.6s forwards";
+})
+$("#casual").addEventListener("mouseover", function() {
+  elements.modalExplain.style.visibility = "visible";
+  elements.modalExplain.style.animation = "slideIn 0.6s forwards";
+})
+$("#timed").addEventListener("mouseover", function() {
+  elements.modalExplain.style.visibility = "visible";
+  elements.modalExplain.style.animation = "slideIn 0.6s forwards";
+})
+$("#memo-mode").addEventListener("mouseover", function() {
+  elements.modalExplain.style.visibility = "visible";
+  elements.modalExplain.style.animation = "slideIn 0.6s forwards";
+})
+
 export function coverMode() {
   const wordButtons = elements.wordsContainer.querySelectorAll("button.new-element");
-
   wordButtons.forEach(button => {
     const word = button.dataset.word;
     button.textContent = `${word}`;
