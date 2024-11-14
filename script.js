@@ -3,6 +3,31 @@ import { currentModeName } from "./constants.js";
 
 let storeWords = JSON.parse(localStorage.getItem("storeWords")) || [];
 
+function setCurrentMode(nice) {
+  $(".mode-name")
+    .text(currentModeName[nice].name)
+    .css({ color: currentModeName[nice].color });
+
+  $("#current-mode-explain-name")
+    .text(currentModeName[nice].name)
+    .css({ color: currentModeName[nice].color });
+  $("#explaination-area").text(currentModeName[nice].Description);
+
+  save();
+}
+
+$("toggle-visible-style").on("click", toggleDisplayStyle);
+
+$("#cover").on("click", () => setCurrentMode(0));
+$("#casual").on("click", () => setCurrentMode(1));
+$("#timed").on("click", () => setCurrentMode(2));
+$("#memo-mode").on("click", () => setCurrentMode(3));
+
+$("#cover").on("mouseover", () => setCurrentMode(0));
+$("#casual").on("mouseover", () => setCurrentMode(1));
+$("#timed").on("mouseover", () => setCurrentMode(2));
+$("#memo-mode").on("mouseover", () => setCurrentMode(3));
+
 $("#input-vocab").on("click", addWords);
 $("#cover").on("click", coverMode);
 $("#casual").on("click", casualMode);
@@ -16,7 +41,7 @@ function displayWords() {
     $("<button>")
       .addClass("new-element")
       .text(`${word} : ${definition}`)
-      .on("click", function() {
+      .on("click", function () {
         this.remove();
         storeWords = storeWords.filter(function ({
           word: storedWord,
@@ -92,10 +117,6 @@ $("#cover").on("mouseover", function () {
     visibility: "visible",
     animation: "slideIn 0.6s forwards",
   });
-  $("#current-mode-explain-name")
-    .text(currentModeName[0].name)
-    .css({ color: currentModeName[0].color });
-  $("#explaination-area").text(currentModeName[0].Description);
 });
 
 $("#casual").on("mouseover", function () {
@@ -103,10 +124,6 @@ $("#casual").on("mouseover", function () {
     visibility: "visible",
     animation: "slideIn 0.6s forwards",
   });
-  $("#current-mode-explain-name")
-    .text(currentModeName[1].name)
-    .css({ color: currentModeName[1].color });
-  $("#explaination-area").text(currentModeName[1].Description);
 });
 
 $("#timed").on("mouseover", function () {
@@ -114,57 +131,74 @@ $("#timed").on("mouseover", function () {
     visibility: "visible",
     animation: "slideIn 0.6s forwards",
   });
-  $("#current-mode-explain-name")
-    .text(currentModeName[2].name)
-    .css({ color: currentModeName[2].color });
-  $("#explaination-area").text(currentModeName[2].Description);
 });
 
-$("#memo-mode").on("mouseover", function() {
+$("#memo-mode").on("mouseover", function () {
   $(".modal-explanation").css({
     visibility: "visible",
     animation: "slideIn 0.6s forwards",
   });
-  $("#current-mode-explain-name")
-    .text(currentModeName[3].name)
-    .css({ color: currentModeName[3].color });
-  $("#explaination-area").text(currentModeName[3].Description);
 });
 
 export function coverMode() {
-  $("button.new-element").each( function() {
+  $("button.new-element").each(function () {
     console.log($(this).data("word"));
     $(this).text($(this).data("word"));
   });
-  
-  $("#mode-name")
-    .text(currentModeName[0].name)
-    .css({ color: currentModeName[0].color });
   save();
 }
 
-export function casualMode() {
-  $("#mode-name")
-    .text(currentModeName[1].name)
-    .css({ color: currentModeName[1].color });
-
-  $("button.new-element").each(() => {
+export async function casualMode() {
+  $("button.new-element").each(function () {
     $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
   });
+
+  $("flash-cards").css({
+    visibility: "visible",
+    opacity: "1",
+    animation: "scaleIn 0.68s forwards",
+  });
+
+  $(".modal")
+    .css({ animation: "scaleOut 0.58s forwards" })
+    .on("animationend", function handleAnimationEnd() {
+      $(".modal").off("animationend", handleAnimationEnd);
+    });
+
+  let storeWords = JSON.parse(localStorage.getItem("storeWords")) || [];
+
+  storeWords.forEach(({ word, definition }) => {
+    $("<button>")
+      .addClass("flash-card-objects")
+      .html(`${word}: ${definition}`)
+      .appendTo("modal-container");
+
+    // toggle carousel or view all.
+    $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
+  }); 
+
   save();
+}
+
+function toggleDisplayStyle() {
+  //sister requested of me to make two different visibility styles, one where it shows as a grid, one where is shows as a carousel card.
+  //this is view all mode
+  // $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
+
+  //default mode which is technically a third mode and technically not, is called list mode
+
+  //carousel mode
+  // if ($("modal-container").css("grid-template-columns", "1fr 1fr 1fr")) {
+  //   $("modal-container").css()
+  // }
+  //i think i should probably have three different functions for this 
 }
 
 export function timedMode() {
-  $("#mode-name")
-    .text(currentModeName[2].name)
-    .css({ color: currentModeName[2].color });
   save();
 }
 
 export function memorizationMode() {
-  $("#mode-name")
-    .text(currentModeName[3].name)
-    .css({ color: currentModeName[3].color });
   save();
 }
 

@@ -10,7 +10,7 @@
         <div class="overlay" id="overlay">
             <div class="modal">
                 <button class="activator-buttons" id="close-modal">X</button>
-                <h3 class="current-mode">Current Mode: <span id="mode-name"></span></h3>
+                <h3 class="current-mode">Current Mode: <span class="mode-name"></span></h3>
                 <h2>Pick Mode</h2>
                 <p>Each mode represents different modifiers for the general Flash Card mode.</p>
                 <p>Hover over buttons for description of the mode.</p>
@@ -26,9 +26,19 @@
                     <p id="explaination-area">.</p>
                 </div>
             </div>
+
+            <flash-cards>
+                <modal-text>
+                    <h2><span class="mode-name"></span></h2>
+                    <p>cool</p>
+                </modal-text>
+                <modal-container>
+                    
+                </modal-container>
+            </flash-cards>
         </div>
 
-        <grid-grid class="glass">
+        <main-panel class="glass">
 
             <text-areas>
                 <label><span>Foreign Language :</span><input id="text-area" placeholder="Enter vocabulary..."></label>
@@ -51,7 +61,7 @@
                 <div id="words-container"></div>
             </word-bank>
 
-        </grid-grid>
+        </main-panel>
 
     </body>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

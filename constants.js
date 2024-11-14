@@ -11,4 +11,9 @@ export const currentModeName = [
 
     {name: "Memorization Mode", Description: "..." , color: "red"}
 ];
+// await new Promise((resolve) => setTimeout(resolve, 100));
+
+// await new Promise((resolve) => {
+//     $("flash-cards").on("animationend", resolve);
+//   });
 
