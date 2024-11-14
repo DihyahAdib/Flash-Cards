@@ -3,11 +3,13 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="/styles/style.css">
+        <link rel="stylesheet" href="/styles/class.css">
+        <link rel="stylesheet" href="/styles/animations.css">
         <title>Quiz yourself | Flash Cards</title>
     </head>
     <body>
-        <div class="overlay" id="overlay">
+        <div id="overlay">
             <div class="modal">
                 <button class="activator-buttons" id="close-modal">X</button>
                 <h3 class="current-mode">Current Mode: <span class="mode-name"></span></h3>
@@ -30,14 +32,13 @@
             <flash-cards>
                 <toggle-style-modes>
                     <input id = "inputbutton" type="checkbox" checked style="--s:35px">
-                    <label for="inputbutton">Toggle View</label>
+                    <label class = "inputbutton" for="inputbutton">Toggle View</label>
                 </toggle-style-modes>
                 <modal-text>
                     <h2 class="mode-name"></h2>
                     <p>cool</p>
                 </modal-text>
                 <modal-container>
-                    
                 </modal-container>
             </flash-cards>
         </div>
@@ -69,6 +70,6 @@
 
     </body>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script type="module" src="constants.js"></script>
-    <script type="module" src="script.js"></script>
+    <script type="module" src="./scripts/constants.js"></script>
+    <script type="module" src="./scripts/script.js"></script>
 </html>

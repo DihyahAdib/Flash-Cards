@@ -1,21 +1,21 @@
 @font-face {
     font-family: "Comforta";
-    src: url(./Fonts/Comfortaa-Light.ttf);
+    src: url(../Fonts/Comfortaa-Light.ttf);
 }
 
 @font-face {
     font-family: "Comforta-Bold";
-    src: url(./Fonts/Comfortaa-Bold.ttf);
+    src: url(../Fonts/Comfortaa-Bold.ttf);
 }
 
 @font-face {
     font-family: "Nexa";
-    src: url(./Fonts/Nexa-Heavy.ttf);
+    src: url(../Fonts/Nexa-Heavy.ttf);
 }
 
 @font-face {
     font-family: "Dreams";
-    src: url(./Fonts/CaviarDreams.ttf);
+    src: url(../Fonts/CaviarDreams.ttf);
 }
 
 body {
@@ -113,8 +113,7 @@ button-container {
     height: 70px;
 }
 
-#pick-mode {
-    /*sizing*/
+#pick-mode { /*sizing*/
     width: 350px;
     height: 70px;
 }
@@ -190,25 +189,11 @@ word-bank {
     padding: 10px;
 }
 
-.new-element {
-    font-weight: bold;
-    text-align: center;
-    font-size: 26px;
-    margin: 12px;
-    padding: 9px;
-    border: none;
-    border-radius: 8px 12px;
-    background-color: aliceblue;
-    transition: box-shadow 0.25s ease;
-}
-
 button.new-element:hover {
     cursor: pointer;
 }
 
-/* Dimmed overlay */
-/* Modal box styling */
-.overlay {
+#overlay {
     display: none;
     position: fixed;
     top: 0;
@@ -219,7 +204,9 @@ button.new-element:hover {
     justify-content: center;
     align-items: center;
     z-index: 20;
+
 }
+
 
 .modal {
     background-color: white;
@@ -251,7 +238,6 @@ button.new-element:hover {
 
 .modal-explanation {
     overflow: auto;
-    -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
     background-color: white;
     padding: 20px;
@@ -263,9 +249,9 @@ button.new-element:hover {
     height: 100%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    opacity: 0;
     visibility: hidden;
-    z-index: -2;
+    opacity: 0;
+    transform: translateX(0%); 
 
     & h2 {
         font-family: "Nexa";
@@ -301,17 +287,12 @@ button.new-element:hover {
 flash-cards {
     position: fixed;
     display: grid;
-    grid-template-rows: 20% 15% 65%;
-
-    scroll-behavior: smooth;
-    overflow: auto;
-
+    grid-template-rows: 10% 12% 78%;
     background-color: rgb(227, 248, 250);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     opacity: 0;
     visibility: hidden;
-
     padding: 10px;
     width: 60%;
     height: 80%;
@@ -333,148 +314,16 @@ modal-text {
 
 modal-container {
     display: grid;
+    justify-items: center;
+    scroll-behavior: smooth;
+    overflow: auto;
 }
-
-.flash-card-objects {
-    font-weight: bold;
-    display: flex;
-    font-size: 30px;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
-    margin: 10px;
-}
-
-/* Scale-in animation */
-@keyframes scaleIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-
-    50% {
-        opacity: 0.9;
-        transform: scale(1.02);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes scaleOut {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    to {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-}
-
-/* opacity animation (specifically for overlay Anims) */
-
-@keyframes opacityI {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes opacityO {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-/* Slide-in animation (alternative to scale) */
-
-@keyframes slideIn {
-    0% {
-        opacity: 0;
-        transform: translateX(0);
-    }
-
-    50% {
-        opacity: 0.88;
-        transform: translateX(150%);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateX(140%);
-    }
-}
-
-@keyframes slideOut {
-    0% {
-        opacity: 1;
-        transform: translateX(140%);
-    }
-
-    100% {
-        opacity: 0;
-        transform: translateX(0);
-    }
-}
-
-
 
 /*toggle button style*/
-/*NOT MINE created by Temani Afif https://codepen.io/t_afif/pen/PoEebrz */
-#inputbutton {
-  height: calc(var(--s) + var(--s)/5);
-  width: auto;
-  aspect-ratio: 2.25;
-  border-radius: var(--s);
-  margin: calc(var(--s)/2);
-  display: grid;
-  cursor: pointer;
-  background-color:#68d7ff;
-  box-sizing: content-box;
-  overflow: hidden;
-  transition: .3s .1s;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-#inputbutton:before{
-  content: "";
-  padding: calc(var(--s)/10);
-  --_g: radial-gradient(circle closest-side at calc(100% - var(--s)/2) 50%,#000 96%,#0000);
-  background: 
-    var(--_g) 0 /var(--_p,var(--s)) 100% no-repeat content-box,
-    var(--_g) var(--_p,0)/var(--s)  100% no-repeat content-box,
-    #fff;
-  mix-blend-mode: darken;
-  filter: blur(calc(var(--s)/12)) contrast(11);
-  transition: .4s, background-position .4s .1s,
-    padding cubic-bezier(0,calc(var(--_i,-1)*200),1,calc(var(--_i,-1)*200)) .25s .1s;
-}
-#inputbutton:checked {
-  background-color: #85ff7a;
-}
-#inputbutton:checked:before {
-  padding: calc(var(--s)/10 + .05px) calc(var(--s)/10);
-  --_p: 100%;
-  --_i: 1;
-}
-
 toggle-style-modes {
     display: grid;
-    grid-template-columns: 20% 80%;
+    grid-template-columns: 15% 85%;
+    grid-template-rows: 0.3fr;
     font-family: "Nexa";
     justify-items: start;
     align-items: center;

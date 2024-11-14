@@ -2,6 +2,7 @@
 import { currentModeName } from "./constants.js";
 
 let storeWords = JSON.parse(localStorage.getItem("storeWords")) || [];
+let isAnimating = false;
 
 function randomizeArray(array) {
   for (let i = 0; i < array.length; i++) {
@@ -11,16 +12,15 @@ function randomizeArray(array) {
   return array;
 }
 
-function setCurrentMode(nice) {
+function setCurrentMode(index) {
   $(".mode-name")
-    .text(currentModeName[nice].name)
-    .css({ color: currentModeName[nice].color });
+    .text(currentModeName[index].name)
+    .css({ color: currentModeName[index].color }); // i couldnt find a work around for these //
 
   $("#current-mode-explain-name")
-    .text(currentModeName[nice].name)
-    .css({ color: currentModeName[nice].color });
-  $("#explaination-area").text(currentModeName[nice].Description);
-
+    .text(currentModeName[index].name)
+    .css({ color: currentModeName[index].color });
+  $("#explaination-area").text(currentModeName[index].Description);// i couldnt find a work around for these //
   save();
 }
 
@@ -98,59 +98,43 @@ $("#remove-one").on("click", function () {
 });
 
 $("#pick-mode").on("click", function () {
-  $("#overlay").css({ display: "flex", animation: "opacityI 0.68s forwards" });
-  $(".modal").css({ animation: "scaleIn 0.68s forwards" });
+  $("body").addClass("overlay-visible");
 });
 
 $("#close-modal").on("click", function () {
-  $("#overlay").css({ animation: "opacityO 0.5s forwards" });
+  $("body").removeClass("overlay-visible").addClass("overlay-disappearing");
 
-  $(".modal")
-    .css({ animation: "scaleOut 0.58s forwards" })
-    .on("animationend", function handleAnimationEnd() {
-      $("#overlay").css({ display: "none" });
-      $(".modal").off("animationend", handleAnimationEnd);
-    });
-});
-
-$("#close-modal-explanation").on("click", function () {
-  $(".modal-explanation").css({ animation: "slideOut 0.6s forwards" });
-  $(".modal").on("animationend", function handleAnimationEnd() {
+  $("#overlay").on("animationend", function handleAnimationEnd() {
+    $("body").removeClass("overlay-disappearing");
     $(".modal").off("animationend", handleAnimationEnd);
   });
 });
 
-$("#cover").on("mouseover", function () {
-  $(".modal-explanation").css({
-    visibility: "visible",
-    animation: "slideIn 0.6s forwards",
+$("#close-modal-explanation").on("click", function () {
+  if (isAnimating) return;
+  isAnimating = true;
+  $("body")
+    .removeClass("show-explanation")
+    .addClass("remove-explanation-modal");
+
+  $(".modal-explanation").on("animationend", function handleAnimationEnd() {
+    $(this).off("animationend", handleAnimationEnd);
+    $("body").removeClass("remove-explanation-modal");
+    $(this).css("visibility", "hidden"); // i couldnt find a work around for these //
+    isAnimating = false;
   });
 });
 
-$("#casual").on("mouseover", function () {
-  $(".modal-explanation").css({
-    visibility: "visible",
-    animation: "slideIn 0.6s forwards",
-  });
-});
+$("#cover, #casual, #timed, #memo-mode").on("mouseover", function () {
+  if (isAnimating) return;
 
-$("#timed").on("mouseover", function () {
-  $(".modal-explanation").css({
-    visibility: "visible",
-    animation: "slideIn 0.6s forwards",
-  });
-});
-
-$("#memo-mode").on("mouseover", function () {
-  $(".modal-explanation").css({
-    visibility: "visible",
-    animation: "slideIn 0.6s forwards",
-  });
+  $("body").removeClass("remove-explanation-modal");
+  $("body").addClass("show-explanation");
+  $(".modal-explanation").css("visibility", "visible"); // i couldnt find a work around for these //
 });
 
 export function coverMode() {
   $("button.new-element").each(function () {
-    console.log($(this).data("word"));
     $(this).text($(this).data("word"));
   });
   save();
@@ -160,18 +144,13 @@ export async function casualMode() {
   $("button.new-element").each(function () {
     $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
   });
-
-  $("flash-cards").css({
-    visibility: "visible",
-    opacity: "1",
-    animation: "scaleIn 0.68s forwards",
-  });
-
+  
+  $("body").addClass("flash-cards-visibility")
   $(".modal")
-    .css({ animation: "scaleOut 0.58s forwards" })
+    .css({ animation: "scaleOut 0.58s forwards" }) // i couldnt find a work around for these //
     .on("animationend", function handleAnimationEnd() {
       $(".modal").off("animationend", handleAnimationEnd);
-    });
+    });    
 
   randomizeArray(storeWords);
 
@@ -185,32 +164,22 @@ export async function casualMode() {
   save();
 }
 
-function toggleDisplayGrid() {
-  const currentLayout = $("modal-container").css("grid-template-columns");
-  if (currentLayout === $("modal-container").css("grid-template-columns")) {
-    $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
-  } else {
-    $("modal-container").css("grid-template-columns", "none");
-  }
-}
-
-function toggleDisplayStyle() {
-  //sister requested of me to make two different visibility styles, one where it shows as a grid, one where is shows as a carousel card.
-  //this is view all mode
-  // $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
-  //default mode which is technically a third mode and technically not, is called list mode
-  //carousel mode
-  // if ($("modal-container").css("grid-template-columns", "1fr 1fr 1fr")) {
-  //   $("modal-container").css()
-  // }
-  //i think i should probably have three different functions for this
-}
-
 function timedMode() {
   //ds
 }
 function memorizationMode() {
   //ds
+}
+
+function toggleDisplayGrid() {
+  if ($("body").hasClass("casual-mode-has-columns")) {
+    $("body").removeClass("casual-mode-has-columns");
+    $(".inputbutton").text("List View")
+  } else {
+    $("body").addClass("casual-mode-has-columns");
+    $(".inputbutton").text("Flash Card View")
+
+  }
 }
 
 displayWords();

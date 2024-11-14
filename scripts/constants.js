@@ -1,7 +1,5 @@
 // constants.js
-
 // currentMode: $(".current-mode")
-
 export const currentModeName = [
     {name: "Cover Mode", Description: 'This mode will allow you to only show the "Foriegn language," so it will show just the vocabulary and not its definition. This is not to be confused with Flash card mode.', color: "green"},
 
@@ -11,9 +9,4 @@ export const currentModeName = [
 
     {name: "Memorization Mode", Description: "..." , color: "red"}
 ];
-// await new Promise((resolve) => setTimeout(resolve, 100));
-
-// await new Promise((resolve) => {
-//     $("flash-cards").on("animationend", resolve);
-//   });
 
