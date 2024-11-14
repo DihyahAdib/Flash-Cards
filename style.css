@@ -2,14 +2,17 @@
     font-family: "Comforta";
     src: url(./Fonts/Comfortaa-Light.ttf);
 }
+
 @font-face {
     font-family: "Comforta-Bold";
     src: url(./Fonts/Comfortaa-Bold.ttf);
 }
+
 @font-face {
     font-family: "Nexa";
     src: url(./Fonts/Nexa-Heavy.ttf);
 }
+
 @font-face {
     font-family: "Dreams";
     src: url(./Fonts/CaviarDreams.ttf);
@@ -101,17 +104,24 @@ button-container {
     border-radius: 25px 25px;
 }
 
-#input-vocab, #remove-one, #remove-vocab { /*sizing*/
+#input-vocab,
+#remove-one,
+#remove-vocab,
+#toggle-visible-style {
+    /*sizing*/
     width: 128px;
     height: 70px;
 }
 
-#pick-mode { /*sizing*/
+#pick-mode {
+    /*sizing*/
     width: 350px;
     height: 70px;
 }
 
-#timed, #cover, #casual {
+#timed,
+#cover,
+#casual {
     background: rgba(81, 82, 83, 0.701);
 }
 
@@ -128,13 +138,14 @@ button-container {
     background: rgb(138, 0, 0);
     padding: 8px 16px;
 }
+
 #close-modal:hover {
     color: rgba(255, 255, 255, 0.908);
     background: rgb(114, 0, 0);
 }
 
-#input-vocab:hover, 
-#remove-one:hover, 
+#input-vocab:hover,
+#remove-one:hover,
 #remove-vocab:hover,
 #pick-mode:hover {
     background: rgba(0, 0, 0, 0.640);
@@ -161,10 +172,12 @@ word-bank {
     border: 4px solid #ffffffb0;
     border-radius: 10px;
     width: 90%;
+
     & p {
         font-family: "Dreams";
         font-size: 20px;
     }
+
     & h2 {
         font-family: "Comforta-Bold";
         font-size: 30px;
@@ -188,13 +201,15 @@ word-bank {
     background-color: aliceblue;
     transition: box-shadow 0.25s ease;
 }
+
 button.new-element:hover {
     cursor: pointer;
 }
 
-/* Dimmed overlay *//* Modal box styling */
+/* Dimmed overlay */
+/* Modal box styling */
 .overlay {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -217,13 +232,16 @@ button.new-element:hover {
     text-align: center;
     opacity: 0;
     z-index: 25;
+
     & h2 {
         font-family: "Nexa";
     }
+
     & p {
         font-family: "Dreams";
         font-weight: 600;
     }
+
     & h3 {
         margin: 0px;
         font-family: "Nexa";
@@ -246,28 +264,34 @@ button.new-element:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     opacity: 0;
-    visibility: hidden; 
+    visibility: hidden;
     z-index: -2;
+
     & h2 {
         font-family: "Nexa";
     }
+
     & p {
         font-family: "Comforta-bold";
         font-weight: 600;
     }
+
     & h3 {
         margin: 0px;
         font-family: "Nexa";
         text-align: left;
     }
+
     & button {
         margin: 0;
         width: 3em;
         height: 2.5em;
     }
+
     & button:hover {
-        background: rgba(81, 82, 83, 0.701); 
+        background: rgba(81, 82, 83, 0.701);
     }
+
     & img {
         width: 100%;
         height: 100%;
@@ -277,14 +301,10 @@ button.new-element:hover {
 flash-cards {
     position: fixed;
     display: grid;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 20% 15% 65%;
 
     scroll-behavior: smooth;
     overflow: auto;
-
-    font-size: 25px;
-    text-align: center;
-    font-family: "Nexa";
 
     background-color: rgb(227, 248, 250);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -299,7 +319,16 @@ flash-cards {
 }
 
 modal-text {
-    height: 30%;
+    padding: 0;
+    margin: 0;
+
+    & h2 {
+        font-family: "Nexa";
+        margin: 0;
+    }
+    & p {
+        font-family: "Nexa";
+    }
 }
 
 modal-container {
@@ -317,16 +346,19 @@ modal-container {
     padding: 10px;
     margin: 10px;
 }
+
 /* Scale-in animation */
 @keyframes scaleIn {
     0% {
         opacity: 0;
         transform: scale(0.6);
     }
+
     50% {
         opacity: 0.9;
-        transform: scale(1.02); 
+        transform: scale(1.02);
     }
+
     100% {
         opacity: 1;
         transform: scale(1);
@@ -338,6 +370,7 @@ modal-container {
         opacity: 1;
         transform: scale(1);
     }
+
     to {
         opacity: 0;
         transform: scale(0.6);
@@ -350,6 +383,7 @@ modal-container {
     0% {
         opacity: 0;
     }
+
     100% {
         opacity: 1;
     }
@@ -359,6 +393,7 @@ modal-container {
     from {
         opacity: 1;
     }
+
     to {
         opacity: 0;
     }
@@ -371,10 +406,12 @@ modal-container {
         opacity: 0;
         transform: translateX(0);
     }
+
     50% {
         opacity: 0.88;
         transform: translateX(150%);
     }
+
     100% {
         opacity: 1;
         transform: translateX(140%);
@@ -386,8 +423,59 @@ modal-container {
         opacity: 1;
         transform: translateX(140%);
     }
+
     100% {
         opacity: 0;
         transform: translateX(0);
     }
+}
+
+
+
+/*toggle button style*/
+/*NOT MINE created by Temani Afif https://codepen.io/t_afif/pen/PoEebrz */
+#inputbutton {
+  height: calc(var(--s) + var(--s)/5);
+  width: auto;
+  aspect-ratio: 2.25;
+  border-radius: var(--s);
+  margin: calc(var(--s)/2);
+  display: grid;
+  cursor: pointer;
+  background-color:#68d7ff;
+  box-sizing: content-box;
+  overflow: hidden;
+  transition: .3s .1s;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+#inputbutton:before{
+  content: "";
+  padding: calc(var(--s)/10);
+  --_g: radial-gradient(circle closest-side at calc(100% - var(--s)/2) 50%,#000 96%,#0000);
+  background: 
+    var(--_g) 0 /var(--_p,var(--s)) 100% no-repeat content-box,
+    var(--_g) var(--_p,0)/var(--s)  100% no-repeat content-box,
+    #fff;
+  mix-blend-mode: darken;
+  filter: blur(calc(var(--s)/12)) contrast(11);
+  transition: .4s, background-position .4s .1s,
+    padding cubic-bezier(0,calc(var(--_i,-1)*200),1,calc(var(--_i,-1)*200)) .25s .1s;
+}
+#inputbutton:checked {
+  background-color: #85ff7a;
+}
+#inputbutton:checked:before {
+  padding: calc(var(--s)/10 + .05px) calc(var(--s)/10);
+  --_p: 100%;
+  --_i: 1;
+}
+
+toggle-style-modes {
+    display: grid;
+    grid-template-columns: 20% 80%;
+    font-family: "Nexa";
+    justify-items: start;
+    align-items: center;
 }

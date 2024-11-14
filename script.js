@@ -3,6 +3,14 @@ import { currentModeName } from "./constants.js";
 
 let storeWords = JSON.parse(localStorage.getItem("storeWords")) || [];
 
+function randomizeArray(array) {
+  for (let i = 0; i < array.length; i++) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
 function setCurrentMode(nice) {
   $(".mode-name")
     .text(currentModeName[nice].name)
@@ -16,7 +24,7 @@ function setCurrentMode(nice) {
   save();
 }
 
-$("toggle-visible-style").on("click", toggleDisplayStyle);
+$("#inputbutton").on("click", toggleDisplayGrid);
 
 $("#cover").on("click", () => setCurrentMode(0));
 $("#casual").on("click", () => setCurrentMode(1));
@@ -165,41 +173,44 @@ export async function casualMode() {
       $(".modal").off("animationend", handleAnimationEnd);
     });
 
-  let storeWords = JSON.parse(localStorage.getItem("storeWords")) || [];
+  randomizeArray(storeWords);
 
   storeWords.forEach(({ word, definition }) => {
     $("<button>")
       .addClass("flash-card-objects")
       .html(`${word}: ${definition}`)
       .appendTo("modal-container");
-
-    // toggle carousel or view all.
-    $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
-  }); 
+  });
 
   save();
+}
+
+function toggleDisplayGrid() {
+  const currentLayout = $("modal-container").css("grid-template-columns");
+  if (currentLayout === $("modal-container").css("grid-template-columns")) {
+    $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
+  } else {
+    $("modal-container").css("grid-template-columns", "none");
+  }
 }
 
 function toggleDisplayStyle() {
   //sister requested of me to make two different visibility styles, one where it shows as a grid, one where is shows as a carousel card.
   //this is view all mode
   // $("modal-container").css("grid-template-columns", "1fr 1fr 1fr");
-
   //default mode which is technically a third mode and technically not, is called list mode
-
   //carousel mode
   // if ($("modal-container").css("grid-template-columns", "1fr 1fr 1fr")) {
   //   $("modal-container").css()
   // }
-  //i think i should probably have three different functions for this 
+  //i think i should probably have three different functions for this
 }
 
-export function timedMode() {
-  save();
+function timedMode() {
+  //ds
 }
-
-export function memorizationMode() {
-  save();
+function memorizationMode() {
+  //ds
 }
 
 displayWords();
