@@ -287,7 +287,6 @@ button.new-element:hover {
 flash-cards {
     position: fixed;
     display: grid;
-    grid-template-rows: 10% 12% 78%;
     background-color: rgb(227, 248, 250);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
@@ -302,29 +301,34 @@ flash-cards {
 modal-text {
     padding: 0;
     margin: 0;
-
     & h2 {
+        text-align: center;
+        font-size: 34px;
         font-family: "Nexa";
         margin: 0;
-    }
-    & p {
-        font-family: "Nexa";
     }
 }
 
 modal-container {
-    display: grid;
+    display: flex;
+    flex-flow: row nowrap;
     justify-items: center;
     scroll-behavior: smooth;
-    overflow: auto;
+    overflow-x: auto;
 }
 
 /*toggle button style*/
 toggle-style-modes {
     display: grid;
-    grid-template-columns: 15% 85%;
+    grid-template-columns: 14% auto 5%;
     grid-template-rows: 0.3fr;
     font-family: "Nexa";
     justify-items: start;
     align-items: center;
+    align-content: center;
+    & button#close-flash-card {
+        background: rgb(185, 0, 0);
+        margin: 0;
+        padding: 9px;
+    }
 }

@@ -24,7 +24,7 @@ function setCurrentMode(index) {
   save();
 }
 
-$("#inputbutton").on("click", toggleDisplayGrid);
+$("close-flash-card").on("click", studyMoreGoodSir);
 
 $("#cover").on("click", () => setCurrentMode(0));
 $("#casual").on("click", () => setCurrentMode(1));
@@ -36,6 +36,7 @@ $("#casual").on("mouseover", () => setCurrentMode(1));
 $("#timed").on("mouseover", () => setCurrentMode(2));
 $("#memo-mode").on("mouseover", () => setCurrentMode(3));
 
+$("#inputbutton").on("click", toggleDisplayGrid);
 $("#input-vocab").on("click", addWords);
 $("#cover").on("click", coverMode);
 $("#casual").on("click", casualMode);
@@ -174,14 +175,18 @@ function memorizationMode() {
 function toggleDisplayGrid() {
   if ($("body").hasClass("casual-mode-has-columns")) {
     $("body").removeClass("casual-mode-has-columns");
-    $(".inputbutton").text("List View")
+    $(".inputbutton").text("Flash Card View")
   } else {
     $("body").addClass("casual-mode-has-columns");
-    $(".inputbutton").text("Flash Card View")
+    $(".inputbutton").text("List View")
 
   }
 }
 
+function studyMoreGoodSir() {
+  let cardAmount = 0;
+  
+}
 displayWords();
 
 function save() {

@@ -1,64 +1,66 @@
 /*ADD CLASSES HERE*/
-/* :root {
-    -o-animation-duration: 0.5s;
-} */
+:root {
+    --animation-duration: 0.5s;
+}
 
 body.casual-mode-has-columns modal-container{
-    grid-template-columns: 2fr 2fr;
+    flex-direction: column;
 }
 
 /* hovered classes for explanation */
 body.show-explanation .modal-explanation {
     visibility: visible;
-    animation: slideIn 0.5s forwards;
+    animation: slideIn var(--animation-duration) forwards;
 }
 
 /* click classes for explanation */
 body.remove-explanation-modal .modal-explanation {
-    animation: slideOut 0.5s forwards;
+    animation: slideOut var(--animation-duration) forwards;
 }
 
 /* Animation for overlay*/
 body.overlay-visible #overlay{
     display: flex;
-    animation: opacityI 0.5s forwards;
+    animation: opacityI var(--animation-duration) forwards;
 }
 
 body.overlay-disappearing #overlay{
     display: flex;
-    animation: opacityO 0.5s forwards;
+    animation: opacityO var(--animation-duration) forwards;
 }
 
 /* Animation for modal*/
 body.overlay-visible .modal {
-    animation: scaleIn 0.5s forwards;
+    animation: scaleIn var(--animation-duration) forwards;
 } 
 
 body.overlay-disappearing .modal {
     animation: 
-    scaleOut 0.5s forwards, 
-    opacityO 0.5s forwards;
+    scaleOut var(--animation-duration) forwards, 
+    opacityO var(--animation-duration) forwards;
 }
 
 /* Styles for flash card */
 body.flash-cards-visibility flash-cards {
     visibility: visible;
     opacity: 1;
-    animation: scaleIn 0.5s forwards;
+    animation: scaleIn var(--animation-duration) forwards;
 }
 
 .flash-card-objects {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+    width: 18em;
+    height: 18em;
     font-weight: bold;
-    display: flex;
     font-size: 30px;
     text-align: center;
+    display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(255, 255, 255);
+    background-color: white;
     padding: 10px;
     margin: 10px;
-    width: 10em;
-    height: 10em;
 }
 
 .new-element {
