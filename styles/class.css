@@ -1,48 +1,54 @@
 /*ADD CLASSES HERE*/
 :root {
-    --transition-duration: 0.5s;
+    --transition-duration-base: 0.4s;
+    --transition-duration-short: 0.3s;
 }
+
+/* overlay & all modals */
+#overlay {
+    visibility: hidden;
+    display: flex;
+    opacity: 0;
+    transition: opacity var(--transition-duration-base), visibility 0s var(--transition-duration-base);
+}
+
+.modal {
+    transform: scale(0.7);
+    transition: transform var(--transition-duration-base) ease;
+}
+
+.modal-explanation {
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(90%);
+    transition: transform var(--transition-duration-short) ease-out;
+}
+
+/* Added classes & Transitions */
 
 /*modal/overlay visibility & invisibility transition handler */
-.modal {
-    transition: transform var(--transition-duration);
-    transform: scale(0.5);
-    position: fixed;
-    padding: 20px;
-    margin: 0px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 30%;
-    height: 40%;
-    z-index: 25;
-
-    & h2 {
-        font-family: "Nexa";
-    }
-
-    & p {
-        font-family: "Dreams";
-        font-weight: 600;
-    }
-
-    & h3 {
-        margin: 0px;
-        font-family: "Nexa";
-        text-align: left;
-    }
-}
-
 body.show-modal-visibility {
     #overlay {
-        display: flex;
+        opacity: 1;
+        visibility: visible;
+        transition: opacity var(--transition-duration-base);
     }
 
     .modal {
         transform: scale(1);
+        transition: transform var(--transition-duration-base);
     }
 }
+
+/*modal explain visibility & invisibility transition handler */
+body.show-modalExplanation-visibility .modal-explanation {
+    visibility: visible;
+    opacity: 1;
+    transform: translateX(145%);
+    transition: transform var(--transition-duration-short) ease-out;
+}
+
+
 
 .flash-card-objects {
     flex-shrink: 0;
