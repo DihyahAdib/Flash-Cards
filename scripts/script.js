@@ -15,29 +15,33 @@ function randomizeArray(array) {
 function setCurrentMode(index) {
   $(".mode-name")
     .text(currentModeName[index].name)
-    .css({ color: currentModeName[index].color }); // i couldnt find a work around for these //
-
+    .css({ color: currentModeName[index].color });
   $("#current-mode-explain-name")
     .text(currentModeName[index].name)
     .css({ color: currentModeName[index].color });
-  $("#explaination-area").text(currentModeName[index].Description);// i couldnt find a work around for these //
+  $("#explaination-area").text(currentModeName[index].Description);
   save();
 }
 
-$("close-flash-card").on("click", studyMoreGoodSir);
-
+// Mode Selection Events
 $("#cover").on("click", () => setCurrentMode(0));
 $("#casual").on("click", () => setCurrentMode(1));
 $("#timed").on("click", () => setCurrentMode(2));
 $("#memo-mode").on("click", () => setCurrentMode(3));
 
+// Mode Hover Events
 $("#cover").on("mouseover", () => setCurrentMode(0));
 $("#casual").on("mouseover", () => setCurrentMode(1));
 $("#timed").on("mouseover", () => setCurrentMode(2));
 $("#memo-mode").on("mouseover", () => setCurrentMode(3));
 
+// Input Events
 $("#inputbutton").on("click", toggleDisplayGrid);
 $("#input-vocab").on("click", addWords);
+$("text-areas input").on("keypress", function (e) {
+  if (e.key === "Enter") addWords();
+});
+
 $("#cover").on("click", coverMode);
 $("#casual").on("click", casualMode);
 $("#timed").on("click", timedMode);
@@ -79,12 +83,6 @@ function addWords() {
     alert("Enter both the vocab & definition first!");
   }
 }
-
-$("text-areas input").on("keypress", function (e) {
-  if (e.key === "Enter") {
-    addWords();
-  }
-});
 
 $("#remove-vocab").on("click", function () {
   storeWords.length = 0;
@@ -183,10 +181,6 @@ function toggleDisplayGrid() {
   }
 }
 
-function studyMoreGoodSir() {
-  let cardAmount = 0;
-  
-}
 displayWords();
 
 function save() {
