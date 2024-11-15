@@ -113,7 +113,8 @@ button-container {
     height: 70px;
 }
 
-#pick-mode { /*sizing*/
+#pick-mode {
+    /*sizing*/
     width: 350px;
     height: 70px;
 }
@@ -136,11 +137,11 @@ button-container {
     text-align: center;
     background: rgb(138, 0, 0);
     padding: 8px 16px;
-}
 
-#close-modal:hover {
-    color: rgba(255, 255, 255, 0.908);
-    background: rgb(114, 0, 0);
+    &:hover {
+        color: rgba(255, 255, 255, 0.908);
+        background: rgb(114, 0, 0);
+    }
 }
 
 #input-vocab:hover,
@@ -207,35 +208,6 @@ button.new-element:hover {
 
 }
 
-
-.modal {
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    position: fixed;
-    width: 30%;
-    height: 40%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    opacity: 0;
-    z-index: 25;
-
-    & h2 {
-        font-family: "Nexa";
-    }
-
-    & p {
-        font-family: "Dreams";
-        font-weight: 600;
-    }
-
-    & h3 {
-        margin: 0px;
-        font-family: "Nexa";
-        text-align: left;
-    }
-}
-
 .modal-explanation {
     overflow: auto;
     text-rendering: optimizeLegibility;
@@ -251,7 +223,7 @@ button.new-element:hover {
     text-align: center;
     visibility: hidden;
     opacity: 0;
-    transform: translateX(0%); 
+    transform: translateX(0%);
 
     & h2 {
         font-family: "Nexa";
@@ -301,6 +273,7 @@ flash-cards {
 modal-text {
     padding: 0;
     margin: 0;
+
     & h2 {
         text-align: center;
         font-size: 34px;
@@ -326,6 +299,7 @@ toggle-style-modes {
     justify-items: start;
     align-items: center;
     align-content: center;
+
     & button#close-flash-card {
         background: rgb(185, 0, 0);
         margin: 0;

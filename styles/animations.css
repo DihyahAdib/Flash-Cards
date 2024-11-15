@@ -1,81 +1,3 @@
-/*ADD ANIMATIONS HERE*/
-
-/* Scale-in animation */
-@keyframes scaleIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-
-    50% {
-        opacity: 0.9;
-        transform: scale(1.02);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes scaleOut {
-    from {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    to {
-        opacity: 0;
-        transform: scale(0.6);
-    }
-}
-
-/* opacity animation */
-
-@keyframes opacityI {
-    0% {
-        opacity: 0;
-    }
-
-    100% {
-        opacity: 1;
-    }
-}
-
-@keyframes opacityO {
-    from {
-        opacity: 1;
-    }
-
-    to {
-        opacity: 0;
-    }
-}
-
-/* Slide-in animation */
-
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateX(0%);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(140%);
-    }
-}
-
-@keyframes slideOut {
-    from {
-        opacity: 1;
-        transform: translateX(140%);
-    }
-    to {
-        opacity: 0;
-        transform: translateX(0%);
-    }
-}
-
 /*NOT MINE created by Temani Afif https://codepen.io/t_afif/pen/PoEebrz */
 #inputbutton {
     height: calc(var(--s) + var(--s)/5);
@@ -85,32 +7,35 @@
     margin: calc(var(--s)/2);
     display: grid;
     cursor: pointer;
-    background-color:#68d7ff;
+    background-color: #68d7ff;
     box-sizing: content-box;
     overflow: hidden;
     transition: .3s .1s;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-  }
-  #inputbutton:before{
+}
+
+#inputbutton:before {
     content: "";
     padding: calc(var(--s)/10);
-    --_g: radial-gradient(circle closest-side at calc(100% - var(--s)/2) 50%,#000 96%,#0000);
-    background: 
-      var(--_g) 0 /var(--_p,var(--s)) 100% no-repeat content-box,
-      var(--_g) var(--_p,0)/var(--s)  100% no-repeat content-box,
-      #fff;
+    --_g: radial-gradient(circle closest-side at calc(100% - var(--s)/2) 50%, #000 96%, #0000);
+    background:
+        var(--_g) 0 /var(--_p, var(--s)) 100% no-repeat content-box,
+        var(--_g) var(--_p, 0)/var(--s) 100% no-repeat content-box,
+        #fff;
     mix-blend-mode: darken;
     filter: blur(calc(var(--s)/12)) contrast(11);
     transition: .4s, background-position .4s .1s,
-      padding cubic-bezier(0,calc(var(--_i,-1)*200),1,calc(var(--_i,-1)*200)) .25s .1s;
-  }
-  #inputbutton:checked {
+        padding cubic-bezier(0, calc(var(--_i, -1)*200), 1, calc(var(--_i, -1)*200)) .25s .1s;
+}
+
+#inputbutton:checked {
     background-color: #85ff7a;
-  }
-  #inputbutton:checked:before {
+}
+
+#inputbutton:checked:before {
     padding: calc(var(--s)/10 + .05px) calc(var(--s)/10);
     --_p: 100%;
     --_i: 1;
-  }
+}
