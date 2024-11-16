@@ -6,8 +6,9 @@ export function displayWords() {
   $("#words-container").empty();
 
   storeWords.forEach(({ word, definition }) => {
+    WordTagNum++;
     $("<button>")
-      .addClass("new-element")
+      .addClass(`new-element ${WordTagNum}`)
       .text(`${word} : ${definition}`)
       .on("click", function () {
         this.remove();

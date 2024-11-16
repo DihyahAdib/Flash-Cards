@@ -7,23 +7,25 @@ $(".prev").on("click", () => plusCards(-1));
 $(".next").on("click", () => plusCards(1));
 
 let cardIndex = 1;
-export var wordTagNum = 0;
+window.WordTagNum = 0;
+window.randomizedWordTagNum = 0;
+window.plusCards = plusCards;
+window.currentCards = currentCards;
 
 showCards(cardIndex);
 
 export async function plusCards(n) {
-  await wait(200);
+  await wait(150);
   showCards((cardIndex += n));
 }
 
 export async function currentCards(n) {
-  await wait(200);
+  await wait(150);
   showSlides((slideIndex = n));
 }
 
 export function showCards(n) {
   let cards = $(".flash-card-object");
-  let dots = $(".dot");
   if (n > cards.length) {
     cardIndex = 1;
   }
@@ -31,17 +33,12 @@ export function showCards(n) {
     cardIndex = cards.length;
   }
   cards.css("visibility", "none").css("display", "none");
-  dots.removeClass("active");
   cards
     .eq(cardIndex - 1)
     .css("visibility", "visible")
     .css("display", "grid");
   checkContainerStyle();
-  dots.eq(cardIndex - 1).addClass("active");
 }
-
-window.plusCards = plusCards;
-window.currentCards = currentCards;
 
 export async function casualMode() {
   $("button.new-element").each(function () {
@@ -50,9 +47,9 @@ export async function casualMode() {
   randomizeArray(storeWords);
 
   storeWords.forEach(({ word, definition }) => {
-    wordTagNum++;
+    randomizedWordTagNum++;
     $("<div>")
-      .addClass(`flash-card-object mySlides ${wordTagNum}`)
+      .addClass(`flash-card-object mySlides ${randomizedWordTagNum}`)
       .text(`${word}`)
       .prependTo("flash-card-container");
   });
