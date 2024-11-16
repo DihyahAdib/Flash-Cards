@@ -1,9 +1,5 @@
 // Mode Selection Events
-import {
-  toggleDisplayGrid,
-  displayWords,
-  addWords,
-} from "./functions/wordhandler.js";
+
 import {
   showModal,
   hideModal,
@@ -13,9 +9,10 @@ import {
   removeOneVocab,
   removeAllVocab,
 } from "./functions/functions.js";
+import { addWords } from "./functions/wordhandler.js";
 import { setCurrentMode } from "./constants.js";
 import { coverMode } from "./modes/cover.js";
-import { casualMode } from "./modes/casual.js";
+import { casualMode, toggleDisplayGrid } from "./modes/casual.js";
 
 export async function wait(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
@@ -47,6 +44,7 @@ $("#cover, #casual, #timed, #memo-mode")
       .removeClass("modal-pick-mode modal-pick-mode-explain")
       .addClass("modal-play-mode");
   });
+
 $("#close-modal-explanation").on("click", function () {
   hideExplanation();
 });

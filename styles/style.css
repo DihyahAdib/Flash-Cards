@@ -287,28 +287,3 @@ modal-text {
         margin: 0;
     }
 }
-
-modal-container {
-    display: flex;
-    flex-flow: row nowrap;
-    justify-items: center;
-    scroll-behavior: smooth;
-    overflow-x: auto;
-}
-
-/*toggle button style*/
-toggle-style-modes {
-    display: grid;
-    grid-template-columns: 14% auto 5%;
-    grid-template-rows: 0.3fr;
-    font-family: "Nexa";
-    justify-items: start;
-    align-items: center;
-    align-content: center;
-
-    & button#close-flash-card {
-        background: rgb(185, 0, 0);
-        margin: 0;
-        padding: 9px;
-    }
-}

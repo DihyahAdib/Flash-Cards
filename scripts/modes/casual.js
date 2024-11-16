@@ -8,11 +8,21 @@ export async function casualMode() {
     $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
   });
   randomizeArray(storeWords);
-  // showFlashCards();
+
+  storeWords.forEach(({ word, definition }) => {
+    $("<button>")
+      .addClass("flash-card-objects")
+      .html(`${word}: ${definition}`)
+      .appendTo("modal-container");
+  });
   save();
 }
-
-// export function showFlashCards() {
-//   if ($(document.body).hasClass("modal-pick-mode "))
-//   $(document.body).toggleClass("modal-play-mode");
-// }
+export function toggleDisplayGrid() {
+  if ($("body").hasClass("casual-mode-has-columns")) {
+    $("body").removeClass("casual-mode-has-columns");
+    $(".inputbutton").text("Flash Card View");
+  } else {
+    $("body").addClass("casual-mode-has-columns");
+    $(".inputbutton").text("List View");
+  }
+}
