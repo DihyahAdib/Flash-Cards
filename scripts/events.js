@@ -9,6 +9,7 @@ import {
   removeOneVocab,
   removeAllVocab,
 } from "./functions/functions.js";
+
 import { addWords } from "./functions/wordhandler.js";
 import { setCurrentMode } from "./constants.js";
 import { coverMode } from "./modes/cover.js";
