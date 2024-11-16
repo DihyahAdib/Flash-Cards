@@ -1,27 +1,39 @@
 /*ADD CLASSES HERE*/
 :root {
-    --transition-duration-base: 0.4s;
+    --transition-duration: 0.4s;
     --transition-duration-short: 0.3s;
 }
 
 /* overlay & all modals */
 #overlay {
-    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    z-index: 20;
     opacity: 0;
-    transition: opacity var(--transition-duration-base), visibility 0s var(--transition-duration-base);
+    transition: opacity var(--transition-duration), visibility 0s var(--transition-duration);
 }
 
 .modal {
     transform: scale(0.7);
-    transition: transform var(--transition-duration-base) ease;
+    transition: transform var(--transition-duration) ease;
 }
 
 .modal-explanation {
+    position: absolute;
     visibility: hidden;
     opacity: 0;
-    transform: translateX(90%);
-    transition: transform var(--transition-duration-short) ease-out;
+    transform: translateX(20%);
+    transition: transform var(--transition-duration-short),
+        opacity var(--transition-duration-short),
+        visibility 0s var(--transition-duration-short);
 }
 
 /* Added classes & Transitions */
@@ -31,24 +43,26 @@ body.show-modal-visibility {
     #overlay {
         opacity: 1;
         visibility: visible;
-        transition: opacity var(--transition-duration-base);
+        transition: opacity var(--transition-duration);
     }
 
     .modal {
         transform: scale(1);
-        transition: transform var(--transition-duration-base);
+        transition: transform var(--transition-duration);
     }
 }
 
 /*modal explain visibility & invisibility transition handler */
-body.show-modalExplanation-visibility .modal-explanation {
-    visibility: visible;
-    opacity: 1;
-    transform: translateX(145%);
-    transition: transform var(--transition-duration-short) ease-out;
+body.show-modalExplanation-visibility {
+    .modal-explanation {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(145%);
+        transition: transform var(--transition-duration-short),
+            opacity var(--transition-duration-short),
+            visibility 0s;
+    }
 }
-
-
 
 .flash-card-objects {
     flex-shrink: 0;
