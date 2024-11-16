@@ -206,7 +206,7 @@ button.new-element:hover {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
     width: 30%;
-    height: 40%;
+    height: 50%;
     z-index: 25;
 
     & h2 {
@@ -232,8 +232,8 @@ button.new-element:hover {
     padding: 20px;
     border-radius: 10px;
     position: fixed;
-    top: 0%;
-    right: 20%;
+    top: 6%;
+    right: 15%;
     width: 42%;
     height: 85%;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -276,7 +276,7 @@ button.new-element:hover {
 }
 
 #current-mode-explain-name {
-    margin-top: 55px;
+    margin-top: 50px;
 }
 
 modal-text {

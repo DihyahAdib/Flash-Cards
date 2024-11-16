@@ -71,8 +71,8 @@ flash-cards {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px;
-    width: 50vw;
-    height: 50vh;
+    width: 45vw;
+    height: 70vh;
     z-index: 100;
     opacity: 0;
     visibility: hidden;
@@ -113,10 +113,11 @@ flash-card-container {
 }
 
 .flash-card-object {
-    display: none;
     border-radius: 10px;
-    width: auto;
-    height: auto;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    height: 85%;
     font-weight: bold;
     font-size: larger;
     text-align: center;
@@ -131,7 +132,7 @@ flash-card-container {
     width: auto;
     margin-top: -22px;
     padding: 16px;
-    color: white;
+    color: rgb(0, 0, 0);
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
@@ -146,7 +147,7 @@ flash-card-container {
 
 .prev:hover,
 .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(105, 105, 105, 0.8);
 }
 
 .dot {

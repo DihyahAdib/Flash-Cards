@@ -3,6 +3,9 @@
 import { randomizeArray } from "../functions/wordhandler.js";
 import { save } from "../save.js";
 
+$(".prev").on("click", () => plusCards(-1));
+$(".next").on("click", () => plusCards(1));
+
 let cardIndex = 1;
 showCards(cardIndex);
 
@@ -23,15 +26,12 @@ export function showCards(n) {
   if (n < 1) {
     cardIndex = cards.length;
   }
-  cards.css("display", "none");
-
-  // Remove "active" class from all dots
+  cards.css("visibility", "none").css("display", "none");
   dots.removeClass("active");
-
-  // Show the current slide
-  cards.eq(cardIndex - 1).css("display", "block");
-
-  // Add "active" class to the corresponding dot
+  cards
+    .eq(cardIndex - 1)
+    .css("visibility", "visible")
+    .css("display", "grid");
   dots.eq(cardIndex - 1).addClass("active");
 }
 
