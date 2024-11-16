@@ -1,8 +1,8 @@
 // Casual Mode Script //
 
+import { wait } from "../events.js";
 import { randomizeArray } from "../functions/wordhandler.js";
 import { save } from "../save.js";
-
 $(".prev").on("click", () => plusCards(-1));
 $(".next").on("click", () => plusCards(1));
 
@@ -32,6 +32,7 @@ export function showCards(n) {
     .eq(cardIndex - 1)
     .css("visibility", "visible")
     .css("display", "grid");
+  checkContainerStyle();
   dots.eq(cardIndex - 1).addClass("active");
 }
 
@@ -47,11 +48,12 @@ export async function casualMode() {
   storeWords.forEach(({ word, definition }) => {
     $("<div>")
       .addClass("flash-card-object mySlides")
-      .html(`${word}: ${definition}`)
+      .html(`${word}`)
       .prependTo("flash-card-container");
-    // $("<span>").addClass("dot").apendTo("dot-container");
   });
   save();
+  await wait(100);
+  checkContainerStyle();
 }
 
 export function toggleDisplayGrid() {
@@ -63,3 +65,10 @@ export function toggleDisplayGrid() {
     $(".inputbutton").text("List View");
   }
 }
+
+export function checkContainerStyle() {
+  if (!$(".flash-card-container").hasClass("active-container")) {
+    $("flash-card-container").addClass("active-container");
+  }
+}
+checkContainerStyle();
