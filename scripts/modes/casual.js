@@ -7,13 +7,17 @@ $(".prev").on("click", () => plusCards(-1));
 $(".next").on("click", () => plusCards(1));
 
 let cardIndex = 1;
+export var wordTagNum = 0;
+
 showCards(cardIndex);
 
-export function plusCards(n) {
+export async function plusCards(n) {
+  await wait(200);
   showCards((cardIndex += n));
 }
 
-export function currentCards(n) {
+export async function currentCards(n) {
+  await wait(200);
   showSlides((slideIndex = n));
 }
 
@@ -46,9 +50,10 @@ export async function casualMode() {
   randomizeArray(storeWords);
 
   storeWords.forEach(({ word, definition }) => {
+    wordTagNum++;
     $("<div>")
-      .addClass("flash-card-object mySlides")
-      .html(`${word}`)
+      .addClass(`flash-card-object mySlides ${wordTagNum}`)
+      .text(`${word}`)
       .prependTo("flash-card-container");
   });
   save();
