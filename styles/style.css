@@ -18,13 +18,16 @@
     src: url(../Fonts/CaviarDreams.ttf);
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
-    box-sizing: border-box;
     background: rgb(128, 56, 154);
     background-size: 100% 100%;
 }
