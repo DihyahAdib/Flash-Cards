@@ -276,20 +276,6 @@ button.new-element:hover {
     margin-top: 55px;
 }
 
-flash-cards {
-    position: fixed;
-    display: grid;
-    background-color: rgb(227, 248, 250);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    opacity: 0;
-    visibility: hidden;
-    padding: 10px;
-    width: 60%;
-    height: 80%;
-    z-index: 30;
-}
-
 modal-text {
     padding: 0;
     margin: 0;

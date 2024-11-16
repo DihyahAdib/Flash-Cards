@@ -38,9 +38,15 @@ $("#pick-mode").on("click", function () {
 $("#close-modal").on("click", function () {
   hideModal();
 });
-$("#cover, #casual, #timed, #memo-mode").on("mouseover", function () {
-  showExplanation();
-});
+$("#cover, #casual, #timed, #memo-mode")
+  .on("mouseover", function () {
+    showExplanation();
+  })
+  .on("click", function () {
+    $("body")
+      .removeClass("modal-pick-mode modal-pick-mode-explain")
+      .addClass("modal-play-mode");
+  });
 $("#close-modal-explanation").on("click", function () {
   hideExplanation();
 });

@@ -3,19 +3,19 @@ import { save } from "../save.js";
 import { addWords, displayWords } from "./wordhandler.js";
 
 export function showModal() {
-  $("body").addClass("show-modal-visibility");
+  $("body").addClass("modal-pick-mode");
 }
 
 export function hideModal() {
-  $("body").removeClass("show-modal-visibility");
+  $("body").removeClass("modal-pick-mode");
 }
 
 export function showExplanation() {
-  $("body").addClass("show-modalExplanation-visibility");
+  $("body").addClass("modal-pick-mode-explain");
 }
 
 export function hideExplanation() {
-  $("body").removeClass("show-modalExplanation-visibility");
+  $("body").removeClass("modal-pick-mode-explain");
 }
 
 export function AddVocab(e) {

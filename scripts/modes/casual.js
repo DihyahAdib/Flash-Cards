@@ -8,10 +8,11 @@ export async function casualMode() {
     $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
   });
   randomizeArray(storeWords);
-  showFlashCards();
+  // showFlashCards();
   save();
 }
 
-export function showFlashCards() {
-  $("body").addClass("show-flashCard-visibility");
-}
+// export function showFlashCards() {
+//   if ($(document.body).hasClass("modal-pick-mode "))
+//   $(document.body).toggleClass("modal-play-mode");
+// }
