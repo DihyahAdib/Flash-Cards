@@ -17,6 +17,7 @@ export async function casualMode() {
   });
   save();
 }
+
 export function toggleDisplayGrid() {
   if ($("body").hasClass("casual-mode-has-columns")) {
     $("body").removeClass("casual-mode-has-columns");
