@@ -2,6 +2,8 @@
 
 import { save } from "../save.js";
 
+let isFlashCardsAnimating = false;
+
 export function displayWords() {
   $("#words-container").empty();
 

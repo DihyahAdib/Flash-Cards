@@ -4,8 +4,18 @@ import {
   displayWords,
   addWords,
 } from "./functions/wordhandler.js";
+import {
+  showModal,
+  hideModal,
+  showExplanation,
+  hideExplanation,
+  AddVocab,
+  removeOneVocab,
+  removeAllVocab,
+} from "./functions/functions.js";
 import { setCurrentMode } from "./constants.js";
-import { save } from "./save.js";
+import { coverMode } from "./modes/cover.js";
+import { casualMode } from "./modes/casual.js";
 
 export async function wait(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
@@ -17,40 +27,29 @@ $("#casual").on("click mouseover", () => setCurrentMode(1));
 $("#timed").on("click mouseover", () => setCurrentMode(2));
 $("#memo-mode").on("click mouseover", () => setCurrentMode(3));
 
-// Hover Events //
-$("#cover, #casual, #timed, #memo-mode").on("mouseover", function () {
-  $("body").addClass("show-modalExplanation-visibility");
-});
-
 // Click | Press Events //
-$("#inputbutton").on("click", toggleDisplayGrid);
-
-$("#pick-mode").on("click", async function () {
-  $("body").addClass("show-modal-visibility");
-});
-
-$("#close-modal").on("click", function () {
-  $("body").removeClass("show-modal-visibility");
-});
-
-$("#close-modal-explanation").on("click", function () {
-  $("body").removeClass("show-modalExplanation-visibility");
-});
-
+$("#cover").on("click", coverMode);
+$("#casual").on("click", casualMode);
 $("#input-vocab").on("click", addWords);
-
-$("#remove-one").on("click", function () {
-  storeWords.pop();
-  displayWords();
-  save();
+$("#inputbutton").on("click", toggleDisplayGrid);
+$("#pick-mode").on("click", function () {
+  showModal();
 });
-
-$("#remove-vocab").on("click", function () {
-  storeWords.length = 0;
-  localStorage.removeItem("storeWords");
-  displayWords();
+$("#close-modal").on("click", function () {
+  hideModal();
 });
-
+$("#cover, #casual, #timed, #memo-mode").on("mouseover", function () {
+  showExplanation();
+});
+$("#close-modal-explanation").on("click", function () {
+  hideExplanation();
+});
 $("text-areas input").on("keypress", function (e) {
-  if (e.key === "Enter") addWords();
+  AddVocab(e);
+});
+$("#remove-one").on("click", function () {
+  removeOneVocab();
+});
+$("#remove-vocab").on("click", function () {
+  removeAllVocab();
 });
