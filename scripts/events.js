@@ -35,7 +35,7 @@ $("#pick-mode").on("click", function () {
 $("#close-modal").on("click", function () {
   hideModal();
 });
-$("#cover, #casual, #timed, #memo-mode")
+$("#casual, #timed, #memo-mode")
   .on("mouseover", function () {
     showExplanation();
   })
