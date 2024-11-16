@@ -11,7 +11,7 @@ export async function casualMode() {
 
   storeWords.forEach(({ word, definition }) => {
     $("<button>")
-      .addClass("flash-card-objects")
+      .addClass("flash-card-object")
       .html(`${word}: ${definition}`)
       .appendTo("modal-container");
   });
