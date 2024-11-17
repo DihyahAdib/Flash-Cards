@@ -12,10 +12,10 @@ It's not finished, but right now I just have the storage locally for each person
 
 ## Features
 
-- [CoverMode](#Cover Mode)
-- [CasualMode](#Casual Mode)
-- [TimedMode](#Timed Mode)
-- [MemorizationMode](#Memorization Mode)
+- Cover Mode
+- Casual Mode
+- Timed Mode
+- Memorization Mode
 
 ## Cover Mode
 
