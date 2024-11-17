@@ -1,77 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/styles/style.css">
-        <link rel="stylesheet" href="/styles/class.css">
-        <link rel="stylesheet" href="/styles/animations.css">
-        <title>Quiz yourself | Flash Cards</title>
-    </head>
-    <body>
-        <div id="overlay">
-            <div class="modal">
-                <button class="activator-buttons" id="close-modal">X</button>
-                <h3 class="current-mode">Current Mode: <span class="mode-name"></span></h3>
-                <h2>Pick Mode</h2>
-                <p>Each mode represents different modifiers for the general Flash Card mode.</p>
-                <p>Hover over buttons for description of the mode.</p>
-                <container-for-modes>
-                    <button class="activator-buttons" id="cover">Cover Mode</button>
-                    <button class="activator-buttons" id="casual">Casual Mode</button>
-                    <button class="activator-buttons" id="timed">Timed Mode</button>
-                    <button class="activator-buttons" id="memo-mode">Memorization Mode</button>
-                </container-for-modes>
-                <div class="modal-explanation">
-                    <button class="activator-buttons" id="close-modal-explanation"><img src="/assets/leftArrow.png" alt="arrow pointer"></button>
-                    <h2 id="current-mode-explain-name"></h2>
-                    <p id="explaination-area">.</p>
-                </div>
-            </div>
-
-            <flash-cards>
-                <toggle-style-modes>
-                    <input id = "inputbutton" type="checkbox" checked style="--s:35px">
-                    <label class = "inputbutton" for="inputbutton">Toggle View</label>
-                    <button-wrapper>
-                        <button class="activator-buttons" id="close-flash-card">X</button>
-                    </button-wrapper>
-                </toggle-style-modes>
-                <modal-text>
-                    <h2 class="mode-name"></h2>
-                </modal-text>
-                <modal-container>
-                </modal-container>
-            </flash-cards>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <link rel="stylesheet" href="/styles/class.css" />
+    <link rel="stylesheet" href="/styles/animations.css" />
+    <title>Quiz yourself | Flash Cards</title>
+  </head>
+  <body>
+    <overlay>
+      <div class="modal">
+        <button class="activator-buttons" id="close-modal">X</button>
+        <h3 class="current-mode">
+          Current Mode: <span class="mode-name"></span>
+        </h3>
+        <h2>Pick Mode</h2>
+        <p>
+          Each mode represents different modifiers for the general Flash Card
+          mode.
+        </p>
+        <p>Hover over buttons for description of the mode.</p>
+        <container-for-modes>
+          <button class="activator-buttons" id="cover">Cover Mode</button>
+          <button class="activator-buttons" id="casual">Casual Mode</button>
+          <button class="activator-buttons" id="timed">Timed Mode</button>
+          <button class="activator-buttons" id="memo-mode">
+            Memorization Mode
+          </button>
+        </container-for-modes>
+        <div class="modal-explanation">
+          <button class="activator-buttons" id="close-modal-explanation">
+            <img src="/assets/leftArrow.png" alt="arrow pointer" />
+          </button>
+          <h2 id="current-mode-explain-name"></h2>
+          <p id="explaination-area">.</p>
         </div>
+      </div>
 
-        <main-panel class="glass">
+      <flash-cards>
+        <modal-text>
+          <button-close-flash-cards>Close</button-close-flash-cards>
+          <h2 class="mode-name"></h2>
+        </modal-text>
+        <flash-card-container>
+          <!-- cards -->
 
-            <text-areas>
-                <label><span>Foreign Language :</span><input id="text-area" placeholder="Enter vocabulary..."></label>
+          <a class="prev">&#10094;</a>
+          <a class="next">&#10095;</a>
+        </flash-card-container>
+      </flash-cards>
+    </overlay>
 
-                <label><span>Your Language :</span><input id="definition-area" placeholder="Enter definition..."></label>
-            </text-areas>
-            
-            <button-container>
-                <div class="button-wrapper">
-                    <button class="activator-buttons" id="input-vocab">Add Word</button>
-                    <button class="activator-buttons" id="remove-one">Remove One Word</button>
-                    <button class="activator-buttons" id="remove-vocab">Remove All</button>
-                </div>
-                <button class="activator-buttons" id="pick-mode">Pick Mode</button>
-            </button-container>
-            
-            <word-bank>
-                <h2>Word Bank</h2>
-                <p>Clicking a specific word WILL remove it.</p>
-                <div id="words-container"></div>
-            </word-bank>
+    <main-panel class="glass">
+      <text-areas>
+        <label
+          ><span>Foreign Language :</span
+          ><input
+            autocomplete="off"
+            id="text-area"
+            placeholder="Enter vocabulary..."
+        /></label>
 
-        </main-panel>
+        <label
+          ><span>Your Language :</span
+          ><input
+            autocomplete="off"
+            id="definition-area"
+            placeholder="Enter definition..."
+        /></label>
+      </text-areas>
 
-    </body>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script type="module" src="./scripts/constants.js"></script>
-    <script type="module" src="./scripts/script.js"></script>
+      <button-container>
+        <div class="button-wrapper">
+          <button class="activator-buttons" id="input-vocab">Add Word</button>
+          <button class="activator-buttons" id="remove-one">
+            Remove One Word
+          </button>
+          <button class="activator-buttons" id="remove-vocab">
+            Remove All
+          </button>
+        </div>
+        <button class="activator-buttons" id="pick-mode">Pick Mode</button>
+      </button-container>
+
+      <word-bank>
+        <h2>Word Bank</h2>
+        <p>Clicking a specific word WILL remove it.</p>
+        <div id="words-container"></div>
+      </word-bank>
+    </main-panel>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script type="module" src="./scripts/constants.js"></script>
+  <script type="module" src="./scripts/events.js"></script>
+  <script type="module" src="./scripts/script.js"></script>
+  <script type="module" src="./scripts/functions/wordhandler.js"></script>
+  <script type="module" src="./scripts/save.js"></script>
+  <script type="module" src="./scripts/modes/casual.js"></script>
+  <script type="module" src="./scripts/modes/cover.js"></script>
+  <script type="module" src="./scripts/modes/timed.js"></script>
+  <script type="module" src="./scripts/modes/memorization.js"></script>
 </html>

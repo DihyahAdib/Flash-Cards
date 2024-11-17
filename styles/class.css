@@ -1,66 +1,97 @@
 /*ADD CLASSES HERE*/
 :root {
-    --animation-duration: 0.5s;
+    --transition-duration: 0.4s;
+    --transition-duration-short: 0.3s;
 }
 
-body.casual-mode-has-columns modal-container{
-    flex-direction: column;
-}
-
-/* hovered classes for explanation */
-body.show-explanation .modal-explanation {
-    visibility: visible;
-    animation: slideIn var(--animation-duration) forwards;
-}
-
-/* click classes for explanation */
-body.remove-explanation-modal .modal-explanation {
-    animation: slideOut var(--animation-duration) forwards;
-}
-
-/* Animation for overlay*/
-body.overlay-visible #overlay{
-    display: flex;
-    animation: opacityI var(--animation-duration) forwards;
-}
-
-body.overlay-disappearing #overlay{
-    display: flex;
-    animation: opacityO var(--animation-duration) forwards;
-}
-
-/* Animation for modal*/
-body.overlay-visible .modal {
-    animation: scaleIn var(--animation-duration) forwards;
-} 
-
-body.overlay-disappearing .modal {
-    animation: 
-    scaleOut var(--animation-duration) forwards, 
-    opacityO var(--animation-duration) forwards;
-}
-
-/* Styles for flash card */
-body.flash-cards-visibility flash-cards {
-    visibility: visible;
-    opacity: 1;
-    animation: scaleIn var(--animation-duration) forwards;
-}
-
-.flash-card-objects {
-    flex-shrink: 0;
-    scroll-snap-align: center;
-    width: 18em;
-    height: 18em;
-    font-weight: bold;
-    font-size: 30px;
-    text-align: center;
+/* overlay & all modals */
+overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    visibility: hidden;
+    z-index: 20;
+    opacity: 0;
+    transition: opacity var(--transition-duration), visibility 0s var(--transition-duration);
+}
+
+.modal {
+    transform: scale(0.7);
+    transition: transform var(--transition-duration) ease;
+}
+
+.modal-explanation {
+    position: absolute;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateX(20%);
+    transition: transform var(--transition-duration-short),
+        opacity var(--transition-duration-short),
+        visibility 0s var(--transition-duration-short);
+}
+
+/* Added classes & Transitions */
+
+/*modal/overlay visibility & invisibility transition handler */
+body.modal-pick-mode {
+    overlay {
+        opacity: 1;
+        visibility: visible;
+        transition: opacity var(--transition-duration);
+    }
+
+    .modal {
+        transform: scale(1);
+        transition: transform var(--transition-duration);
+    }
+}
+
+/*modal explain visibility & invisibility transition handler */
+body.modal-pick-mode-explain {
+    .modal-explanation {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(145%);
+        transition: transform var(--transition-duration-short),
+            opacity var(--transition-duration-short),
+            visibility 0s;
+    }
+}
+
+/*flash card visibility & invisibility transition handler */
+flash-cards {
+    position: fixed;
+    background-color: rgb(88, 136, 139);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
     padding: 10px;
-    margin: 10px;
+    width: 40vw;
+    height: 70vh;
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(0.7);
+    transition: transform var(--transition-duration) opacity var(--transition-duration);
+}
+
+body.modal-play-mode {
+    overlay {
+        opacity: 1;
+    }
+
+    flash-cards {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+        transition: transform var(--transition-duration), opacity var(--transition-duration);
+    }
+
 }
 
 .new-element {
@@ -73,4 +104,61 @@ body.flash-cards-visibility flash-cards {
     border-radius: 8px 12px;
     background-color: aliceblue;
     transition: box-shadow 0.25s ease;
+}
+
+flash-card-container {
+    max-width: 1000px;
+    max-height: 1000px;
+    position: relative;
+    display: none;
+    width: 100%;
+    height: 90%;
+    margin: auto;
+
+}
+
+flash-card-container.active-container {
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+}
+
+.flash-card-object {
+    border-radius: 10px;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    height: 90%;
+    font-weight: bold;
+    font-family: "Nexa";
+    font-size: 50px;
+    text-align: center;
+    background-color: white;
+    display: none;
+}
+
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -35px;
+    padding: 16px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    font-size: 28px;
+    transition: 0.2s ease;
+    border-radius: 0 6px 6px 0;
+    user-select: none;
+}
+
+.next {
+    right: 0;
+    border-radius: 6px 0 0 6px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(105, 105, 105, 0.8);
 }
