@@ -1,0 +1,104 @@
+@media (max-width: 1440px) {
+    .modal {
+        transform: scale(0.6);
+        height: 58%;
+    }
+
+    .modal-explanation {
+        width: 50%;
+    }
+
+    #close-modal-explanation {
+        width: 20%;
+    }
+}
+
+@media (max-width: 1024px) {
+    main-panel {
+        height: 85vh;
+        width: 100vw;
+    }
+
+    text-areas {
+        label {
+            font-size: 18px;
+        }
+    }
+
+    overlay {
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal {
+        height: 65%;
+        width: 40%;
+    }
+
+    .modal-explanation {
+        width: 50%;
+    }
+
+    #close-modal-explanation {
+        width: 20%;
+    }
+
+    flash-cards {
+        width: 50vw;
+    }
+}
+
+/* temporary query, might make different Ui for tablet responsive dimensions */
+@media (max-width: 768px) {
+
+    /*fix these buttons */
+    main-panel {
+        height: 95vh;
+        width: 75vw;
+        display: grid;
+        grid-row: auto 1fr 180px;
+        align-items: start;
+        align-content: center;
+        grid-template-rows: auto 1fr 180px;
+        border-radius: 20px;
+    }
+
+    button-container {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: flex-start;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    text-areas {
+        margin-top: 0;
+
+        label {
+            font-size: 18px;
+        }
+    }
+
+    overlay {
+        width: 100%;
+        height: 100%;
+    }
+
+    .modal {
+        height: 65%;
+        width: 40%;
+    }
+
+    .modal-explanation {
+        width: 50%;
+    }
+
+    #close-modal-explanation {
+        width: 20%;
+    }
+
+    flash-cards {
+        width: 50vw;
+    }
+}
