@@ -8,6 +8,8 @@ import {
   AddVocab,
   removeOneVocab,
   removeAllVocab,
+  showCardMode,
+  hideCardMode,
 } from "./functions/functions.js";
 
 import { addWords } from "./functions/wordhandler.js";
@@ -48,15 +50,11 @@ $("#casual, #timed, #memo-mode")
     showExplanation();
   })
   .on("click", function () {
-    $("body")
-      .removeClass("modal-pick-mode modal-pick-mode-explain")
-      .addClass("modal-play-mode");
+    showCardMode();
   });
 
 $("button-close-flash-cards").on("click", function () {
-  $("body")
-    .addClass("modal-pick-mode modal-pick-mode-explain")
-    .removeClass("modal-play-mode");
+  hideCardMode();
 });
 
 $("#close-modal-explanation").on("click", function () {

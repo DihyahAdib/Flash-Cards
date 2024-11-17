@@ -15,9 +15,9 @@ overlay {
     display: flex;
     justify-content: center;
     align-items: center;
-    visibility: hidden;
     z-index: 20;
     opacity: 0;
+    visibility: hidden;
     transition: opacity var(--transition-duration), visibility 0s var(--transition-duration);
 }
 
@@ -37,8 +37,6 @@ overlay {
 }
 
 /* Added classes & Transitions */
-
-/*modal/overlay visibility & invisibility transition handler */
 body.modal-pick-mode {
     overlay {
         opacity: 1;
@@ -77,12 +75,13 @@ flash-cards {
     opacity: 0;
     visibility: hidden;
     transform: scale(0.7);
-    transition: transform var(--transition-duration) opacity var(--transition-duration);
+    transition: transform var(--transition-duration), opacity var(--transition-duration), visibility 0s var(--transition-duration);
 }
 
 body.modal-play-mode {
     overlay {
         opacity: 1;
+        visibility: visible;
     }
 
     flash-cards {
@@ -94,6 +93,7 @@ body.modal-play-mode {
 
 }
 
+/* Flash card and word / definition handlers */
 .new-element {
     font-weight: bold;
     text-align: center;
