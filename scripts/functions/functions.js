@@ -18,6 +18,18 @@ export function hideExplanation() {
   $("body").removeClass("modal-pick-mode-explain");
 }
 
+export function showCardMode() {
+  $("body")
+    .removeClass("modal-pick-mode modal-pick-mode-explain")
+    .addClass("modal-play-mode");
+}
+
+export function hideCardMode() {
+  $("body")
+    .addClass("modal-pick-mode modal-pick-mode-explain")
+    .removeClass("modal-play-mode");
+}
+
 export function AddVocab(e) {
   if (e.key === "Enter") addWords();
 }

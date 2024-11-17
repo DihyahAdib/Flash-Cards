@@ -8,19 +8,25 @@ import {
   AddVocab,
   removeOneVocab,
   removeAllVocab,
+  showCardMode,
+  hideCardMode,
 } from "./functions/functions.js";
 
-import { addWords } from "./functions/wordhandler.js";
+import {
+  addWords,
+  displayWords,
+  randomizeArray,
+} from "./functions/wordhandler.js";
+
 import { setCurrentMode } from "./constants.js";
 import { coverMode } from "./modes/cover.js";
-import { casualMode, toggleDisplayGrid } from "./modes/casual.js";
+import { casualMode, showCards, toggleDisplayGrid } from "./modes/casual.js";
 import { timedMode } from "./modes/timed.js";
 import { memorizationMode } from "./modes/memorization.js";
 
 export async function wait(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
-
 //Mode handlers //
 $("#cover").on("click mouseover", () => setCurrentMode(0));
 $("#casual").on("click mouseover", () => setCurrentMode(1));
@@ -32,7 +38,6 @@ $("#cover").on("click", coverMode);
 $("#casual").on("click", casualMode);
 $("#timed").on("click", timedMode);
 $("#memo-mode").on("click", memorizationMode);
-
 $("#input-vocab").on("click", addWords);
 $("#inputbutton").on("click", toggleDisplayGrid);
 $("#pick-mode").on("click", function () {
@@ -48,15 +53,11 @@ $("#casual, #timed, #memo-mode")
     showExplanation();
   })
   .on("click", function () {
-    $("body")
-      .removeClass("modal-pick-mode modal-pick-mode-explain")
-      .addClass("modal-play-mode");
+    showCardMode();
   });
 
 $("button-close-flash-cards").on("click", function () {
-  $("body")
-    .addClass("modal-pick-mode modal-pick-mode-explain")
-    .removeClass("modal-play-mode");
+  hideCardMode();
 });
 
 $("#close-modal-explanation").on("click", function () {
@@ -73,4 +74,12 @@ $("#remove-one").on("click", function () {
 
 $("#remove-vocab").on("click", function () {
   removeAllVocab();
+});
+
+$(".randomize-cards").on("click", function () {
+  for (let cool = 0; cool < 10; cool++) {
+    randomizeArray(storeWords);
+    casualMode();
+  }
+  console.log("Re-Shuffled words:", storeWords);
 });
