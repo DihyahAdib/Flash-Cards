@@ -60,27 +60,10 @@ export function randomizeArray(array) {
   return array;
 }
 
-// export function sortArray(array) {
-//   return array.sort((a, b) => {
-//     if (a.word < b.word) return -1; // Sort in ascending order by `word`
-//     if (a.word > b.word) return 1;
-//     return 0;
-//   });
-// }
-
 export function sortArray(array) {
-  for (let i = 0; i < array.length; i++) {
-    for (let j = i + 1; j < array.length; j++) {
-      if (array[i] > array[j]) {
-        let q = array[i];
-        array[i] = array[j];
-        array[j] = q;
-      }
-    }
-  }
-  return array;
+  return array.sort((a, b) => {
+    if (a.word < b.word) return -1; // Sort in ascending
+    if (a.word > b.word) return 1;
+    return 0;
+  });
 }
-
-// export function sortArray(array) {
-//   array.sort((a, b) => a - b);
-// }

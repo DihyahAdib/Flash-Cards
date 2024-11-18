@@ -9,13 +9,11 @@ import { save } from "../save.js";
 
 $(".next").on("click", async function () {
   await wait(140);
-  plusCards(1);
   right();
 });
 
 $(".prev").on("click", async function () {
   await wait(140);
-  plusCards(-1);
   left();
 });
 
@@ -46,36 +44,24 @@ export async function showCards(n) {
 
 async function right() {
   let cards = $(".flash-card-object");
-
+  plusCards(1);
   cards.eq(cardIndex - 1).addClass("slideOutToRight");
   await wait(600);
-  cards.eq(cardIndex - 1).removeClass("slideOutToRight");
-
-  plusCards(1);
-
-  cards
-    .eq(cardIndex - 1)
-    .addClass("slideInFromLeft")
-    .css("display", "grid");
+  cards.removeClass("slideOutToRight");
+  cards.eq(cardIndex - 1).addClass("slideInFromLeft"); //current card
   await wait(600);
-  cards.eq(cardIndex - 1).removeClass("slideInFromLeft");
+  cards.removeClass("slideInFromLeft");
 }
 
 async function left() {
   let cards = $(".flash-card-object");
-
-  cards.eq(cardIndex - 1).addClass("slideOutToLeft");
-  await wait(600);
-  cards.eq(cardIndex - 1).removeClass("slideOutToLeft");
-
   plusCards(-1);
-
-  cards
-    .eq(cardIndex - 1)
-    .addClass("slideInFromRight")
-    .css("display", "grid");
+  cards.eq(cardIndex - 1).addClass("slideOutToLeft"); //current card
   await wait(600);
-  cards.eq(cardIndex - 1).removeClass("slideInFromRight");
+  cards.removeClass("slideOutToLeft");
+  cards.eq(cardIndex - 1).addClass("slideInFromRight");
+  await wait(600);
+  cards.removeClass("slideInFromRight");
 }
 
 export async function casualMode() {

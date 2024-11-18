@@ -330,18 +330,19 @@ modal-text {
     button-close-flash-cards,
     .randomize-cards {
         position: absolute;
-        height: 50px;
-        width: 50px;
-        padding: 0;
-        margin: 8px;
-        background-color: #af4c60;
-        color: white;
-        border: none;
-        border-radius: 5px;
+        top: 1%;
+        right: 1%;
+        border-radius: 14% 40%;
         cursor: pointer;
-        font-weight: 900;
         font-family: "Comforta-Bold";
-        font-size: 40px;
+        text-align: center;
+        background: rgb(138, 0, 0);
+        padding: 8px 16px;
+
+        &:hover {
+            color: rgba(255, 255, 255, 0.908);
+            background: rgb(114, 0, 0);
+        }
     }
 
     button-close-flash-cards {
