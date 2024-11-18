@@ -65,7 +65,7 @@ export function sortRegularWords() {
   displayRegularWords();
   showCards(cardIndex);
   save();
-  console.log("Sorted words:", sortArray(storeWords));
+  console.log("Sorted words:", storeWords);
 }
 
 export function shuffleFlashCardWords() {
