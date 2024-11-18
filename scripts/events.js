@@ -11,6 +11,7 @@ import {
   showCardMode,
   hideCardMode,
   shuffleRegularWords,
+  shuffleFlashCardWords,
 } from "./functions/functions.js";
 
 import {
@@ -51,17 +52,9 @@ $("#close-modal-explanation").on("click", hideExplanation);
 $("#remove-vocab").on("click", removeAllVocab);
 $("#remove-one").on("click", removeOneVocab);
 $("shuffle-words").on("click", shuffleRegularWords);
+$(".randomize-cards").on("click", shuffleFlashCardWords);
 $("text-areas input").on("keypress", function (e) {
   AddVocab(e);
-});
-
-$(".randomize-cards").on("click", function () {
-  for (let R = 0; R < 10; R++) {
-    randomizeArray(storeWords);
-    showCards(cardIndex);
-    save();
-  }
-  console.log("Re-Shuffled words:", storeWords);
 });
 
 $("sort-words").on("click", function () {

@@ -1,7 +1,9 @@
 //lose functions script / functions.js //
+import { showCards } from "../modes/casual.js";
 import { save } from "../save.js";
 import {
   addWords,
+  displayFlashCardWords,
   displayRegularWords,
   randomizeArray,
 } from "./wordhandler.js";
@@ -54,6 +56,16 @@ export function shuffleRegularWords() {
   for (let R = 0; R < 100; R++) {
     randomizeArray(storeWords);
     displayRegularWords();
+    save();
+  }
+  console.log("Re-Shuffled words:", storeWords);
+}
+
+export function shuffleFlashCardWords() {
+  for (let R = 0; R < 100; R++) {
+    randomizeArray(storeWords);
+    displayFlashCardWords();
+    showCards(cardIndex);
     save();
   }
   console.log("Re-Shuffled words:", storeWords);

@@ -40,14 +40,17 @@ export async function casualMode() {
   $("div.flash-card-object").each(function () {
     $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
   });
+
   randomizeArray(storeWords);
   displayFlashCardWords();
+
   $(document.body).ready(function () {
     showCards(cardIndex);
   });
-  save();
-  await wait(100);
+
   checkContainerStyle();
+  await wait(100);
+  save();
   //this shouldnt be creating the words, just adding then to the flash card container
 }
 
