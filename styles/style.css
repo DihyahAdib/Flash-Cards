@@ -181,9 +181,9 @@ word-bank {
         font-size: 30px;
     }
 
-    shuffle-words {
+    shuffle-words,
+    sort-words {
         position: absolute;
-        left: 90px;
         padding: 10px 20px;
         background-color: #ffffff;
         color: rgb(27, 27, 27);
@@ -197,7 +197,16 @@ word-bank {
         transition: color 0.2s ease, background-color 0.2s ease;
     }
 
-    shuffle-words:hover {
+    shuffle-words {
+        left: 90px;
+    }
+
+    sort-words {
+        left: 200px;
+    }
+
+    shuffle-words:hover,
+    sort-words:hover {
         color: rgb(0, 0, 0);
         background-color: rgb(219, 219, 219);
         transition: color 0.2s ease, background-color 0.2s ease;
@@ -324,8 +333,7 @@ modal-text {
         width: auto;
     }
 
-    .randomize-cards,
-    sort-words {
+    .randomize-cards {
         position: absolute;
         padding: 12px 8px 12px 8px;
         background-color: #af4c60;
@@ -355,7 +363,6 @@ modal-text {
 
 
 button-close-flash-cards:hover,
-.randomize-cards:hover,
-sort-words:hover {
+.randomize-cards:hover {
     background-color: #af4049;
 }

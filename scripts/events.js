@@ -12,21 +12,16 @@ import {
   hideCardMode,
   shuffleRegularWords,
   shuffleFlashCardWords,
+  sortRegularWords,
 } from "./functions/functions.js";
 
-import {
-  addWords,
-  displayRegularWords,
-  randomizeArray,
-  sortArray,
-} from "./functions/wordhandler.js";
+import { addWords } from "./functions/wordhandler.js";
 
 import { setCurrentMode } from "./constants.js";
 import { coverMode } from "./modes/cover.js";
-import { casualMode, showCards, toggleDisplayGrid } from "./modes/casual.js";
+import { casualMode, toggleDisplayGrid } from "./modes/casual.js";
 import { timedMode } from "./modes/timed.js";
 import { memorizationMode } from "./modes/memorization.js";
-import { save } from "./save.js";
 export async function wait(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -53,13 +48,7 @@ $("#remove-vocab").on("click", removeAllVocab);
 $("#remove-one").on("click", removeOneVocab);
 $("shuffle-words").on("click", shuffleRegularWords);
 $(".randomize-cards").on("click", shuffleFlashCardWords);
+$("sort-words").on("click", sortRegularWords);
 $("text-areas input").on("keypress", function (e) {
   AddVocab(e);
-});
-
-$("sort-words").on("click", function () {
-  sortArray(storeWords);
-  showCards(cardIndex);
-  save();
-  console.log("Sorted words:", storeWords);
 });

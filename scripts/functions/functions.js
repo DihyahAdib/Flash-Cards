@@ -6,6 +6,7 @@ import {
   displayFlashCardWords,
   displayRegularWords,
   randomizeArray,
+  sortArray,
 } from "./wordhandler.js";
 
 export function showModal() {
@@ -53,20 +54,24 @@ export function removeAllVocab() {
 }
 
 export function shuffleRegularWords() {
-  for (let R = 0; R < 100; R++) {
-    randomizeArray(storeWords);
-    displayRegularWords();
-    save();
-  }
-  console.log("Re-Shuffled words:", storeWords);
+  randomizeArray(storeWords);
+  displayRegularWords();
+  save();
+  console.log("Re-Shuffled words:", randomizeArray(storeWords));
+}
+
+export function sortRegularWords() {
+  sortArray(storeWords);
+  displayRegularWords();
+  showCards(cardIndex);
+  save();
+  console.log("Sorted words:", sortArray(storeWords));
 }
 
 export function shuffleFlashCardWords() {
-  for (let R = 0; R < 100; R++) {
-    randomizeArray(storeWords);
-    displayFlashCardWords();
-    showCards(cardIndex);
-    save();
-  }
-  console.log("Re-Shuffled words:", storeWords);
+  randomizeArray(storeWords);
+  displayFlashCardWords();
+  showCards(cardIndex);
+  save();
+  console.log("Re-Shuffled words:", randomizeArray(storeWords));
 }
