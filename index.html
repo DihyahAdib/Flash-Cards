@@ -12,7 +12,7 @@
   <body>
     <overlay>
       <div class="modal">
-        <button class="activator-buttons" id="close-modal">X</button>
+        <button class="activator-buttons" id="close-modal">&#9747;</button>
         <h3 class="current-mode">
           Current Mode: <span class="mode-name"></span>
         </h3>
@@ -32,7 +32,7 @@
         </container-for-modes>
         <div class="modal-explanation">
           <button class="activator-buttons" id="close-modal-explanation">
-            &#10094;
+            &#9747;
           </button>
           <h2 id="current-mode-explain-name"></h2>
           <p id="explaination-area">.</p>
@@ -40,12 +40,19 @@
       </div>
 
       <flash-cards>
+        <button-panel>
+          <h2>control panel</h2>
+          <button class="randomize-cards">&#8634;</button>
+          <button-close-flash-cards class="activator-buttons"
+            >X</button-close-flash-cards
+          >
+        </button-panel>
         <modal-text>
-          <button-close-flash-cards>Close</button-close-flash-cards>
           <h2 class="mode-name"></h2>
-          <button class="randomize-cards">Shuffle</button>
         </modal-text>
+
         <flash-card-container></flash-card-container>
+
         <arrow-container>
           <a class="prev">&#10094;</a>
           <a class="next">&#10095;</a>

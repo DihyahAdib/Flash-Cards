@@ -62,7 +62,7 @@ export function randomizeArray(array) {
 
 export function sortArray(array) {
   return array.sort((a, b) => {
-    if (a.word < b.word) return -1; // Sort in ascending order by `word`
+    if (a.word < b.word) return -1; // Sort in ascending
     if (a.word > b.word) return 1;
     return 0;
   });

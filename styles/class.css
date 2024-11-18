@@ -1,6 +1,7 @@
 /*ADD CLASSES HERE*/
 :root {
     --transition-duration: 0.4s;
+    --animation-duration-sliding: 0.5;
     --transition-duration-short: 0.3s;
 }
 
@@ -77,6 +78,18 @@ flash-cards {
     transform: scale(0.7);
     transition: transform var(--transition-duration), opacity var(--transition-duration), visibility 0s var(--transition-duration);
 
+    button-panel {
+        text-rendering: optimizeLegibility;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        position: fixed;
+        top: 1%;
+        width: 95%;
+        height: 12%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
 
 }
 
@@ -88,6 +101,7 @@ body.modal-play-mode {
 
     flash-cards {
         opacity: 1;
+        display: grid;
         visibility: visible;
         transform: scale(1);
         transition: transform var(--transition-duration), opacity var(--transition-duration);
@@ -159,44 +173,41 @@ flash-card-container.active-container {
 }
 
 .flash-card-object {
+    font-weight: bold;
+    font-family: "Nexa";
+    font-size: 55px;
+    text-align: center;
+    background-color: white;
     border-radius: 10px;
+    display: none;
+    position: absolute;
     justify-content: center;
     justify-items: center;
     align-items: center;
-    font-weight: bold;
-    font-family: "Nexa";
-    font-size: 50px;
-    text-align: center;
-    background-color: white;
-}
-
-.flash-card-object {
-    display: none;
-    position: absolute;
     width: 100%;
-    height: 100%;
+    height: 90%;
     transform: translateX(0%);
-    animation: transform 0.6s ease-in-out;
+    animation: transform 0.5s linear;
 }
 
 .flash-card-object.slideInFromRight {
     display: grid;
-    animation: slideInFromRight 0.6s forwards;
+    animation: slideInFromRight 0.5s linear forwards;
 }
 
 .flash-card-object.slideOutToLeft {
     display: grid;
-    animation: slideOutToLeft 0.6s forwards;
+    animation: slideOutToLeft 0.5s linear forwards;
 }
 
 .flash-card-object.slideInFromLeft {
     display: grid;
-    animation: slideInFromLeft 0.6s forwards;
+    animation: slideInFromLeft 0.5s linear forwards;
 }
 
 .flash-card-object.slideOutToRight {
     display: grid;
-    animation: slideOutToRight 0.6s forwards;
+    animation: slideOutToRight 0.5s linear forwards;
 }
 
 @keyframes slideInFromRight {
