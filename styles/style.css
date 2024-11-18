@@ -1,9 +1,4 @@
 @font-face {
-    font-family: "Comforta";
-    src: url(../Fonts/Comfortaa-Light.ttf);
-}
-
-@font-face {
     font-family: "Comforta-Bold";
     src: url(../Fonts/Comfortaa-Bold.ttf);
 }
@@ -185,7 +180,30 @@ word-bank {
         font-family: "Comforta-Bold";
         font-size: 30px;
     }
+
+    shuffle-words {
+        position: absolute;
+        left: 90px;
+        padding: 10px 20px;
+        background-color: #ffffff;
+        color: rgb(27, 27, 27);
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        font-family: "Comforta-Bold";
+        font-size: 16px;
+        width: auto;
+        transition: color 0.2s ease, background-color 0.2s ease;
+    }
+
+    shuffle-words:hover {
+        color: rgb(0, 0, 0);
+        background-color: rgb(219, 219, 219);
+        transition: color 0.2s ease, background-color 0.2s ease;
+    }
 }
+
 
 #words-container {
     font-size: 30px;
@@ -257,6 +275,7 @@ button.new-element:hover {
 
 #close-modal-explanation {
     position: absolute;
+    display: flex;
     top: 0%;
     right: 0%;
     border-radius: 40% 12px;
@@ -264,14 +283,11 @@ button.new-element:hover {
     background: rgb(138, 0, 41);
     width: 17%;
     height: 11%;
+    justify-content: center;
+    align-items: center;
 
     &:hover {
         background-color: rgb(114, 0, 42);
-    }
-
-    & img {
-        width: 85%;
-        height: 104%;
     }
 }
 
@@ -285,8 +301,9 @@ modal-text {
     margin: 0;
 
     h2 {
+        padding-left: 60px;
         text-align: center;
-        font-size: 37px;
+        font-size: 44px;
         font-family: "Nexa";
         margin: 0;
     }
@@ -303,15 +320,14 @@ modal-text {
         cursor: pointer;
         text-align: center;
         font-family: "Comforta-Bold";
-        font-size: 16px;
+        font-size: 22px;
         width: auto;
     }
 
-    .randomize-cards {
+    .randomize-cards,
+    sort-words {
         position: absolute;
-        top: 10px;
-        left: 10px;
-        padding: 10px 20px;
+        padding: 12px 8px 12px 8px;
         background-color: #af4c60;
         color: white;
         border: none;
@@ -319,14 +335,27 @@ modal-text {
         cursor: pointer;
         text-align: center;
         font-family: "Comforta-Bold";
-        font-size: 16px;
-        width: auto;
+        font-size: 20px;
+    }
+
+    .randomize-cards {
+        top: 10px;
+        left: 10px;
+        width: 14%;
+
+    }
+
+    sort-words {
+        top: 10px;
+        left: 125px;
+        width: 14%;
     }
 }
 
 
 
 button-close-flash-cards:hover,
-.randomize-cards:hover {
+.randomize-cards:hover,
+sort-words:hover {
     background-color: #af4049;
 }

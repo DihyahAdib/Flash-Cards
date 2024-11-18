@@ -14,8 +14,9 @@ import {
 
 import {
   addWords,
-  displayWords,
+  displayRegularWords,
   randomizeArray,
+  sortArray,
 } from "./functions/wordhandler.js";
 
 import { setCurrentMode } from "./constants.js";
@@ -23,7 +24,7 @@ import { coverMode } from "./modes/cover.js";
 import { casualMode, showCards, toggleDisplayGrid } from "./modes/casual.js";
 import { timedMode } from "./modes/timed.js";
 import { memorizationMode } from "./modes/memorization.js";
-
+import { save } from "./save.js";
 export async function wait(ms) {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
@@ -32,6 +33,7 @@ $("#cover").on("click mouseover", () => setCurrentMode(0));
 $("#casual").on("click mouseover", () => setCurrentMode(1));
 $("#timed").on("click mouseover", () => setCurrentMode(2));
 $("#memo-mode").on("click mouseover", () => setCurrentMode(3));
+$("#casual, #timed, #memo-mode").on("mouseover", showExplanation);
 
 // Click | Press Events //
 $("#cover").on("click", coverMode);
@@ -40,46 +42,38 @@ $("#timed").on("click", timedMode);
 $("#memo-mode").on("click", memorizationMode);
 $("#input-vocab").on("click", addWords);
 $("#inputbutton").on("click", toggleDisplayGrid);
-$("#pick-mode").on("click", function () {
-  showModal();
-});
-
-$("#close-modal").on("click", function () {
-  hideModal();
-});
-
-$("#casual, #timed, #memo-mode")
-  .on("mouseover", function () {
-    showExplanation();
-  })
-  .on("click", function () {
-    showCardMode();
-  });
-
-$("button-close-flash-cards").on("click", function () {
-  hideCardMode();
-});
-
-$("#close-modal-explanation").on("click", function () {
-  hideExplanation();
-});
+$("#pick-mode").on("click", showModal);
+$("#close-modal").on("click", hideModal);
+$("#casual, #timed, #memo-mode").on("click", showCardMode);
+$("button-close-flash-cards").on("click", hideCardMode);
+$("#close-modal-explanation").on("click", hideExplanation);
+$("#remove-vocab").on("click", removeAllVocab);
+$("#remove-one").on("click", removeOneVocab);
 
 $("text-areas input").on("keypress", function (e) {
   AddVocab(e);
 });
-
-$("#remove-one").on("click", function () {
-  removeOneVocab();
-});
-
-$("#remove-vocab").on("click", function () {
-  removeAllVocab();
-});
-
 $(".randomize-cards").on("click", function () {
-  for (let cool = 0; cool < 10; cool++) {
+  for (let R = 0; R < 10; R++) {
     randomizeArray(storeWords);
-    casualMode();
+    showCards(cardIndex);
+    save();
   }
   console.log("Re-Shuffled words:", storeWords);
+});
+
+$("shuffle-words").on("click", function () {
+  for (let R = 0; R < 10; R++) {
+    randomizeArray(storeWords);
+    displayRegularWords();
+    save();
+  }
+  console.log("Re-Shuffled words:", storeWords);
+});
+
+$("sort-words").on("click", function () {
+  sortArray(storeWords);
+  showCards(cardIndex);
+  save();
+  console.log("Sorted words:", storeWords);
 });

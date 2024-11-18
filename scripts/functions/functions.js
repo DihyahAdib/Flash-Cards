@@ -1,6 +1,6 @@
 //lose functions script / functions.js //
 import { save } from "../save.js";
-import { addWords, displayWords } from "./wordhandler.js";
+import { addWords, displayRegularWords } from "./wordhandler.js";
 
 export function showModal() {
   $("body").addClass("modal-pick-mode");
@@ -36,12 +36,12 @@ export function AddVocab(e) {
 
 export function removeOneVocab() {
   storeWords.pop();
-  displayWords();
+  displayRegularWords();
   save();
 }
 
 export function removeAllVocab() {
   storeWords.length = 0;
   localStorage.removeItem("storeWords");
-  displayWords();
+  displayRegularWords();
 }
