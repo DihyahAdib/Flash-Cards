@@ -61,44 +61,45 @@
     </overlay>
 
     <main-panel class="glass">
-      <text-areas>
-        <label
-          ><span>Foreign Language :</span
-          ><input
-            autocomplete="off"
-            id="text-area"
-            placeholder="Enter vocabulary..."
-        /></label>
+      <mini-panel class="glass">
+        <content>
+          <h2>Control Panel</h2>
+          <button-container>
+            <button class="activator-buttons" id="input-vocab">&#43;</button>
+            <button class="activator-buttons" id="remove-one">&#8722;</button>
+            <button class="activator-buttons" id="remove-all">&#128465;</button>
+            <shuffle-words>Shuffle</shuffle-words>
+            <sort-words>Sort</sort-words>
+            <button class="activator-buttons" id="pick-mode">Pick Mode</button>
+          </button-container>
+        </content>
+      </mini-panel>
 
-        <label
-          ><span>Your Language :</span
-          ><input
-            autocomplete="off"
-            id="definition-area"
-            placeholder="Enter definition..."
-        /></label>
-      </text-areas>
+      <mini-panel-1>
+        <text-areas>
+          <label
+            ><span>Foreign Language</span
+            ><input
+              autocomplete="off"
+              id="text-area"
+              placeholder="Enter vocabulary"
+          /></label>
 
-      <button-container>
-        <div class="button-wrapper">
-          <button class="activator-buttons" id="input-vocab">Add Word</button>
-          <button class="activator-buttons" id="remove-one">
-            Remove One Word
-          </button>
-          <button class="activator-buttons" id="remove-vocab">
-            Remove All
-          </button>
-        </div>
-        <button class="activator-buttons" id="pick-mode">Pick Mode</button>
-      </button-container>
+          <label
+            ><span>Your Language</span
+            ><input
+              autocomplete="off"
+              id="definition-area"
+              placeholder="Enter definition"
+          /></label>
+        </text-areas>
 
-      <word-bank>
-        <shuffle-words>Shuffle</shuffle-words>
-        <sort-words>Sort</sort-words>
-        <h2>Word Bank</h2>
-        <p>Clicking a specific word WILL remove it.</p>
-        <div id="words-container"></div>
-      </word-bank>
+        <word-bank>
+          <h2>Word Bank</h2>
+          <p>Clicking a specific word WILL remove it.</p>
+          <div id="words-container"></div>
+        </word-bank>
+      </mini-panel-1>
     </main-panel>
   </body>
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>

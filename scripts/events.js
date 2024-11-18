@@ -44,7 +44,7 @@ $("#close-modal").on("click", hideModal);
 $("#casual, #timed, #memo-mode").on("click", showCardMode);
 $("button-close-flash-cards").on("click", hideCardMode);
 $("#close-modal-explanation").on("click", hideExplanation);
-$("#remove-vocab").on("click", removeAllVocab);
+$("#remove-all").on("click", removeAllVocab);
 $("#remove-one").on("click", removeOneVocab);
 $("shuffle-words").on("click", shuffleRegularWords);
 $(".randomize-cards").on("click", shuffleFlashCardWords);
