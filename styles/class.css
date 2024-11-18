@@ -78,6 +78,18 @@ flash-cards {
     transform: scale(0.7);
     transition: transform var(--transition-duration), opacity var(--transition-duration), visibility 0s var(--transition-duration);
 
+    button-panel {
+        text-rendering: optimizeLegibility;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        position: fixed;
+        top: 1%;
+        width: 95%;
+        height: 12%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+    }
 
 }
 
@@ -89,6 +101,7 @@ body.modal-play-mode {
 
     flash-cards {
         opacity: 1;
+        display: grid;
         visibility: visible;
         transform: scale(1);
         transition: transform var(--transition-duration), opacity var(--transition-duration);

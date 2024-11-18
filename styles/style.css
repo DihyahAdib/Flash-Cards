@@ -23,6 +23,8 @@
 }
 
 * {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -31,8 +33,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    background: rgb(128, 56, 154);
+    background: rgb(68, 67, 68);
     background-size: 100% 100%;
 }
 
@@ -314,48 +315,40 @@ button.new-element:hover {
 }
 
 modal-text {
-    position: relative;
-    padding: 2px;
-    margin: 2px;
-    display: grid;
-    justify-content: center;
-
     h2 {
         text-align: center;
         font-size: 44px;
         font-family: "Nexa";
+        padding: 0;
         margin: 0;
     }
-
-    button-close-flash-cards,
-    .randomize-cards {
-        position: absolute;
-        top: 1%;
-        right: 1%;
-        border-radius: 14% 40%;
-        cursor: pointer;
-        font-family: "Comforta-Bold";
-        text-align: center;
-        background: rgb(138, 0, 0);
-        padding: 8px 16px;
-
-        &:hover {
-            color: rgba(255, 255, 255, 0.908);
-            background: rgb(114, 0, 0);
-        }
-    }
-
-    button-close-flash-cards {
-        right: 7px;
-    }
-
-    .randomize-cards {
-        left: 7px;
-    }
-
 }
 
+button-close-flash-cards,
+.randomize-cards {
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    border-radius: 14% 40%;
+    cursor: pointer;
+    font-family: "Comforta-Bold";
+    text-align: center;
+    background: rgb(138, 0, 0);
+    padding: 8px 16px;
 
+    &:hover {
+        color: rgba(255, 255, 255, 0.908);
+        background: rgb(114, 0, 0);
+    }
+}
+
+button-close-flash-cards {
+    right: 7px;
+}
+
+.randomize-cards {
+    left: 7px;
+}
 
 button-close-flash-cards:hover,
 .randomize-cards:hover {
