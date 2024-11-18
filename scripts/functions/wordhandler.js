@@ -30,7 +30,7 @@ export function displayFlashCardWords() {
   storeWords.forEach(({ word, definition }) => {
     $("<div>")
       .addClass(`flash-card-object`)
-      .text(`${word} : ${definition}`) //remove def later
+      .text(`${word}`)
       .prependTo("flash-card-container")
       .data({ word, definition });
   });

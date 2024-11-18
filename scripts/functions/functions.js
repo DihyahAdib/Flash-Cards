@@ -1,6 +1,10 @@
 //lose functions script / functions.js //
 import { save } from "../save.js";
-import { addWords, displayRegularWords } from "./wordhandler.js";
+import {
+  addWords,
+  displayRegularWords,
+  randomizeArray,
+} from "./wordhandler.js";
 
 export function showModal() {
   $("body").addClass("modal-pick-mode");
@@ -44,4 +48,13 @@ export function removeAllVocab() {
   storeWords.length = 0;
   localStorage.removeItem("storeWords");
   displayRegularWords();
+}
+
+export function shuffleRegularWords() {
+  for (let R = 0; R < 100; R++) {
+    randomizeArray(storeWords);
+    displayRegularWords();
+    save();
+  }
+  console.log("Re-Shuffled words:", storeWords);
 }
