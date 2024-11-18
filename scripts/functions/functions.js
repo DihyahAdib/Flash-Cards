@@ -1,6 +1,13 @@
 //lose functions script / functions.js //
+import { showCards } from "../modes/casual.js";
 import { save } from "../save.js";
-import { addWords, displayWords } from "./wordhandler.js";
+import {
+  addWords,
+  displayFlashCardWords,
+  displayRegularWords,
+  randomizeArray,
+  sortArray,
+} from "./wordhandler.js";
 
 export function showModal() {
   $("body").addClass("modal-pick-mode");
@@ -36,12 +43,35 @@ export function AddVocab(e) {
 
 export function removeOneVocab() {
   storeWords.pop();
-  displayWords();
+  displayRegularWords();
   save();
 }
 
 export function removeAllVocab() {
   storeWords.length = 0;
   localStorage.removeItem("storeWords");
-  displayWords();
+  displayRegularWords();
+}
+
+export function shuffleRegularWords() {
+  randomizeArray(storeWords);
+  displayRegularWords();
+  save();
+  console.log("Re-Shuffled words:", randomizeArray(storeWords));
+}
+
+export function sortRegularWords() {
+  sortArray(storeWords);
+  displayRegularWords();
+  showCards(cardIndex);
+  save();
+  console.log("Sorted words:", storeWords);
+}
+
+export function shuffleFlashCardWords() {
+  randomizeArray(storeWords);
+  displayFlashCardWords();
+  showCards(cardIndex);
+  save();
+  console.log("Re-Shuffled words:", randomizeArray(storeWords));
 }

@@ -2,13 +2,12 @@
 
 import { save } from "../save.js";
 
-export function displayWords() {
+export function displayRegularWords() {
   $("#words-container").empty();
 
   storeWords.forEach(({ word, definition }) => {
-    WordTagNum++;
     $("<button>")
-      .addClass(`new-element ${WordTagNum}`)
+      .addClass(`new-element`)
       .text(`${word} : ${definition}`)
       .on("click", function () {
         this.remove();
@@ -25,6 +24,19 @@ export function displayWords() {
   });
 }
 
+export function displayFlashCardWords() {
+  $("flash-card-container").empty();
+
+  storeWords.forEach(({ word, definition }) => {
+    $("<div>")
+      .addClass(`flash-card-object`)
+      .text(`${word}`)
+      .prependTo("flash-card-container")
+      .data({ word, definition });
+  });
+  save();
+}
+
 export function addWords() {
   const word = $("#text-area").val().trim();
   const definition = $("#definition-area").val().trim();
@@ -33,7 +45,7 @@ export function addWords() {
     storeWords.push({ word, definition });
     $("#text-area").val("");
     $("#definition-area").val("");
-    displayWords();
+    displayRegularWords();
     save();
   } else {
     alert("Enter both the vocab & definition first!");
@@ -46,4 +58,12 @@ export function randomizeArray(array) {
     [array[i], array[j]] = [array[j], array[i]];
   }
   return array;
+}
+
+export function sortArray(array) {
+  return array.sort((a, b) => {
+    if (a.word < b.word) return -1; // Sort in ascending order by `word`
+    if (a.word > b.word) return 1;
+    return 0;
+  });
 }

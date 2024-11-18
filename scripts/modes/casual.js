@@ -1,15 +1,16 @@
 // Casual Mode Script //
 
 import { wait } from "../events.js";
-import { randomizeArray } from "../functions/wordhandler.js";
+import {
+  displayFlashCardWords,
+  randomizeArray,
+} from "../functions/wordhandler.js";
 import { save } from "../save.js";
 
 $(".prev").on("click", () => plusCards(-1));
 $(".next").on("click", () => plusCards(1));
 
-let cardIndex = 1;
-window.WordTagNum = 0;
-window.randomizedWordTagNum = 0;
+window.cardIndex = 1;
 window.plusCards = plusCards;
 window.currentCards = currentCards;
 
@@ -36,24 +37,21 @@ export function showCards(n) {
 }
 
 export async function casualMode() {
-  $("button.new-element").each(function () {
+  $("div.flash-card-object").each(function () {
     $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
   });
-  randomizeArray(storeWords);
 
-  storeWords.forEach(({ word, definition }) => {
-    randomizedWordTagNum++;
-    $("<div>")
-      .addClass(`flash-card-object ${randomizedWordTagNum}`)
-      .text(`${word}`)
-      .prependTo("flash-card-container");
-  });
+  randomizeArray(storeWords);
+  displayFlashCardWords();
+
   $(document.body).ready(function () {
     showCards(cardIndex);
   });
-  save();
-  await wait(100);
+
   checkContainerStyle();
+  await wait(100);
+  save();
+  //this shouldnt be creating the words, just adding then to the flash card container
 }
 
 export function toggleDisplayGrid() {

@@ -32,7 +32,7 @@
         </container-for-modes>
         <div class="modal-explanation">
           <button class="activator-buttons" id="close-modal-explanation">
-            <img src="/assets/leftArrow.png" alt="arrow pointer" />
+            &#10094;
           </button>
           <h2 id="current-mode-explain-name"></h2>
           <p id="explaination-area">.</p>
@@ -42,15 +42,14 @@
       <flash-cards>
         <modal-text>
           <button-close-flash-cards>Close</button-close-flash-cards>
-          <button class="randomize-cards">Re-Shuffle</button>
           <h2 class="mode-name"></h2>
+          <button class="randomize-cards">Shuffle</button>
         </modal-text>
-        <flash-card-container>
-          <!-- cards -->
-
+        <flash-card-container></flash-card-container>
+        <arrow-container>
           <a class="prev">&#10094;</a>
           <a class="next">&#10095;</a>
-        </flash-card-container>
+        </arrow-container>
       </flash-cards>
     </overlay>
 
@@ -87,6 +86,8 @@
       </button-container>
 
       <word-bank>
+        <shuffle-words>Shuffle</shuffle-words>
+        <sort-words>Sort</sort-words>
         <h2>Word Bank</h2>
         <p>Clicking a specific word WILL remove it.</p>
         <div id="words-container"></div>
