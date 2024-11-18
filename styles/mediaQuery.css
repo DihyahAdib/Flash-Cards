@@ -1,4 +1,4 @@
-@media (max-width: 1440px) {
+/* @media (max-width: 1440px) {
     .modal {
         transform: scale(0.6);
         height: 58%;
@@ -48,4 +48,4 @@
     }
 }
 
-/* temporary query, might make different Ui for tablet responsive dimensions */
+temporary query, might make different Ui for tablet responsive dimensions */
