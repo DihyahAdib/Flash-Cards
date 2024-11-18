@@ -32,14 +32,12 @@ export async function currentCards(n) {
 }
 
 export async function showCards(n) {
-  // debugger;
   let cards = $(".flash-card-object");
 
   if (n > cards.length) cardIndex = 1;
   if (n < 1) cardIndex = cards.length;
 
   cards.css("display", "none");
-
   cards
     .eq(cardIndex - 1) //current card
     .css("display", "grid");
@@ -48,24 +46,36 @@ export async function showCards(n) {
 
 async function right() {
   let cards = $(".flash-card-object");
-  plusCards(1);
+
   cards.eq(cardIndex - 1).addClass("slideOutToRight");
-  await wait(500);
-  cards.removeClass("slideOutToRight");
-  cards.eq(cardIndex - 1).addClass("slideInFromLeft"); //current card
-  await wait(500);
-  cards.removeClass("slideInFromLeft");
+  await wait(600);
+  cards.eq(cardIndex - 1).removeClass("slideOutToRight");
+
+  plusCards(1);
+
+  cards
+    .eq(cardIndex - 1)
+    .addClass("slideInFromLeft")
+    .css("display", "grid");
+  await wait(600);
+  cards.eq(cardIndex - 1).removeClass("slideInFromLeft");
 }
 
 async function left() {
   let cards = $(".flash-card-object");
+
+  cards.eq(cardIndex - 1).addClass("slideOutToLeft");
+  await wait(600);
+  cards.eq(cardIndex - 1).removeClass("slideOutToLeft");
+
   plusCards(-1);
-  cards.eq(cardIndex - 1).addClass("slideOutToLeft"); //current card
-  await wait(500);
-  cards.removeClass("slideOutToLeft");
-  cards.eq(cardIndex - 1).addClass("slideInFromRight");
-  await wait(500);
-  cards.removeClass("slideInFromRight");
+
+  cards
+    .eq(cardIndex - 1)
+    .addClass("slideInFromRight")
+    .css("display", "grid");
+  await wait(600);
+  cards.eq(cardIndex - 1).removeClass("slideInFromRight");
 }
 
 export async function casualMode() {
@@ -75,7 +85,7 @@ export async function casualMode() {
 
   randomizeArray(storeWords);
   displayFlashCardWords();
-
+  await wait(600);
   $(document.body).ready(function () {
     showCards(cardIndex);
   });

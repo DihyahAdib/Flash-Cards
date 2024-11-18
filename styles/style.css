@@ -1,3 +1,12 @@
+:root {
+    color-scheme: light-dark;
+}
+
+.omni-theme {
+    background: light-dark(rgb(255, 247, 226), rgb(28, 28, 28));
+    color: light-dark(black, white);
+}
+
 @font-face {
     font-family: "Comforta-Bold";
     src: url(../Fonts/Comfortaa-Bold.ttf);
@@ -306,58 +315,43 @@ button.new-element:hover {
 
 modal-text {
     position: relative;
-    padding: 0;
-    margin: 0;
+    padding: 2px;
+    margin: 2px;
+    display: grid;
+    justify-content: center;
 
     h2 {
-        padding-left: 60px;
         text-align: center;
         font-size: 44px;
         font-family: "Nexa";
         margin: 0;
     }
 
+    button-close-flash-cards,
+    .randomize-cards {
+        position: absolute;
+        height: 50px;
+        width: 50px;
+        padding: 0;
+        margin: 8px;
+        background-color: #af4c60;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: 900;
+        font-family: "Comforta-Bold";
+        font-size: 40px;
+    }
+
     button-close-flash-cards {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        padding: 10px 20px;
-        background-color: #af4c60;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-        font-family: "Comforta-Bold";
-        font-size: 22px;
-        width: auto;
+        right: 7px;
     }
 
     .randomize-cards {
-        position: absolute;
-        padding: 12px 8px 12px 8px;
-        background-color: #af4c60;
-        color: white;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        text-align: center;
-        font-family: "Comforta-Bold";
-        font-size: 20px;
+        left: 7px;
     }
 
-    .randomize-cards {
-        top: 10px;
-        left: 10px;
-        width: 14%;
-
-    }
-
-    sort-words {
-        top: 10px;
-        left: 125px;
-        width: 14%;
-    }
 }
 
 
