@@ -36,13 +36,23 @@ export async function showCards(n) {
   cards
     .eq(cardIndex - 1) //current card
     .css("display", "grid");
-  cards.eq(cardIndex - 1).addClass("slideInFromRight");
-  await wait(500);
-  cards.removeClass("slideInFromRight");
+  //leave first? // ok this anim handles left direction
   cards.eq(cardIndex - 1).addClass("slideOutToLeft"); //current card
   await wait(500);
   cards.removeClass("slideOutToLeft");
-  cards.eq(cardIndex - 1).css("display", "grid");
+  //come back around, im so confused.
+  cards.eq(cardIndex - 1).addClass("slideInFromRight");
+  await wait(500);
+  cards.removeClass("slideInFromRight");
+
+  //right direction
+  cards.eq(cardIndex - 1).addClass("slideOutToRight");
+  await wait(500);
+  cards.removeClass("slideOutToRight");
+  cards.eq(cardIndex - 1).addClass("slideInFromLeft"); //current card
+  await wait(500);
+  cards.removeClass("slideInFromLeft");
+
   checkContainerStyle();
 }
 function right() {}
