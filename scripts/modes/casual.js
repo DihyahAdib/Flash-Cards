@@ -15,26 +15,38 @@ window.plusCards = plusCards;
 window.currentCards = currentCards;
 
 export async function plusCards(n) {
-  await wait(100); //some delay cuz ppl can spam
+  await wait(140); //some delay cuz ppl can spam
   showCards((cardIndex += n));
 }
 
 export async function currentCards(n) {
-  await wait(100);
+  await wait(140);
   showCards((cardIndex = n));
 }
 
-export function showCards(n) {
+export async function showCards(n) {
+  // debugger;
   let cards = $(".flash-card-object");
 
   if (n > cards.length) cardIndex = 1;
   if (n < 1) cardIndex = cards.length;
 
   cards.css("display", "none");
-  cards.eq(cardIndex - 1).css("display", "grid");
 
+  cards
+    .eq(cardIndex - 1) //current card
+    .css("display", "grid");
+  cards.eq(cardIndex - 1).addClass("slideInFromRight");
+  await wait(500);
+  cards.removeClass("slideInFromRight");
+  cards.eq(cardIndex - 1).addClass("slideOutToLeft"); //current card
+  await wait(500);
+  cards.removeClass("slideOutToLeft");
+  cards.eq(cardIndex - 1).css("display", "grid");
   checkContainerStyle();
 }
+function right() {}
+function left() {}
 
 export async function casualMode() {
   $("div.flash-card-object").each(function () {
@@ -49,9 +61,7 @@ export async function casualMode() {
   });
 
   checkContainerStyle();
-  await wait(100);
   save();
-  //this shouldnt be creating the words, just adding then to the flash card container
 }
 
 export function toggleDisplayGrid() {
