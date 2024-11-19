@@ -44,7 +44,7 @@ main-panel {
 
     & mini-panel {
         height: 96%;
-        width: 35%;
+        width: 38%;
         margin-left: 3%;
         margin-right: 3%;
         padding: 8px;
@@ -63,12 +63,30 @@ main-panel {
             & button-container {
                 display: grid;
                 align-items: center;
-                height: 150px;
+                justify-content: center;
 
-                & #pick-mode {
-                    /*sizing*/
-                    width: 350px;
+                & .activator-buttons {
+                    font-family: "Comforta-Bold";
+                    text-align: center;
+                    font-size: 20px;
+                    margin: 10px;
+                    padding: 8px;
+                    border: 3px rgba(0, 0, 0, 0.355) solid;
+                    background: rgba(0, 0, 0, 0.200);
+                    color: rgba(255, 255, 255, 0.908);
+                    border-radius: 25px 25px;
+                    width: 128px;
                     height: 70px;
+                    cursor: pointer;
+                }
+
+                & #input-vocab:hover,
+                #remove-one:hover,
+                #remove-all:hover,
+                #pick-mode:hover,
+                #shuffle-words:hover,
+                #sort-words:hover {
+                    background: rgba(0, 0, 0, 0.640);
                 }
             }
         }
@@ -133,54 +151,9 @@ mini-panel-1 {
             font-family: "Comforta-Bold";
             font-size: 30px;
         }
-
-        shuffle-words,
-        sort-words {
-            position: absolute;
-            padding: 10px 20px;
-            background-color: #ffffff;
-            color: rgb(27, 27, 27);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-align: center;
-            font-family: "Comforta-Bold";
-            font-size: 16px;
-            width: auto;
-            transition: color 0.2s ease, background-color 0.2s ease;
-        }
-
-        shuffle-words {
-            left: 90px;
-        }
-
-        sort-words {
-            left: 200px;
-        }
-
-        shuffle-words:hover,
-        sort-words:hover {
-            color: rgb(0, 0, 0);
-            background-color: rgb(219, 219, 219);
-            transition: color 0.2s ease, background-color 0.2s ease;
-        }
     }
 }
 
-.activator-buttons {
-    font-family: "Comforta-Bold";
-    font-size: 20px;
-    margin: 10px;
-    padding: 8px;
-    border: 3px rgba(0, 0, 0, 0.355) solid;
-    background: rgba(0, 0, 0, 0.200);
-    color: rgba(255, 255, 255, 0.908);
-    border-radius: 25px 25px;
-}
-
-#input-vocab,
-#remove-one,
-#remove-all,
 #toggle-visible-style {
     /*sizing*/
     width: 128px;
@@ -210,13 +183,6 @@ mini-panel-1 {
         color: rgba(255, 255, 255, 0.908);
         background: rgb(114, 0, 0);
     }
-}
-
-#input-vocab:hover,
-#remove-one:hover,
-#remove-all:hover,
-#pick-mode:hover {
-    background: rgba(0, 0, 0, 0.640);
 }
 
 #casual:hover,
