@@ -46,9 +46,9 @@ $("button-close-flash-cards").on("click", hideCardMode);
 $("#close-modal-explanation").on("click", hideExplanation);
 $("#remove-all").on("click", removeAllVocab);
 $("#remove-one").on("click", removeOneVocab);
-$("shuffle-words").on("click", shuffleRegularWords);
+$(".shuffle-words").on("click", shuffleRegularWords);
 $(".randomize-cards").on("click", shuffleFlashCardWords);
-$("sort-words").on("click", sortRegularWords);
+$(".sort-words").on("click", sortRegularWords);
 $("text-areas input").on("keypress", function (e) {
   AddVocab(e);
 });
