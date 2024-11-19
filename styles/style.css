@@ -50,9 +50,21 @@ main-panel {
         padding: 8px;
 
         & content {
+            padding: 1px;
+
             & h2 {
+                text-align: start;
                 font-family: "Dreams";
+                font-weight: 1000;
+                stroke: #bb0010;
                 font-size: 47px;
+            }
+
+            & p {
+                text-align: center;
+                font-family: "Dreams";
+                font-size: 43px;
+                letter-spacing: 10px;
             }
 
             & button-container {
@@ -153,14 +165,14 @@ main-panel {
             border-radius: 10px;
             width: 90%;
 
-            & p {
-                font-family: "Dreams";
-                font-size: 20px;
-            }
-
             & h2 {
                 font-family: "Comforta-Bold";
                 font-size: 30px;
+            }
+
+            & p {
+                font-family: "Dreams";
+                font-size: 20px;
             }
         }
     }
