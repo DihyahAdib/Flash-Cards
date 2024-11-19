@@ -17,16 +17,16 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-}
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background: rgb(52, 52, 52);
-    background-size: 100% 100%;
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+        background: rgb(50, 50, 50);
+        background-size: 100% 100%;
+    }
 }
 
 main-panel {
@@ -48,16 +48,23 @@ main-panel {
         margin-left: 3%;
         margin-right: 3%;
         padding: 8px;
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-        backdrop-filter: blur(10px);
-        border-radius: 20px;
-        border: 0px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
 
         & content {
+            padding: 1px;
+
             & h2 {
+                text-align: start;
                 font-family: "Dreams";
+                font-weight: 1000;
+                stroke: #bb0010;
                 font-size: 47px;
+            }
+
+            & p {
+                text-align: center;
+                font-family: "Dreams";
+                font-size: 43px;
+                letter-spacing: 10px;
             }
 
             & button-container {
@@ -80,6 +87,15 @@ main-panel {
                     cursor: pointer;
                 }
 
+                & #input-vocab,
+                #remove-one {
+                    font-size: 26px;
+                }
+
+                & #sort-words {
+                    font-size: 26px;
+                }
+
                 & #input-vocab:hover,
                 #remove-one:hover,
                 #remove-all:hover,
@@ -91,65 +107,73 @@ main-panel {
             }
         }
     }
-}
 
-mini-panel-1 {
-    & text-areas {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        margin-left: 10px;
-        font-weight: 700;
-        border: none;
-
-        & label {
-            display: flex;
-            align-items: center;
-            font-family: Arial, sans-serif;
-            color: #b4b4b4;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 22px;
-
-            & span {
-                width: 265px;
-            }
-
-            & input {
-                flex-grow: 1;
-                font-family: "Nexa";
-                overflow: hidden;
-                margin: 12px;
-                padding: 3px;
-                border: none;
-                border-radius: 10px;
-                resize: none;
-                font-size: 33px;
-                width: 10em;
-                height: 1.4em;
-            }
-        }
+    & .glass {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+        backdrop-filter: blur(12px);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
     }
 
-    word-bank {
-        justify-self: center;
-        grid-column: 1/3;
-        text-align: center;
-        margin: 10px;
-        padding: 15px;
-        color: rgb(219, 219, 219);
-        border: 4px solid #ffffffb0;
-        border-radius: 10px;
-        width: 90%;
+    mini-panel-1 {
+        & text-areas {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 10px;
+            font-weight: 700;
+            border: none;
 
-        & p {
-            font-family: "Dreams";
-            font-size: 20px;
+            & label {
+                display: flex;
+                align-items: center;
+                font-family: Arial, sans-serif;
+                color: #b4b4b4;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                font-size: 22px;
+
+                & span {
+                    width: 265px;
+                }
+
+                & input {
+                    flex-grow: 1;
+                    font-family: "Nexa";
+                    overflow: hidden;
+                    margin: 12px;
+                    padding: 3px;
+                    border: none;
+                    border-radius: 10px;
+                    resize: none;
+                    font-size: 33px;
+                    width: 10em;
+                    height: 1.4em;
+                }
+            }
         }
 
-        & h2 {
-            font-family: "Comforta-Bold";
-            font-size: 30px;
+        word-bank {
+            justify-self: center;
+            grid-column: 1/3;
+            text-align: center;
+            margin: 10px;
+            padding: 15px;
+            color: rgb(219, 219, 219);
+            border: 4px solid #ffffffb0;
+            border-radius: 10px;
+            width: 90%;
+
+            & h2 {
+                font-family: "Comforta-Bold";
+                font-size: 30px;
+            }
+
+            & p {
+                font-family: "Dreams";
+                font-size: 20px;
+            }
         }
     }
 }
