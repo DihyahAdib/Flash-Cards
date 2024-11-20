@@ -7,6 +7,21 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
       rel="stylesheet"
     />
+    <link
+      rel="icon"
+      type="image/png"
+      href="/assets/favicon-96x96.png"
+      sizes="96x96"
+    />
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="shortcut icon" href="/assets/favicon.ico" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/assets/apple-touch-icon.png"
+    />
+    <meta name="apple-mobile-web-app-title" content="Vocabulation" />
+    <link rel="manifest" href="/assets/site.webmanifest" />
     <link rel="stylesheet" href="/styles/style.css" />
     <link rel="stylesheet" href="/styles/class.css" />
     <link rel="stylesheet" href="/styles/animations.css" />
@@ -65,7 +80,7 @@
     </overlay>
 
     <main-panel>
-      <mini-panel class="glass">
+      <btn-panel>
         <content>
           <h2>Control</h2>
           <p>Panel</p>
@@ -84,33 +99,37 @@
             </button>
           </button-container>
         </content>
-      </mini-panel>
+      </btn-panel>
 
-      <mini-panel-1 class="glass">
-        <text-areas>
-          <label
-            ><span>Foreign Language</span
-            ><input
-              autocomplete="off"
-              id="text-area"
-              placeholder="Enter vocabulary"
-          /></label>
+      <txtarea-panel>
+        <input-panel>
+          <text-areas>
+            <label
+              ><span>Foreign Language</span
+              ><input
+                autocomplete="off"
+                id="text-area"
+                placeholder="Vocabulary"
+            /></label>
 
-          <label
-            ><span>Your Language</span
-            ><input
-              autocomplete="off"
-              id="definition-area"
-              placeholder="Enter definition"
-          /></label>
-        </text-areas>
+            <label
+              ><span>Your Language</span
+              ><input
+                autocomplete="off"
+                id="definition-area"
+                placeholder="Definition"
+            /></label>
+          </text-areas>
+        </input-panel>
 
-        <word-bank>
-          <h2>Word Bank</h2>
-          <p>Clicking a specific word WILL remove it.</p>
-          <div id="words-container"></div>
-        </word-bank>
-      </mini-panel-1>
+        <word-panel>
+          <word-bank>
+            <h2>Word Bank</h2>
+            <p>Clicking a specific word WILL remove it.</p>
+            <div id="words-container"></div>
+          </word-bank>
+        </word-panel>
+      </txtarea-panel>
     </main-panel>
   </body>
   <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
