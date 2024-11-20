@@ -1,31 +1,4 @@
 /*ADD CLASSES HERE*/
-:root {
-    --transition-duration: 0.4s;
-    --animation-duration-sliding: 0.5;
-    --transition-duration-short: 0.3s;
-}
-
-/* overlay & all modals */
-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity var(--transition-duration), visibility 0s var(--transition-duration);
-}
-
-.modal {
-    transform: scale(0.7);
-    transition: transform var(--transition-duration) ease;
-}
 
 .modal-explanation {
     position: absolute;
