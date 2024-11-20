@@ -179,30 +179,53 @@ txtarea-panel {
             text-align: center;
             margin: 10px;
             padding: 15px;
-            color: rgb(219, 219, 219);
+            color: rgb(12, 12, 12);
             border-radius: 10px;
 
             & h2 {
+                padding: 1%;
                 font-family: "Comforta-Bold";
-                font-size: 30px;
+                font-size: 33px;
             }
 
             & p {
+                padding: 1%;
                 font-family: "Dreams";
-                font-size: 20px;
+                font-size: 28px;
+            }
+
+            words-container {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                margin-top: 10px;
+                padding: 10px;
+
+                & .new-element {
+                    width: 150px;
+                    height: 70px;
+                    font-weight: bold;
+                    font-family: "Comforta-Bold";
+                    text-align: center;
+                    font-size: 28px;
+                    word-spacing: 1px;
+                    margin: 12px;
+                    padding: 9px;
+                    border: none;
+                    cursor: pointer;
+                    border-radius: 6px;
+                    background-color: aliceblue;
+                    transform: scale(1);
+                    transition: transform 0.25s ease;
+
+                    &.new-element:hover {
+                        transform: scale(1.1);
+                        transition: transform 0.25s ease;
+                    }
+                }
             }
         }
     }
-}
-
-#timed,
-#cover,
-#casual {
-    background: rgba(81, 82, 83, 0.701);
-}
-
-#memo-mode {
-    background: rgb(199, 0, 0);
 }
 
 #close-modal {
@@ -229,16 +252,6 @@ txtarea-panel {
 
 #memo-mode:hover {
     background: rgb(135, 0, 0);
-}
-
-#words-container {
-    font-size: 30px;
-    margin-top: 10px;
-    padding: 10px;
-}
-
-button.new-element:hover {
-    cursor: pointer;
 }
 
 .modal {

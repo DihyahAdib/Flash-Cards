@@ -110,17 +110,6 @@ body.modal-play-mode {
 }
 
 /* Flash card and word / definition handlers */
-.new-element {
-    font-weight: bold;
-    text-align: center;
-    font-size: 26px;
-    margin: 12px;
-    padding: 9px;
-    border: none;
-    border-radius: 8px 12px;
-    background-color: aliceblue;
-    transition: box-shadow 0.25s ease;
-}
 
 flash-card-container {
     max-width: 1000px;
