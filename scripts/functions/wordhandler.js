@@ -3,7 +3,7 @@
 import { save } from "../save.js";
 
 export function displayRegularWords() {
-  $("#words-container").empty();
+  $("words-container").empty();
 
   storeWords.forEach(({ word, definition }) => {
     $("<button>")
@@ -19,7 +19,7 @@ export function displayRegularWords() {
         });
         save();
       })
-      .appendTo("#words-container")
+      .appendTo("words-container")
       .data({ word, definition });
   });
 }
