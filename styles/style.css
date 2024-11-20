@@ -66,20 +66,27 @@ overlay {
 
         #close-modal {
             position: absolute;
-            top: 1%;
-            right: 1%;
+            top: -3%;
+            right: -3%;
             font-size: 20px;
             text-align: center;
             font-weight: 900;
-            border-radius: 14% 40%;
+            border-radius: 50%;
             border: 3px rgba(25, 0, 0, 0.656) solid;
             color: rgba(26, 26, 26, 0.908);
             background: rgb(138, 0, 0);
             padding: 8px 16px;
+            transform: scale(0.95);
+            transition: transform 0.19s linear;
 
             &:hover {
                 color: rgb(0, 0, 0);
                 background: rgb(114, 0, 0);
+            }
+
+            &:active {
+                transform: scale(0.55);
+                transition: transform 0.19s linear;
             }
         }
 
@@ -130,7 +137,6 @@ overlay {
 
         .modal-explanation {
             overflow: auto;
-            text-rendering: optimizeLegibility;
             background: rgba(120, 139, 151, 0.973);
             padding: 20px;
             border-radius: 10px;
@@ -139,40 +145,50 @@ overlay {
             right: 15%;
             width: 42%;
             height: 85%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 10px rgb(0, 0, 0);
             text-align: center;
 
-            & h2 {
-                font-family: "Nexa";
+            #close-modal-explanation {
+                position: absolute;
+                left: -16.5%;
+                height: 90%;
+                width: 30%;
+                border: none;
+                cursor: pointer;
+                border-radius: 70%;
+                padding: 8px 13px;
+                font-size: 25px;
+                text-align: end;
+                font-weight: 900;
+                color: rgba(0, 0, 0, 0.2);
+                background: rgba(0, 0, 0, 0);
+                transition: color 0.25s ease, background 0.25s ease;
+
+                &:hover {
+                    color: rgba(0, 0, 0, 0.5);
+                    background: rgba(0, 0, 0, 0.2);
+                }
             }
 
-            & h3 {
-                margin: 0px;
-                font-family: "Nexa";
-                text-align: left;
-            }
+            c {
+                display: flex;
+                gap: 15px;
+                flex-direction: column;
+                justify-content: center;
 
-            & p {
-                font-family: "Comforta-bold";
-            }
-        }
+                & h2 {
+                    font-family: "Nexa";
+                }
 
-        #close-modal-explanation {
-            position: absolute;
-            top: 1%;
-            right: 1%;
-            border-radius: 40% 12px;
-            font-size: 16px;
-            text-align: center;
-            border-radius: 14% 40%;
-            border: 3px rgba(25, 0, 0, 0.656) solid;
-            color: rgba(26, 26, 26, 0.908);
-            background: rgb(138, 0, 0);
-            padding: 8px 16px;
+                & h3 {
+                    margin: 0px;
+                    font-family: "Nexa";
+                    text-align: left;
+                }
 
-            &:hover {
-                color: rgb(0, 0, 0);
-                background: rgb(114, 0, 0);
+                & p {
+                    font-family: "Comforta-bold";
+                }
             }
         }
     }
@@ -375,10 +391,6 @@ txtarea-panel {
             }
         }
     }
-}
-
-#current-mode-explain-name {
-    margin-top: 50px;
 }
 
 modal-text {
