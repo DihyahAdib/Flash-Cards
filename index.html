@@ -31,30 +31,22 @@
   <body>
     <overlay>
       <div class="modal">
-        <button class="activator-buttons" id="close-modal">&#9747;</button>
+        <button id="close-modal">&#9747;</button>
         <h3 class="current-mode">
           Current Mode: <span class="mode-name"></span>
         </h3>
         <h2>Pick Mode</h2>
-        <p>
-          Each mode represents different modifiers for the general Flash Card
-          mode.
-        </p>
         <p>Hover over buttons for description of the mode.</p>
-        <container-for-modes>
-          <button class="activator-buttons" id="cover">Cover Mode</button>
-          <button class="activator-buttons" id="casual">Casual Mode</button>
-          <button class="activator-buttons" id="timed">Timed Mode</button>
-          <button class="activator-buttons" id="memo-mode">
-            Memorization Mode
-          </button>
-        </container-for-modes>
+        <modes>
+          <button class="modebtn" id="cover">Cover Mode</button>
+          <button class="modebtn" id="casual">Casual Mode</button>
+          <button class="modebtn" id="timed">Timed Mode</button>
+          <button class="modebtn" id="memo-mode">Memorization Mode</button>
+        </modes>
         <div class="modal-explanation">
-          <button class="activator-buttons" id="close-modal-explanation">
-            &#9747;
-          </button>
+          <button id="close-modal-explanation">&#9747;</button>
           <h2 id="current-mode-explain-name"></h2>
-          <p id="explaination-area">.</p>
+          <p id="explaination-area"></p>
         </div>
       </div>
 
