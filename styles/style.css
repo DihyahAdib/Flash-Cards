@@ -13,6 +13,12 @@
     src: url(../Fonts/CaviarDreams.ttf);
 }
 
+:root {
+    --transition-duration: 0.4s;
+    --animation-duration-sliding: 0.5;
+    --transition-duration-short: 0.3s;
+}
+
 * {
     padding: 0;
     margin: 0;
@@ -26,6 +32,52 @@
         width: 100vw;
         background: rgb(50, 50, 50);
         background-size: 100% 100%;
+    }
+}
+
+overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity var(--transition-duration), visibility 0s var(--transition-duration);
+
+    .modal {
+        position: relative;
+        padding: 2rem;
+        margin: 0px;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 30%;
+        height: 50%;
+        z-index: 25;
+        transform: scale(0.7);
+        transition: transform var(--transition-duration) ease;
+
+        & h2 {
+            font-family: "Nexa";
+        }
+
+        & p {
+            font-family: "Dreams";
+            font-weight: 600;
+        }
+
+        & h3 {
+            margin: 0px;
+            font-family: "Nexa";
+            text-align: left;
+        }
     }
 }
 
@@ -240,45 +292,6 @@ txtarea-panel {
     &:hover {
         color: rgba(255, 255, 255, 0.908);
         background: rgb(114, 0, 0);
-    }
-}
-
-#casual:hover,
-#timed:hover,
-#cover:hover {
-    color: aliceblue;
-    background: rgba(0, 64, 147, 0.604);
-}
-
-#memo-mode:hover {
-    background: rgb(135, 0, 0);
-}
-
-.modal {
-    position: relative;
-    padding: 2rem;
-    margin: 0px;
-    border-radius: 8px;
-    background: white;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 30%;
-    height: 50%;
-    z-index: 25;
-
-    & h2 {
-        font-family: "Nexa";
-    }
-
-    & p {
-        font-family: "Dreams";
-        font-weight: 600;
-    }
-
-    & h3 {
-        margin: 0px;
-        font-family: "Nexa";
-        text-align: left;
     }
 }
 
