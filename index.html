@@ -53,18 +53,26 @@
       </div>
 
       <flash-cards>
-        <button-panel>
+        <btn-panel-modal>
           <h2>control panel</h2>
-          <button class="randomize-cards">&#8634;</button>
-          <button-close-flash-cards class="activator-buttons"
-            >X</button-close-flash-cards
-          >
-        </button-panel>
+
+          <btn-c>
+            <button id="cntrl-panel">&#10095;</button>
+            <button class="shuffle-words-ctr ctr" id="shuffle-words-ctr">
+              <i class="fas fa-random" aria-hidden="true"></i>
+            </button>
+            <button class="ctr sort-words-ctr" id="sort-words-ctr">
+              &#8645;
+            </button>
+          </btn-c>
+        </btn-panel-modal>
         <modal-text>
           <h2 class="mode-name"></h2>
         </modal-text>
 
-        <flash-card-container></flash-card-container>
+        <flash-card-container>
+          <!-- container -->
+        </flash-card-container>
 
         <arrow-container>
           <a class="prev">&#10094;</a>

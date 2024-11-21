@@ -32,9 +32,7 @@ export function showCardMode() {
 }
 
 export function hideCardMode() {
-  $("body")
-    .addClass("modal-pick-mode modal-pick-mode-explain")
-    .removeClass("modal-play-mode");
+  $("body");
 }
 
 export function AddVocab(e) {
@@ -74,4 +72,8 @@ export function shuffleFlashCardWords() {
   showCards(cardIndex);
   save();
   console.log("Re-Shuffled words:", randomizeArray(storeWords));
+}
+
+export function openMiniControls() {
+  $("body").addClass("modal-ctrl-panel");
 }

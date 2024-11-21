@@ -13,6 +13,7 @@ import {
   shuffleRegularWords,
   shuffleFlashCardWords,
   sortRegularWords,
+  openMiniControls,
 } from "./functions/functions.js";
 
 import { addWords } from "./functions/wordhandler.js";
@@ -42,8 +43,9 @@ $("#inputbutton").on("click", toggleDisplayGrid);
 $("#pick-mode").on("click", showModal);
 $("#close-modal").on("click", hideModal);
 $("#casual, #timed, #memo-mode").on("click", showCardMode);
-$("button-close-flash-cards").on("click", hideCardMode);
+$("").on("click", hideCardMode);
 $("#close-modal-explanation").on("click", hideExplanation);
+$("#cntrl-panel").on("click", openMiniControls);
 $("#remove-all").on("click", removeAllVocab);
 $("#remove-one").on("click", removeOneVocab);
 $(".shuffle-words").on("click", shuffleRegularWords);
