@@ -39,6 +39,7 @@ export function hideCardMode() {
 
 export function AddVocab(e) {
   if (e.key === "Enter") addWords();
+  $("input#text-area").focus()
 }
 
 export function removeOneVocab() {
