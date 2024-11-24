@@ -1,0 +1,63 @@
+@media (max-width: 1440px) {
+    main-panel {
+        height: 90%;
+        width: 70%;
+    }
+}
+
+@media (max-width: 1345px) {
+    btn-panel {
+        height: 96%;
+        width: 21%;
+
+        content h2 {
+            font-size: 40px;
+        }
+
+        content p {
+            font-size: 40px;
+        }
+    }
+}
+
+@media (max-width: 1100px) {
+    main-panel {
+        height: 90%;
+        width: 82%;
+    }
+}
+
+@media (max-width: 1024px) {
+    main-panel {
+        height: 90%;
+        width: 85%;
+    }
+}
+
+@media (max-width: 900px) {
+    main-panel {
+        height: 90%;
+        width: 88%;
+    }
+
+    btn-panel {
+        height: 90%;
+        width: 18%;
+
+        content h2 {
+            font-size: 37px;
+        }
+
+        content p {
+            font-size: 35px;
+        }
+
+        content button-container {
+
+            .activator-buttons {
+                width: 100px;
+                height: 60px;
+            }
+        }
+    }
+}

@@ -23,9 +23,8 @@
     <meta name="apple-mobile-web-app-title" content="Vocabulation" />
     <link rel="manifest" href="/assets/site.webmanifest" />
     <link rel="stylesheet" href="/styles/style.css" />
-    <link rel="stylesheet" href="/styles/class.css" />
     <link rel="stylesheet" href="/styles/animations.css" />
-    <link rel="stylesheet" media="screen" href="/styles/mediaQuery.css" />
+    <link rel="stylesheet" scree media="screen" href="/styles/mediaQuery.css" />
     <title>Quiz yourself | Flash Cards</title>
   </head>
   <body>
@@ -134,14 +133,23 @@
       </txtarea-panel>
     </main-panel>
   </body>
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="./scripts/events.js"></script>
-  <script type="module" src="./scripts/script.js"></script>
-  <script type="module" src="./scripts/functions/wordhandler.js"></script>
-  <script type="module" src="./scripts/save.js"></script>
-  <script type="module" src="./scripts/modes/casual.js"></script>
-  <script type="module" src="./scripts/modes/cover.js"></script>
-  <script type="module" src="./scripts/modes/timed.js"></script>
-  <script type="module" src="./scripts/modes/memorization.js"></script>
+  <div>
+    <script type="module" src="./scripts/classes/state.js"></script>
+    <script type="module" src="./scripts/classes/AppState.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="module" src="./scripts/util.js"></script>
+    <script type="module" src="./scripts/modes/casual.js"></script>
+    <script type="module" src="./scripts/modes/cover.js"></script>
+    <script type="module" src="./scripts/modes/timed.js"></script>
+    <script type="module" src="./scripts/modes/memorization.js"></script>
+    <script type="module" src="./scripts/functions.js"></script>
+    <script type="module" src="./scripts/updateUi.js"></script>
+    <script type="module">
+      import { AppState } from "./scripts/classes/AppState.js";
+      const state = new AppState();
+      state.displayRegularWords();
+
+      state.onSet(function ({ wordBank, cardIndex, currentModal }) {});
+    </script>
+  </div>
 </html>
