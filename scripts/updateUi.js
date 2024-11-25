@@ -20,3 +20,20 @@ export function shouldShowModalEXPModeClass(currentView) {
 export function shouldShowModalCardModeClass(currentView) {
   return currentView === VIEW.CASUAL_MODE || currentView === VIEW.MEMO_MODE;
 }
+
+export function getWordButtonText({ word, definition }) {
+  return `${word} : ${definition}`;
+}
+
+export function buildWordsContainerHTML({ wordBank, onClickWord }) {
+  return wordBank.map(
+    (word) =>
+      $("<button>")
+        .addClass(`new-element`)
+        .text(getWordButtonText(word))
+        .on("click", () => {
+          onClickWord(word);
+        })
+        .data(word)
+  );
+}

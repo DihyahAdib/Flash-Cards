@@ -1,11 +1,14 @@
 // Saving Script //
 
 export class State {
-  constructor() {}
+  constructor() {
+    this.onSetCallback = () => {};
+  }
 
   load(startingState) {
     this.obj =
       JSON.parse(localStorage.getItem("currentState")) || startingState;
+    this.onSetCallback(this.obj);
     return this;
   }
 
@@ -19,6 +22,16 @@ export class State {
     this.onSetCallback(this.obj);
     this.save();
     return this;
+  }
+
+  removeArrayItem(key, itemToRemove) {
+    if (!Array.isArray(this.obj[key])) {
+      throw new Error("This only works for arrays!");
+    }
+    this.set(
+      key,
+      this.obj[key].filter((item) => !_.isEqual(item, itemToRemove))
+    );
   }
 
   onSet(fun) {

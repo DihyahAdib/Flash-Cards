@@ -133,6 +133,7 @@
     </main-panel>
   </body>
   <div>
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
     <script type="module" src="./scripts/classes/state.js"></script>
     <script type="module" src="./scripts/classes/AppState.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
@@ -152,33 +153,12 @@
         shouldShowModalPickModeClass,
         shouldShowModalEXPModeClass,
         shouldShowModalCardModeClass,
+        buildWordsContainerHTML,
       } from "./scripts/updateUi.js";
 
       const state = new AppState();
       state
-        .load(startingState)
         .onSet(function ({ wordBank, cardIndex, currentView }) {
-          $("words-container").empty();
-          wordBank.forEach(({ word, definition }) => {
-            $("<button>")
-              .addClass(`new-element`)
-              .text(`${word} : ${definition}`)
-              .on("click", () => {
-                state.set(
-                  "wordBank",
-                  wordBank.filter(function ({
-                    word: storedWord,
-                    definition: storedDefinition,
-                  }) {
-                    return !(
-                      word === storedWord && definition === storedDefinition
-                    );
-                  })
-                );
-              })
-              .appendTo("words-container")
-              .data({ word, definition });
-          });
           $("body")
             .toggleClass(
               "modal-pick-mode",
@@ -187,12 +167,21 @@
             .toggleClass(
               "modal-pick-mode-explain",
               shouldShowModalEXPModeClass(currentView)
+            )
+            .toggleClass(
+              "modal-play-mode",
+              shouldShowModalCardModeClass(currentView)
             );
-          toggleClass(
-            "modal-play-mode",
-            shouldShowModalCardModeClass(currentView)
+
+          $("words-container").html(
+            buildWordsContainerHTML({
+              wordBank,
+              onClickWord: (clickedWord) =>
+                state.removeArrayItem("wordBank", clickedWord),
+            })
           );
-        });
+        })
+        .load(startingState);
     </script>
   </div>
 </html>
