@@ -39,7 +39,6 @@
         <modes>
           <button class="modebtn" id="cover">Cover Mode</button>
           <button class="modebtn" id="casual">Casual Mode</button>
-          <button class="modebtn" id="timed">Timed Mode</button>
           <button class="modebtn" id="memo-mode">Memorization Mode</button>
         </modes>
         <div class="modal-explanation">
@@ -140,16 +139,60 @@
     <script type="module" src="./scripts/util.js"></script>
     <script type="module" src="./scripts/modes/casual.js"></script>
     <script type="module" src="./scripts/modes/cover.js"></script>
-    <script type="module" src="./scripts/modes/timed.js"></script>
     <script type="module" src="./scripts/modes/memorization.js"></script>
     <script type="module" src="./scripts/functions.js"></script>
     <script type="module" src="./scripts/updateUi.js"></script>
     <script type="module">
-      import { AppState } from "./scripts/classes/AppState.js";
-      const state = new AppState();
-      state.displayRegularWords();
+      import {
+        AppState,
+        VIEW,
+        startingState,
+      } from "./scripts/classes/AppState.js";
+      import {
+        shouldShowModalPickModeClass,
+        shouldShowModalEXPModeClass,
+        shouldShowModalCardModeClass,
+      } from "./scripts/updateUi.js";
 
-      state.onSet(function ({ wordBank, cardIndex, currentModal }) {});
+      const state = new AppState();
+      state
+        .load(startingState)
+        .onSet(function ({ wordBank, cardIndex, currentView }) {
+          $("words-container").empty();
+          wordBank.forEach(({ word, definition }) => {
+            $("<button>")
+              .addClass(`new-element`)
+              .text(`${word} : ${definition}`)
+              .on("click", () => {
+                state.set(
+                  "wordBank",
+                  wordBank.filter(function ({
+                    word: storedWord,
+                    definition: storedDefinition,
+                  }) {
+                    return !(
+                      word === storedWord && definition === storedDefinition
+                    );
+                  })
+                );
+              })
+              .appendTo("words-container")
+              .data({ word, definition });
+          });
+          $("body")
+            .toggleClass(
+              "modal-pick-mode",
+              shouldShowModalPickModeClass(currentView)
+            )
+            .toggleClass(
+              "modal-pick-mode-explain",
+              shouldShowModalEXPModeClass(currentView)
+            );
+          toggleClass(
+            "modal-play-mode",
+            shouldShowModalCardModeClass(currentView)
+          );
+        });
     </script>
   </div>
 </html>

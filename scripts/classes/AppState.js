@@ -2,6 +2,23 @@ import { State } from "./state.js";
 import { checkContainerStyle } from "../functions.js";
 import { setCurrentMode, wait, randomizeArray, sortArray } from "../util.js";
 
+export const VIEW = {
+  STARTING: "STARTING",
+  PICK_MODE_NO_EXPLAIN: "PICK_MODE_NO_EXPLAIN",
+  EXPLAIN_COVER: "EXPLAIN_COVER ",
+  EXPLAIN_CASUAL: "EXPLAIN_CASUAL",
+  EXPLAIN_MEMO: "EXPLAIN_MEMO",
+  COVER_MODE: "COVER_MODE",
+  CASUAL_MODE: "CASUAL_MODE",
+  MEMO_MODE: "MEMO_MODE",
+};
+
+export const startingState = {
+  wordBank: [],
+  cardIndex: 1,
+  currentView: VIEW.STARTING,
+};
+
 export class AppState extends State {
   constructor() {
     super();
@@ -15,23 +32,21 @@ export class AppState extends State {
     $("#inputbutton").on("click", this.toggleDisplayGrid);
     $("#cntrl-panel").on("click", this.openMiniControls);
     $("#close-modal-explanation").on("click", this.hideExplanation);
-    $("#casual, #timed, #memo-mode").on("mouseover", this.showExplanation);
-    $("#casual, #timed, #memo-mode").on("click", this.showCardMode);
+    $("#casual, #memo-mode").on("mouseover", this.showExplanation);
+    $("#casual, #memo-mode").on("click", this.showCardMode);
     $(".shuffle-words").on("click", this.shuffleRegularWords.bind(this));
     $(".randomize-cards").on("click", this.shuffleFlashCardWords);
     $(".sort-words").on("click", this.sortRegularWords.bind(this));
     $("text-areas input").on("keypress", (e) => this.AddVocab(e));
-    $("#timed").on("click", this.timedMode);
     $("#memo-mode").on("click", this.memorizationMode);
     $("#input-vocab").on("click", this.addWords.bind(this));
     $("#cover").on("click mouseover", () => setCurrentMode(0));
     $("#casual").on("click mouseover", () => setCurrentMode(1));
-    $("#timed").on("click mouseover", () => setCurrentMode(2));
-    $("#memo-mode").on("click mouseover", () => setCurrentMode(3));
+    $("#memo-mode").on("click mouseover", () => setCurrentMode(2));
     $("#cover").on("click", () => this.setMode("cover"));
     $("#casual").on("click", () => this.setMode("casual"));
-    $("#timed").on("click", () => this.setMode("timed"));
     $("#memo-mode").on("click", () => this.setMode("memo"));
+
     $(".next").on("click", async () => {
       await this.right();
     });
@@ -39,8 +54,6 @@ export class AppState extends State {
     $(".prev").on("click", async () => {
       await this.left();
     });
-
-    // $("").on("click", hideCardMode);
   }
 
   setMode(mode) {
@@ -51,47 +64,12 @@ export class AppState extends State {
       case "casual":
         this.casualMode();
         break;
-      case "timed":
-        this.timedMode();
-        break;
       case "memo":
         this.memorizationMode();
         break;
       default:
         throw new Error("no current mode");
     }
-  }
-
-  showModal() {
-    $("body").addClass("modal-pick-mode");
-  }
-
-  hideModal() {
-    $("body").removeClass("modal-pick-mode");
-  }
-
-  showExplanation() {
-    $("body").addClass("modal-pick-mode-explain");
-  }
-
-  hideExplanation() {
-    $("body").removeClass("modal-pick-mode-explain");
-  }
-
-  showCardMode() {
-    $("body")
-      .removeClass("modal-pick-mode modal-pick-mode-explain")
-      .addClass("modal-play-mode");
-  }
-
-  hideCardMode() {
-    $("body")
-      .addClass("modal-pick-mode modal-pick-mode-explain")
-      .removeClass("modal-play-mode");
-  }
-
-  openMiniControls() {
-    $("body").addClass("modal-ctrl-panel");
   }
 
   AddVocab(e) {
@@ -103,7 +81,6 @@ export class AppState extends State {
   removeOneVocab() {
     if (this.get("wordBank").length > 0) {
       this.get("wordBank").pop();
-      this.displayRegularWords();
     } else {
       alert("No more words to remove!");
     }
@@ -112,19 +89,16 @@ export class AppState extends State {
   removeAllVocab() {
     if (confirm("Are you sure you want to remove all words?")) {
       this.clear();
-      this.displayRegularWords();
     }
   }
 
   shuffleRegularWords() {
     this.set("wordBank", randomizeArray(this.get("wordBank")));
-    this.displayRegularWords();
     console.log("Re-Shuffled words:", this.get("wordBank"));
   }
 
   sortRegularWords() {
-    this.sortArray(this.get("wordBank"));
-    this.displayRegularWords();
+    sortArray(this.get("wordBank"));
     this.showCards(this.get("cardIndex"));
     console.log("Sorted words:", this.get("wordBank"));
   }
@@ -136,30 +110,6 @@ export class AppState extends State {
     console.log("Re-Shuffled words:", this.get("wordBank"));
   }
 
-  displayRegularWords() {
-    $("words-container").empty();
-    this.get("wordBank").forEach(({ word, definition }) => {
-      const $button = $("<button>");
-      $button
-        .addClass(`new-element`)
-        .text(`${word} : ${definition}`)
-        .on("click", () => {
-          $button.remove();
-          this.set(
-            "wordBank",
-            this.get("wordBank").filter(function ({
-              word: storedWord,
-              definition: storedDefinition,
-            }) {
-              return !(word === storedWord && definition === storedDefinition);
-            })
-          );
-        })
-        .appendTo("words-container")
-        .data({ word, definition });
-    });
-  }
-
   addWords() {
     const word = $("#text-area").val().trim();
     const definition = $("#definition-area").val().trim();
@@ -168,7 +118,6 @@ export class AppState extends State {
       this.set("wordBank", [...this.get("wordBank"), { word, definition }]);
       $("#text-area").val("");
       $("#definition-area").val("");
-      this.displayRegularWords();
     } else {
       alert("Enter both the vocab & definition first!");
     }
