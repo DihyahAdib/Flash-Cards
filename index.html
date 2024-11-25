@@ -23,9 +23,8 @@
     <meta name="apple-mobile-web-app-title" content="Vocabulation" />
     <link rel="manifest" href="/assets/site.webmanifest" />
     <link rel="stylesheet" href="/styles/style.css" />
-    <link rel="stylesheet" href="/styles/class.css" />
     <link rel="stylesheet" href="/styles/animations.css" />
-    <link rel="stylesheet" media="screen" href="/styles/mediaQuery.css" />
+    <link rel="stylesheet" scree media="screen" href="/styles/mediaQuery.css" />
     <title>Quiz yourself | Flash Cards</title>
   </head>
   <body>
@@ -40,7 +39,6 @@
         <modes>
           <button class="modebtn" id="cover">Cover Mode</button>
           <button class="modebtn" id="casual">Casual Mode</button>
-          <button class="modebtn" id="timed">Timed Mode</button>
           <button class="modebtn" id="memo-mode">Memorization Mode</button>
         </modes>
         <div class="modal-explanation">
@@ -53,18 +51,26 @@
       </div>
 
       <flash-cards>
-        <button-panel>
+        <btn-panel-modal>
           <h2>control panel</h2>
-          <button class="randomize-cards">&#8634;</button>
-          <button-close-flash-cards class="activator-buttons"
-            >X</button-close-flash-cards
-          >
-        </button-panel>
+
+          <btn-c>
+            <button id="cntrl-panel">&#10095;</button>
+            <button class="shuffle-words-ctr ctr" id="shuffle-words-ctr">
+              <i class="fas fa-random" aria-hidden="true"></i>
+            </button>
+            <button class="ctr sort-words-ctr" id="sort-words-ctr">
+              &#8645;
+            </button>
+          </btn-c>
+        </btn-panel-modal>
         <modal-text>
           <h2 class="mode-name"></h2>
         </modal-text>
 
-        <flash-card-container></flash-card-container>
+        <flash-card-container>
+          <!-- container -->
+        </flash-card-container>
 
         <arrow-container>
           <a class="prev">&#10094;</a>
@@ -126,14 +132,68 @@
       </txtarea-panel>
     </main-panel>
   </body>
-  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="./scripts/events.js"></script>
-  <script type="module" src="./scripts/script.js"></script>
-  <script type="module" src="./scripts/functions/wordhandler.js"></script>
-  <script type="module" src="./scripts/save.js"></script>
-  <script type="module" src="./scripts/modes/casual.js"></script>
-  <script type="module" src="./scripts/modes/cover.js"></script>
-  <script type="module" src="./scripts/modes/timed.js"></script>
-  <script type="module" src="./scripts/modes/memorization.js"></script>
+  <div>
+    <script type="module" src="./scripts/classes/state.js"></script>
+    <script type="module" src="./scripts/classes/AppState.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script type="module" src="./scripts/util.js"></script>
+    <script type="module" src="./scripts/modes/casual.js"></script>
+    <script type="module" src="./scripts/modes/cover.js"></script>
+    <script type="module" src="./scripts/modes/memorization.js"></script>
+    <script type="module" src="./scripts/functions.js"></script>
+    <script type="module" src="./scripts/updateUi.js"></script>
+    <script type="module">
+      import {
+        AppState,
+        VIEW,
+        startingState,
+      } from "./scripts/classes/AppState.js";
+      import {
+        shouldShowModalPickModeClass,
+        shouldShowModalEXPModeClass,
+        shouldShowModalCardModeClass,
+      } from "./scripts/updateUi.js";
+
+      const state = new AppState();
+      state
+        .load(startingState)
+        .onSet(function ({ wordBank, cardIndex, currentView }) {
+          $("words-container").empty();
+          wordBank.forEach(({ word, definition }) => {
+            $("<button>")
+              .addClass(`new-element`)
+              .text(`${word} : ${definition}`)
+              .on("click", () => {
+                state.set(
+                  "wordBank",
+                  wordBank.filter(function ({
+                    word: storedWord,
+                    definition: storedDefinition,
+                  }) {
+                    return !(
+                      word === storedWord && definition === storedDefinition
+                    );
+                  })
+                );
+              })
+              .appendTo("words-container")
+              .data({ word, definition });
+          });
+          $("body")
+            .toggleClass(
+              "modal-pick-mode",
+              shouldShowModalPickModeClass(currentView)
+            )
+            .toggleClass(
+              "modal-pick-mode-explain",
+              shouldShowModalEXPModeClass(currentView)
+            );
+          toggleClass(
+            "modal-play-mode",
+            shouldShowModalCardModeClass(currentView)
+          );
+        });
+    </script>
+  </div>
 </html>
+<!--ok-->
