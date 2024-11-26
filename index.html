@@ -66,6 +66,7 @@
         </btn-panel-modal>
         <modal-text>
           <h2 class="mode-name"></h2>
+          <button id="close-modal-cards">&#9747;</button>
         </modal-text>
 
         <flash-card-container>
@@ -138,7 +139,6 @@
     <script type="module" src="./scripts/classes/state.js"></script>
     <script type="module" src="./scripts/classes/AppState.js"></script>
     <script type="module" src="./scripts/util.js"></script>
-    <script type="module" src="./scripts/functions.js"></script>
     <script type="module" src="./scripts/updateUi.js"></script>
     <script type="module">
       import {
@@ -157,6 +157,10 @@
         buildFlashCardContainerHTML,
       } from "./scripts/updateUi.js";
       const state = new AppState();
+      window.getState = function getState() {
+        return state;
+      };
+
       state
         .onSet(function ({ wordBank, cardIndex, currentView }) {
           $("body")
@@ -194,6 +198,7 @@
             })
           );
           $("flash-card-container").html(buildFlashCardContainerHTML(wordBank));
+          state.showCards(cardIndex);
         })
         .load(startingState);
 
@@ -205,6 +210,9 @@
         state.set("currentView", VIEW.STARTING)
       );
 
+      $("#close-modal-cards").on("click", () =>
+        state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
+      );
       $("#close-modal-explanation").on("click", () =>
         state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
       );
