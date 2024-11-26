@@ -248,11 +248,11 @@
       });
 
       $(".next").on("click", async () => {
-        await this.right();
+        await state.right();
       });
 
       $(".prev").on("click", async () => {
-        await this.left();
+        await state.left();
       });
 
       $(".shuffle-words").on("click", () => state.shuffle("wordBank"));

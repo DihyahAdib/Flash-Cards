@@ -1,6 +1,5 @@
 import { State } from "./state.js";
-import { checkContainerStyle } from "../functions.js";
-import { wait, randomizeArray, sortArray } from "../util.js";
+import { wait, randomizeArray } from "../util.js";
 
 export const VIEW = {
   STARTING: "STARTING",
@@ -22,12 +21,6 @@ export const startingState = {
 export class AppState extends State {
   constructor() {
     super();
-  }
-
-  shuffleFlashCardWords() {
-    this.set("wordBank", randomizeArray(this.get("wordBank")));
-    showCards(this.get("cardIndex"));
-    console.log("Re-Shuffled words:", this.get("wordBank"));
   }
 
   addWords() {
@@ -56,7 +49,13 @@ export class AppState extends State {
 
     cards.css("display", "none");
     cards.eq(this.get("cardIndex") - 1).css("display", "grid");
-    checkContainerStyle();
+
+    $("div.flash-card-object").each(function () {
+      $(this).text(`${$(this).data("word")} : ${$(this).data("definition")}`);
+    });
+    if (!$("flash-card-container").hasClass("active-container")) {
+      $("flash-card-container").addClass("active-container");
+    }
   }
 
   async right() {
