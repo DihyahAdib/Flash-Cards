@@ -1,5 +1,7 @@
 // Saving Script //
 
+import { randomizeArray, sortArray } from "../util.js";
+
 export class State {
   constructor() {
     this.onSetCallback = () => {};
@@ -32,6 +34,23 @@ export class State {
       key,
       this.obj[key].filter((item) => !_.isEqual(item, itemToRemove))
     );
+    return this;
+  }
+
+  shuffle(key) {
+    this.set(key, randomizeArray(this.get(key)));
+    return this;
+  }
+
+  sort(key) {
+    this.set(key, sortArray(this.get(key)));
+    return this;
+  }
+
+  pop(key) {
+    this.obj[key].pop();
+    this.set(key, this.obj[key]);
+    return this;
   }
 
   onSet(fun) {
@@ -44,9 +63,8 @@ export class State {
   }
 
   clear() {
-    this.obj = startingState;
     localStorage.removeItem("currentState");
-    this.save();
+    window.location.reload();
     return this;
   }
 }

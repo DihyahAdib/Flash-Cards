@@ -134,13 +134,10 @@
   </body>
   <div>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script type="module" src="./scripts/classes/state.js"></script>
     <script type="module" src="./scripts/classes/AppState.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script type="module" src="./scripts/util.js"></script>
-    <script type="module" src="./scripts/modes/casual.js"></script>
-    <script type="module" src="./scripts/modes/cover.js"></script>
-    <script type="module" src="./scripts/modes/memorization.js"></script>
     <script type="module" src="./scripts/functions.js"></script>
     <script type="module" src="./scripts/updateUi.js"></script>
     <script type="module">
@@ -154,8 +151,11 @@
         shouldShowModalEXPModeClass,
         shouldShowModalCardModeClass,
         buildWordsContainerHTML,
+        getModeNameText,
+        getModeNameColor,
+        getModeDescription,
+        buildFlashCardContainerHTML,
       } from "./scripts/updateUi.js";
-
       const state = new AppState();
       state
         .onSet(function ({ wordBank, cardIndex, currentView }) {
@@ -173,15 +173,92 @@
               shouldShowModalCardModeClass(currentView)
             );
 
+          $(".mode-name")
+            .text(getModeNameText(currentView))
+            .css({ color: getModeNameColor(currentView) });
+
+          $("#current-mode-explain-name")
+            .text(getModeNameText(currentView))
+            .css({ color: getModeNameColor(currentView) });
+
+          $("#explaination-area")
+            .text(getModeDescription(currentView))
+            .css({ color: getModeNameColor(currentView) });
+
           $("words-container").html(
             buildWordsContainerHTML({
+              currentView,
               wordBank,
               onClickWord: (clickedWord) =>
                 state.removeArrayItem("wordBank", clickedWord),
             })
           );
+          $("flash-card-container").html(buildFlashCardContainerHTML(wordBank));
         })
         .load(startingState);
+
+      $("#pick-mode").on("click", () =>
+        state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
+      );
+
+      $("#close-modal").on("click", () =>
+        state.set("currentView", VIEW.STARTING)
+      );
+
+      $("#close-modal-explanation").on("click", () =>
+        state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
+      );
+
+      $("#cover").on("mouseover", () =>
+        state.set("currentView", VIEW.EXPLAIN_COVER)
+      );
+
+      $("#casual").on("mouseover", () =>
+        state.set("currentView", VIEW.EXPLAIN_CASUAL)
+      );
+
+      $("#memo-mode").on("mouseover", () =>
+        state.set("currentView", VIEW.EXPLAIN_MEMO)
+      );
+
+      $("#cover").on("click", () => state.set("currentView", VIEW.COVER_MODE));
+
+      $("#casual").on("click", () =>
+        state.set("currentView", VIEW.CASUAL_MODE)
+      );
+
+      $("#memo-mode").on("click", () =>
+        state.set("currentView", VIEW.MEMO_MODE)
+      );
+
+      $("#remove-all").on(
+        "click",
+        () =>
+          confirm("Are you sure you want to remove all words?") && state.clear()
+      );
+      $("#remove-one").on("click", () =>
+        state.get("wordBank").length
+          ? state.pop("wordBank")
+          : alert("No more words left!")
+      );
+      $("text-areas input").on("keypress", (e) => {
+        if (e.key === "Enter") {
+          state.addWords();
+        }
+      });
+
+      $(".next").on("click", async () => {
+        await this.right();
+      });
+
+      $(".prev").on("click", async () => {
+        await this.left();
+      });
+
+      $(".shuffle-words").on("click", () => state.shuffle("wordBank"));
+      $(".randomize-cards").on("click", () => state.shuffle("wordBank"));
+      $(".sort-words").on("click", () => state.sort("wordBank"));
+      $("#input-vocab").on("click", state.addWords.bind(state));
     </script>
   </div>
 </html>
