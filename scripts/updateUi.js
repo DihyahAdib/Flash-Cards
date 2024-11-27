@@ -28,7 +28,8 @@ export function shouldShowModalCardBTNModeClass(currentView) {
     currentView !== VIEW.BTN_MODE
   );
 }
-export function getWordButtonText({ word, definition }, coverDefinition) {
+export function getWordButtonText(wordObj = {}, coverDefinition) {
+  const { word = "Unknown", definition = "No Definition" } = wordObj;
   if (coverDefinition === true) {
     return `${word}`;
   }

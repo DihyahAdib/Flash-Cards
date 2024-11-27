@@ -295,22 +295,23 @@ flash-cards {
             }
         }
     }
+}
 
-    modal-text {
-        h2 {
-            text-align: center;
-            font-size: 44px;
-            font-family: "Nexa";
-            padding: 0;
-            margin: 0;
-        }
+modal-text {
+    h2 {
+        text-align: center;
+        font-size: 44px;
+        font-family: "Nexa";
+        padding: 0;
+        margin: 0;
     }
+}
 
-    flash-card-container {
-        position: relative;
-        display: none;
-        height: 100%;
-    }
+
+flash-card-container {
+    position: relative;
+    display: none;
+    height: 100%;
 }
 
 main-panel {
@@ -463,7 +464,7 @@ txtarea-panel {
             justify-self: center;
             text-align: center;
             margin: 10px;
-            padding: 15px;
+            padding: 0px;
             color: rgb(12, 12, 12);
             border-radius: 10px;
 
@@ -511,6 +512,71 @@ txtarea-panel {
             }
         }
     }
+}
+
+toggle-button-container {
+    display: flex;
+    padding-left: 10px;
+    margin: 0px;
+}
+
+#descriptor-for-toggle {
+    font-family: "Nexa";
+    font-size: 20px;
+    white-space: normal;
+    word-break: break-word;
+    width: fit-content;
+    width: 93px;
+    padding-right: 5px;
+}
+
+.toggle {
+    --width: 60px;
+    --height: calc(var(--width) / 2);
+    --border-radius: calc(var(--height) / 2);
+
+    display: inline-block;
+    cursor: pointer;
+}
+
+.toggle__input {
+    display: none;
+}
+
+.toggle__fill {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radius);
+    background: #bfbfbf;
+    transition: background 0.2s;
+}
+
+.toggle input:checked~.toggle__fill {
+    background: #009578;
+}
+
+.toggle__fill::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: var(--height);
+    width: calc(var(--width) / 2);
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius);
+    transform: translateX(0%);
+    transition: transform 0.2s;
+}
+
+.toggle input:checked~.toggle__fill::after {
+    transform: translateX(100%);
+}
+
+cm-active {
+    font-size: 18px;
+    font-family: "Nexa";
 }
 
 button-close-flash-cards {
@@ -568,6 +634,8 @@ body.modal-play-mode {
     }
 
 }
+
+
 
 arrow-container {
 

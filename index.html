@@ -54,7 +54,6 @@
           <h2>control panel</h2>
 
           <btn-c>
-            <button id="cntrl-panel">&#10095;</button>
             <button class="shuffle-words-ctr ctr" id="shuffle-words-ctr">
               <i class="fas fa-random" aria-hidden="true"></i>
             </button>
@@ -63,10 +62,13 @@
             </button>
           </btn-c>
         </btn-panel-modal>
+
         <modal-text>
-          <label
-            ><input id="cover-for-cards" type="checkbox" />Cover Mode</label
-          >
+          <button id="cntrl-panel">&#10095;</button>
+          <label class="toggle">
+            <input id="cover-for-cards" type="checkbox" />Cover Mode:
+            <cm-active></cm-active>
+          </label>
           <h2 class="mode-name"></h2>
           <button id="close-modal-cards">&#9747;</button>
         </modal-text>
@@ -127,9 +129,19 @@
 
         <word-panel>
           <word-bank>
-            <label
-              ><input id="cover-for-bank" type="checkbox" />Cover Mode</label
-            >
+            <toggle-button-container>
+              <label id="descriptor-for-toggle" for="cover-for-bank"
+                >Hide Meaning</label
+              >
+              <label class="toggle">
+                <input
+                  class="toggle__input"
+                  id="cover-for-bank"
+                  type="checkbox" />
+                <div class="toggle__fill"></div>
+                <cm-active></cm-active
+              ></label>
+            </toggle-button-container>
             <h2>Word Bank</h2>
             <p>Clicking a specific word WILL remove it.</p>
             <words-container></words-container>
@@ -213,7 +225,14 @@
           $("flash-card").text(
             getWordButtonText(wordBank[cardIndex], cardCover)
           );
-
+          $("#cover-for-cards")
+            .parent("label")
+            .find("cm-active")
+            .text(cardCover ? "Active" : "Inactive");
+          $("#cover-for-bank")
+            .parent("label")
+            .find("cm-active")
+            .text(bankCover ? "Active" : "Inactive");
           if (!$("flash-card-container").hasClass("active-container")) {
             $("flash-card-container").addClass("active-container");
           }
