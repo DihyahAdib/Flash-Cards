@@ -7,9 +7,9 @@ export class State {
     this.onSetCallback = () => {};
   }
 
-  load(startingState) {
+  load(fallbackState) {
     this.obj =
-      JSON.parse(localStorage.getItem("currentState")) || startingState;
+      JSON.parse(localStorage.getItem("currentState")) || fallbackState;
     this.onSetCallback(this.obj);
     return this;
   }

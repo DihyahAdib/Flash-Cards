@@ -120,23 +120,23 @@ modes {
     button:first-child {
         margin-top: 20px;
     }
+}
 
-    .modebtn {
-        font-family: "Comforta-Bold";
-        text-align: center;
-        font-size: 20px;
-        padding: 8px;
-        border: 3px rgba(0, 0, 0, 0.355) solid;
-        background: rgba(0, 0, 0, 0.200);
-        color: rgba(255, 255, 255, 0.908);
-        border-radius: 25px 25px;
-        width: 180px;
-        height: 70px;
-        cursor: pointer;
+.modebtn {
+    font-family: "Comforta-Bold";
+    text-align: center;
+    font-size: 20px;
+    padding: 8px;
+    border: 3px rgba(0, 0, 0, 0.355) solid;
+    background: rgba(0, 0, 0, 0.200);
+    color: rgba(255, 255, 255, 0.908);
+    border-radius: 25px 25px;
+    width: 180px;
+    height: 70px;
+    cursor: pointer;
 
-        &.modebtn:hover {
-            background: rgba(0, 0, 0, 0.640);
-        }
+    &.modebtn:hover {
+        background: rgba(0, 0, 0, 0.640);
     }
 }
 
@@ -183,7 +183,7 @@ modes {
     background: rgba(0, 0, 0, 0.3);
 }
 
-c {
+con {
     display: flex;
     gap: 15px;
     flex-direction: column;
@@ -295,22 +295,23 @@ flash-cards {
             }
         }
     }
+}
 
-    modal-text {
-        h2 {
-            text-align: center;
-            font-size: 44px;
-            font-family: "Nexa";
-            padding: 0;
-            margin: 0;
-        }
+modal-text {
+    h2 {
+        text-align: center;
+        font-size: 44px;
+        font-family: "Nexa";
+        padding: 0;
+        margin: 0;
     }
+}
 
-    flash-card-container {
-        position: relative;
-        display: none;
-        height: 100%;
-    }
+
+flash-card-container {
+    position: relative;
+    display: none;
+    height: 100%;
 }
 
 main-panel {
@@ -335,63 +336,83 @@ btn-panel {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
+}
 
-    & content {
-        padding: 1px;
+content {
+    padding: 1px;
 
-        & h2 {
-            text-align: center;
-            font-family: "Dreams";
-            font-weight: 1000;
-            stroke: #bb0010;
-            font-size: 47px;
-        }
+    & h2 {
+        text-align: center;
+        font-family: "Dreams";
+        font-weight: 1000;
+        stroke: #bb0010;
+        font-size: 47px;
+    }
 
-        & p {
-            text-align: center;
-            font-family: "Dreams";
-            font-size: 43px;
-            letter-spacing: auto;
-        }
+    & p {
+        text-align: center;
+        font-family: "Dreams";
+        font-size: 43px;
+        letter-spacing: auto;
+    }
 
-        & button-container {
-            display: grid;
-            align-items: center;
-            justify-content: center;
-            padding-top: 5px;
+    & button-container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        padding-top: 15px;
 
-            & .activator-buttons {
+        add-and-remove {
+            display: flex;
+            flex-direction: row;
+
+            & .activator-btn {
                 font-family: "Comforta-Bold";
                 text-align: center;
                 font-size: 20px;
-                margin: 10px;
+                margin: 2px;
                 padding: 8px;
                 border: 3px rgba(0, 0, 0, 0.355) solid;
                 background: rgba(0, 0, 0, 0.200);
                 color: rgba(255, 255, 255, 0.908);
                 border-radius: 25px 25px;
-                width: 128px;
+                width: calc(128px / 2);
                 height: 70px;
-                cursor: pointer;
             }
+        }
 
-            & #input-vocab,
-            #remove-one {
-                font-size: 26px;
-            }
+        & .activator-buttons {
+            font-family: "Comforta-Bold";
+            text-align: center;
+            font-size: 20px;
+            margin: 10px;
+            padding: 8px;
+            border: 3px rgba(0, 0, 0, 0.355) solid;
+            background: rgba(0, 0, 0, 0.200);
+            color: rgba(255, 255, 255, 0.908);
+            border-radius: 25px 25px;
+            width: 128px;
+            height: 70px;
+            cursor: pointer;
+        }
 
-            & #sort-words {
-                font-size: 26px;
-            }
+        & #input-vocab,
+        #remove-one {
+            font-size: 26px;
+        }
 
-            & #input-vocab:hover,
-            #remove-one:hover,
-            #remove-all:hover,
-            #pick-mode:hover,
-            #shuffle-words:hover,
-            #sort-words:hover {
-                background: rgba(0, 0, 0, 0.640);
-            }
+        & #sort-words {
+            font-size: 26px;
+        }
+
+        & #input-vocab:hover,
+        #remove-one:hover,
+        #remove-all:hover,
+        #pick-mode:hover,
+        #shuffle-words:hover,
+        #sort-words:hover {
+            background: rgba(0, 0, 0, 0.640);
         }
     }
 }
@@ -463,7 +484,7 @@ txtarea-panel {
             justify-self: center;
             text-align: center;
             margin: 10px;
-            padding: 15px;
+            padding: 0px;
             color: rgb(12, 12, 12);
             border-radius: 10px;
 
@@ -513,6 +534,71 @@ txtarea-panel {
     }
 }
 
+toggle-button-container {
+    display: flex;
+    padding-top: 45px;
+    margin: 0px;
+}
+
+/* #descriptor-for-toggle {
+    font-family: "Nexa";
+    font-size: 20px;
+    white-space: normal;
+    word-break: break-word;
+    width: fit-content;
+    width: 93px;
+    padding-right: 5px;
+} */
+
+.toggle {
+    --width: 80px;
+    --height: calc(var(--width) / 2);
+    --border-radius: calc(var(--height) / 2);
+    text-align: center;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.toggle__input {
+    display: none;
+}
+
+.toggle__fill {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radius);
+    background: #bfbfbf;
+    transition: background 0.2s;
+}
+
+.toggle input:checked~.toggle__fill {
+    background: rgb(120, 139, 151);
+}
+
+.toggle__fill::after {
+    content: "";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: var(--height);
+    width: calc(var(--width) / 2);
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius);
+    transform: translateX(0%);
+    transition: transform 0.2s;
+}
+
+.toggle input:checked~.toggle__fill::after {
+    transform: translateX(100%);
+}
+
+cm-active {
+    font-size: 18px;
+    font-family: "Nexa";
+}
+
 button-close-flash-cards {
     right: 7px;
 }
@@ -552,9 +638,6 @@ body.modal-pick-mode {
     }
 }
 
-/*modal explain visibility & invisibility transition handler */
-
-
 body.modal-play-mode {
     overlay {
         opacity: 1;
@@ -571,6 +654,8 @@ body.modal-play-mode {
     }
 
 }
+
+
 
 arrow-container {
 
@@ -612,15 +697,15 @@ flash-card-container.active-container {
     overflow: hidden;
 }
 
-.flash-card-object {
+flash-card {
     font-weight: bold;
     font-family: "Nexa";
     font-size: 55px;
     text-align: center;
     background-color: white;
     border-radius: 10px;
-    display: none;
     position: absolute;
+    display: grid;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -630,22 +715,18 @@ flash-card-container.active-container {
     animation: transform 0.5s linear;
 }
 
-.flash-card-object.slideInFromRight {
-    display: grid;
+flash-card.slideInFromRight {
     animation: slideInFromRight 0.5s linear forwards;
 }
 
-.flash-card-object.slideOutToLeft {
-    display: grid;
+flash-card.slideOutToLeft {
     animation: slideOutToLeft 0.5s linear forwards;
 }
 
-.flash-card-object.slideInFromLeft {
-    display: grid;
+flash-card.slideInFromLeft {
     animation: slideInFromLeft 0.5s linear forwards;
 }
 
-.flash-card-object.slideOutToRight {
-    display: grid;
+flash-card.slideOutToRight {
     animation: slideOutToRight 0.5s linear forwards;
 }

@@ -37,16 +37,15 @@
         <h2>Pick Mode</h2>
         <p>Hover over buttons for description of the mode.</p>
         <modes>
-          <button class="modebtn" id="cover">Cover Mode</button>
           <button class="modebtn" id="casual">Casual Mode</button>
           <button class="modebtn" id="memo-mode">Memorization Mode</button>
         </modes>
         <div class="modal-explanation">
           <button id="close-modal-explanation">&#10094;</button>
-          <c>
+          <con>
             <h2 id="current-mode-explain-name"></h2>
             <p id="explaination-area"></p>
-          </c>
+          </con>
         </div>
       </div>
 
@@ -55,7 +54,6 @@
           <h2>control panel</h2>
 
           <btn-c>
-            <button id="cntrl-panel">&#10095;</button>
             <button class="shuffle-words-ctr ctr" id="shuffle-words-ctr">
               <i class="fas fa-random" aria-hidden="true"></i>
             </button>
@@ -64,13 +62,19 @@
             </button>
           </btn-c>
         </btn-panel-modal>
+
         <modal-text>
+          <button id="cntrl-panel">&#10095;</button>
+          <label class="toggle">
+            <input id="cover-for-cards" type="checkbox" />Cover Mode:
+            <cm-active></cm-active>
+          </label>
           <h2 class="mode-name"></h2>
           <button id="close-modal-cards">&#9747;</button>
         </modal-text>
 
         <flash-card-container>
-          <!-- container -->
+          <flash-card></flash-card>
         </flash-card-container>
 
         <arrow-container>
@@ -86,8 +90,10 @@
           <h2>Control</h2>
           <p>Panel</p>
           <button-container>
-            <button class="activator-buttons" id="input-vocab">&#43;</button>
-            <button class="activator-buttons" id="remove-one">&#8722;</button>
+            <add-and-remove>
+              <button class="activator-btn" id="input-vocab">&#43;</button>
+              <button class="activator-btn" id="remove-one">&#8722;</button>
+            </add-and-remove>
             <button class="activator-buttons" id="remove-all">&#128465;</button>
             <button class="activator-buttons shuffle-words" id="shuffle-words">
               <i class="fas fa-random" aria-hidden="true"></i>
@@ -98,6 +104,16 @@
             <button class="activator-buttons" id="pick-mode">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </button>
+            <toggle-button-container>
+              <label class="toggle">
+                <input
+                  class="toggle__input"
+                  id="cover-for-bank"
+                  type="checkbox" />
+                <div class="toggle__fill"></div>
+                <cm-active></cm-active
+              ></label>
+            </toggle-button-container>
           </button-container>
         </content>
       </btn-panel>
@@ -141,28 +157,32 @@
     <script type="module" src="./scripts/util.js"></script>
     <script type="module" src="./scripts/updateUi.js"></script>
     <script type="module">
-      import {
-        AppState,
-        VIEW,
-        startingState,
-      } from "./scripts/classes/AppState.js";
+      import { AppState, VIEW } from "./scripts/classes/AppState.js";
       import {
         shouldShowModalPickModeClass,
         shouldShowModalEXPModeClass,
         shouldShowModalCardModeClass,
+        shouldShowModalCardBTNModeClass,
         buildWordsContainerHTML,
         getModeNameText,
         getModeNameColor,
         getModeDescription,
-        buildFlashCardContainerHTML,
+        getWordButtonText,
       } from "./scripts/updateUi.js";
+      import { wait } from "./scripts/util.js";
       const state = new AppState();
       window.getState = function getState() {
         return state;
       };
 
       state
-        .onSet(function ({ wordBank, cardIndex, currentView }) {
+        .onSet(function updateUI({
+          wordBank,
+          cardIndex,
+          currentView,
+          bankCover,
+          cardCover,
+        }) {
           $("body")
             .toggleClass(
               "modal-pick-mode",
@@ -175,6 +195,10 @@
             .toggleClass(
               "modal-play-mode",
               shouldShowModalCardModeClass(currentView)
+            )
+            .toggleClass(
+              "modal-ctrl-panel",
+              shouldShowModalCardBTNModeClass(currentView)
             );
 
           $(".mode-name")
@@ -191,16 +215,34 @@
 
           $("words-container").html(
             buildWordsContainerHTML({
-              currentView,
               wordBank,
+              bankCover,
               onClickWord: (clickedWord) =>
                 state.removeArrayItem("wordBank", clickedWord),
             })
           );
-          $("flash-card-container").html(buildFlashCardContainerHTML(wordBank));
-          state.showCards(cardIndex);
+          $("flash-card").text(
+            getWordButtonText(wordBank[cardIndex], cardCover)
+          );
+          $("#cover-for-cards")
+            .parent("label")
+            .find("cm-active")
+            .text(cardCover ? "On" : "Off");
+          $("#cover-for-bank")
+            .parent("label")
+            .find("cm-active")
+            .text(bankCover ? "On" : "Off");
+          if (!$("flash-card-container").hasClass("active-container")) {
+            $("flash-card-container").addClass("active-container");
+          }
         })
-        .load(startingState);
+        .load({
+          wordBank: [],
+          cardIndex: 1,
+          currentView: VIEW.STARTING,
+          bankCover: false,
+          cardCover: false,
+        });
 
       $("#pick-mode").on("click", () =>
         state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
@@ -217,10 +259,6 @@
         state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
       );
 
-      $("#cover").on("mouseover", () =>
-        state.set("currentView", VIEW.EXPLAIN_COVER)
-      );
-
       $("#casual").on("mouseover", () =>
         state.set("currentView", VIEW.EXPLAIN_CASUAL)
       );
@@ -229,8 +267,6 @@
         state.set("currentView", VIEW.EXPLAIN_MEMO)
       );
 
-      $("#cover").on("click", () => state.set("currentView", VIEW.COVER_MODE));
-
       $("#casual").on("click", () =>
         state.set("currentView", VIEW.CASUAL_MODE)
       );
@@ -238,6 +274,18 @@
       $("#memo-mode").on("click", () =>
         state.set("currentView", VIEW.MEMO_MODE)
       );
+
+      $("#cntrl-panel").on("click", () =>
+        state.set("currentView", VIEW.CASUAL_MODE)
+      );
+
+      $("#cover-for-bank").on("click", function () {
+        state.set("bankCover", $(this).is(":checked"));
+      });
+
+      $("#cover-for-cards").on("click", function () {
+        state.set("cardCover", $(this).is(":checked"));
+      });
 
       $("#remove-all").on(
         "click",
@@ -256,11 +304,49 @@
       });
 
       $(".next").on("click", async () => {
-        await state.right();
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideOutToRight")
+            .one("animationend", resolve);
+        });
+        $("flash-card").removeClass("slideOutToRight");
+
+        state.set(
+          "cardIndex",
+          state.get("cardIndex") === state.get("wordBank").length - 1
+            ? 0
+            : state.get("cardIndex") + 1
+        );
+
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideInFromLeft")
+            .one("animationend", resolve);
+        });
+        $("flash-card").removeClass("slideInFromLeft");
       });
 
       $(".prev").on("click", async () => {
-        await state.left();
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideOutToLeft")
+            .one("animationend", resolve);
+        });
+
+        $("flash-card").removeClass("slideOutToLeft");
+        state.set(
+          "cardIndex",
+          state.get("cardIndex") === 0
+            ? state.get("wordBank").length - 1
+            : state.get("cardIndex") - 1
+        );
+
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideInFromRight")
+            .one("animationend", resolve);
+        });
+        $("flash-card").removeClass("slideInFromRight");
       });
 
       $(".shuffle-words").on("click", () => state.shuffle("wordBank"));
