@@ -104,6 +104,16 @@
             <button class="activator-buttons" id="pick-mode">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </button>
+            <toggle-button-container>
+              <label class="toggle">
+                <input
+                  class="toggle__input"
+                  id="cover-for-bank"
+                  type="checkbox" />
+                <div class="toggle__fill"></div>
+                <cm-active></cm-active
+              ></label>
+            </toggle-button-container>
           </button-container>
         </content>
       </btn-panel>
@@ -131,19 +141,6 @@
 
         <word-panel>
           <word-bank>
-            <toggle-button-container>
-              <label id="descriptor-for-toggle" for="cover-for-bank"
-                >Hide Meaning</label
-              >
-              <label class="toggle">
-                <input
-                  class="toggle__input"
-                  id="cover-for-bank"
-                  type="checkbox" />
-                <div class="toggle__fill"></div>
-                <cm-active></cm-active
-              ></label>
-            </toggle-button-container>
             <h2>Word Bank</h2>
             <p>Clicking a specific word WILL remove it.</p>
             <words-container></words-container>
@@ -230,11 +227,11 @@
           $("#cover-for-cards")
             .parent("label")
             .find("cm-active")
-            .text(cardCover ? "Active" : "Inactive");
+            .text(cardCover ? "On" : "Off");
           $("#cover-for-bank")
             .parent("label")
             .find("cm-active")
-            .text(bankCover ? "Active" : "Inactive");
+            .text(bankCover ? "On" : "Off");
           if (!$("flash-card-container").hasClass("active-container")) {
             $("flash-card-container").addClass("active-container");
           }

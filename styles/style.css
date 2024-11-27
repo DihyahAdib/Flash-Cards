@@ -536,11 +536,11 @@ txtarea-panel {
 
 toggle-button-container {
     display: flex;
-    padding-left: 10px;
+    padding-top: 45px;
     margin: 0px;
 }
 
-#descriptor-for-toggle {
+/* #descriptor-for-toggle {
     font-family: "Nexa";
     font-size: 20px;
     white-space: normal;
@@ -548,13 +548,13 @@ toggle-button-container {
     width: fit-content;
     width: 93px;
     padding-right: 5px;
-}
+} */
 
 .toggle {
-    --width: 60px;
+    --width: 80px;
     --height: calc(var(--width) / 2);
     --border-radius: calc(var(--height) / 2);
-
+    text-align: center;
     display: inline-block;
     cursor: pointer;
 }
