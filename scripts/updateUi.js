@@ -28,15 +28,15 @@ export function shouldShowModalCardBTNModeClass(currentView) {
     currentView !== VIEW.BTN_MODE
   );
 }
-export function getWordButtonText({ word, definition }, currentView) {
-  if (currentView === VIEW.COVER_MODE) {
+export function getWordButtonText({ word, definition }, coverDefinition) {
+  if (coverDefinition === true) {
     return `${word}`;
   }
   return `${word} : ${definition}`;
 }
 
 export function getModeNameText(currentView) {
-  if (currentView === VIEW.EXPLAIN_COVER || currentView === VIEW.COVER_MODE) {
+  if (currentView === VIEW.EXPLAIN_COVER || currentView === VIEW.COVER) {
     return "Cover Mode";
   } else if (
     currentView === VIEW.EXPLAIN_CASUAL ||
@@ -53,7 +53,7 @@ export function getModeNameText(currentView) {
 }
 
 export function getModeNameColor(currentView) {
-  if (currentView === VIEW.EXPLAIN_COVER || currentView === VIEW.COVER_MODE) {
+  if (currentView === VIEW.EXPLAIN_COVER || currentView === VIEW.COVER) {
     return "green";
   } else if (
     currentView === VIEW.EXPLAIN_CASUAL ||
@@ -69,24 +69,11 @@ export function getModeNameColor(currentView) {
   return "black";
 }
 
-export function buildFlashCardContainerHTML(wordBank) {
-  return wordBank.map(({ word, definition }) =>
-    $("<div>")
-      .addClass(`flash-card-object`)
-      .text(`${word}`)
-      .data({ word, definition })
-  );
-}
-
-export function buildWordsContainerHTML({
-  wordBank,
-  onClickWord,
-  currentView,
-}) {
+export function buildWordsContainerHTML({ wordBank, onClickWord, bankCover }) {
   return wordBank.map((word) =>
     $("<button>")
       .addClass(`new-element`)
-      .text(getWordButtonText(word, currentView))
+      .text(getWordButtonText(word, bankCover))
       .on("click", () => {
         onClickWord(word);
       })

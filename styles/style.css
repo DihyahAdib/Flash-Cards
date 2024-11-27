@@ -120,23 +120,23 @@ modes {
     button:first-child {
         margin-top: 20px;
     }
+}
 
-    .modebtn {
-        font-family: "Comforta-Bold";
-        text-align: center;
-        font-size: 20px;
-        padding: 8px;
-        border: 3px rgba(0, 0, 0, 0.355) solid;
-        background: rgba(0, 0, 0, 0.200);
-        color: rgba(255, 255, 255, 0.908);
-        border-radius: 25px 25px;
-        width: 180px;
-        height: 70px;
-        cursor: pointer;
+.modebtn {
+    font-family: "Comforta-Bold";
+    text-align: center;
+    font-size: 20px;
+    padding: 8px;
+    border: 3px rgba(0, 0, 0, 0.355) solid;
+    background: rgba(0, 0, 0, 0.200);
+    color: rgba(255, 255, 255, 0.908);
+    border-radius: 25px 25px;
+    width: 180px;
+    height: 70px;
+    cursor: pointer;
 
-        &.modebtn:hover {
-            background: rgba(0, 0, 0, 0.640);
-        }
+    &.modebtn:hover {
+        background: rgba(0, 0, 0, 0.640);
     }
 }
 
@@ -609,15 +609,15 @@ flash-card-container.active-container {
     overflow: hidden;
 }
 
-.flash-card-object {
+flash-card {
     font-weight: bold;
     font-family: "Nexa";
     font-size: 55px;
     text-align: center;
     background-color: white;
     border-radius: 10px;
-    display: none;
     position: absolute;
+    display: grid;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -627,22 +627,18 @@ flash-card-container.active-container {
     animation: transform 0.5s linear;
 }
 
-.flash-card-object.slideInFromRight {
-    display: grid;
+flash-card.slideInFromRight {
     animation: slideInFromRight 0.5s linear forwards;
 }
 
-.flash-card-object.slideOutToLeft {
-    display: grid;
+flash-card.slideOutToLeft {
     animation: slideOutToLeft 0.5s linear forwards;
 }
 
-.flash-card-object.slideInFromLeft {
-    display: grid;
+flash-card.slideInFromLeft {
     animation: slideInFromLeft 0.5s linear forwards;
 }
 
-.flash-card-object.slideOutToRight {
-    display: grid;
+flash-card.slideOutToRight {
     animation: slideOutToRight 0.5s linear forwards;
 }

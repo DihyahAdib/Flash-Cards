@@ -37,7 +37,6 @@
         <h2>Pick Mode</h2>
         <p>Hover over buttons for description of the mode.</p>
         <modes>
-          <button class="modebtn" id="cover">Cover Mode</button>
           <button class="modebtn" id="casual">Casual Mode</button>
           <button class="modebtn" id="memo-mode">Memorization Mode</button>
         </modes>
@@ -65,12 +64,15 @@
           </btn-c>
         </btn-panel-modal>
         <modal-text>
+          <label
+            ><input id="cover-for-cards" type="checkbox" />Cover Mode</label
+          >
           <h2 class="mode-name"></h2>
           <button id="close-modal-cards">&#9747;</button>
         </modal-text>
 
         <flash-card-container>
-          <!-- container -->
+          <flash-card></flash-card>
         </flash-card-container>
 
         <arrow-container>
@@ -125,6 +127,9 @@
 
         <word-panel>
           <word-bank>
+            <label
+              ><input id="cover-for-bank" type="checkbox" />Cover Mode</label
+            >
             <h2>Word Bank</h2>
             <p>Clicking a specific word WILL remove it.</p>
             <words-container></words-container>
@@ -141,29 +146,32 @@
     <script type="module" src="./scripts/util.js"></script>
     <script type="module" src="./scripts/updateUi.js"></script>
     <script type="module">
-      import {
-        AppState,
-        VIEW,
-        startingState,
-      } from "./scripts/classes/AppState.js";
+      import { AppState, VIEW } from "./scripts/classes/AppState.js";
       import {
         shouldShowModalPickModeClass,
         shouldShowModalEXPModeClass,
         shouldShowModalCardModeClass,
         shouldShowModalCardBTNModeClass,
-        buildFlashCardContainerHTML,
         buildWordsContainerHTML,
         getModeNameText,
         getModeNameColor,
         getModeDescription,
+        getWordButtonText,
       } from "./scripts/updateUi.js";
+      import { wait } from "./scripts/util.js";
       const state = new AppState();
       window.getState = function getState() {
         return state;
       };
 
       state
-        .onSet(function updateUI({ wordBank, cardIndex, currentView }) {
+        .onSet(function updateUI({
+          wordBank,
+          cardIndex,
+          currentView,
+          bankCover,
+          cardCover,
+        }) {
           $("body")
             .toggleClass(
               "modal-pick-mode",
@@ -196,16 +204,27 @@
 
           $("words-container").html(
             buildWordsContainerHTML({
-              currentView,
               wordBank,
+              bankCover,
               onClickWord: (clickedWord) =>
                 state.removeArrayItem("wordBank", clickedWord),
             })
           );
-          $("flash-card-container").html(buildFlashCardContainerHTML(wordBank));
-          state.showCards(cardIndex);
+          $("flash-card").text(
+            getWordButtonText(wordBank[cardIndex], cardCover)
+          );
+
+          if (!$("flash-card-container").hasClass("active-container")) {
+            $("flash-card-container").addClass("active-container");
+          }
         })
-        .load(startingState);
+        .load({
+          wordBank: [],
+          cardIndex: 1,
+          currentView: VIEW.STARTING,
+          bankCover: false,
+          cardCover: false,
+        });
 
       $("#pick-mode").on("click", () =>
         state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
@@ -222,10 +241,6 @@
         state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
       );
 
-      $("#cover").on("mouseover", () =>
-        state.set("currentView", VIEW.EXPLAIN_COVER)
-      );
-
       $("#casual").on("mouseover", () =>
         state.set("currentView", VIEW.EXPLAIN_CASUAL)
       );
@@ -233,8 +248,6 @@
       $("#memo-mode").on("mouseover", () =>
         state.set("currentView", VIEW.EXPLAIN_MEMO)
       );
-
-      $("#cover").on("click", () => state.set("currentView", VIEW.COVER_MODE));
 
       $("#casual").on("click", () =>
         state.set("currentView", VIEW.CASUAL_MODE)
@@ -247,6 +260,15 @@
       $("#cntrl-panel").on("click", () =>
         state.set("currentView", VIEW.CASUAL_MODE)
       );
+
+      $("#cover-for-bank").on("click", function () {
+        state.set("bankCover", $(this).is(":checked"));
+      });
+
+      $("#cover-for-cards").on("click", function () {
+        state.set("cardCover", $(this).is(":checked"));
+      });
+
       $("#remove-all").on(
         "click",
         () =>
@@ -264,11 +286,49 @@
       });
 
       $(".next").on("click", async () => {
-        await state.right();
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideOutToRight")
+            .one("animationend", resolve);
+        });
+        $("flash-card").removeClass("slideOutToRight");
+
+        state.set(
+          "cardIndex",
+          state.get("cardIndex") === state.get("wordBank").length - 1
+            ? 0
+            : state.get("cardIndex") + 1
+        );
+
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideInFromLeft")
+            .one("animationend", resolve);
+        });
+        $("flash-card").removeClass("slideInFromLeft");
       });
 
       $(".prev").on("click", async () => {
-        await state.left();
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideOutToLeft")
+            .one("animationend", resolve);
+        });
+
+        $("flash-card").removeClass("slideOutToLeft");
+        state.set(
+          "cardIndex",
+          state.get("cardIndex") === 0
+            ? state.get("wordBank").length - 1
+            : state.get("cardIndex") - 1
+        );
+
+        await new Promise((resolve) => {
+          $("flash-card")
+            .addClass("slideInFromRight")
+            .one("animationend", resolve);
+        });
+        $("flash-card").removeClass("slideInFromRight");
       });
 
       $(".shuffle-words").on("click", () => state.shuffle("wordBank"));
