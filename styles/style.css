@@ -336,63 +336,83 @@ btn-panel {
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
+}
 
-    & content {
-        padding: 1px;
+content {
+    padding: 1px;
 
-        & h2 {
-            text-align: center;
-            font-family: "Dreams";
-            font-weight: 1000;
-            stroke: #bb0010;
-            font-size: 47px;
-        }
+    & h2 {
+        text-align: center;
+        font-family: "Dreams";
+        font-weight: 1000;
+        stroke: #bb0010;
+        font-size: 47px;
+    }
 
-        & p {
-            text-align: center;
-            font-family: "Dreams";
-            font-size: 43px;
-            letter-spacing: auto;
-        }
+    & p {
+        text-align: center;
+        font-family: "Dreams";
+        font-size: 43px;
+        letter-spacing: auto;
+    }
 
-        & button-container {
-            display: grid;
-            align-items: center;
-            justify-content: center;
-            padding-top: 5px;
+    & button-container {
+        display: grid;
+        align-items: center;
+        justify-content: center;
+        justify-items: center;
+        padding-top: 15px;
 
-            & .activator-buttons {
+        add-and-remove {
+            display: flex;
+            flex-direction: row;
+
+            & .activator-btn {
                 font-family: "Comforta-Bold";
                 text-align: center;
                 font-size: 20px;
-                margin: 10px;
+                margin: 2px;
                 padding: 8px;
                 border: 3px rgba(0, 0, 0, 0.355) solid;
                 background: rgba(0, 0, 0, 0.200);
                 color: rgba(255, 255, 255, 0.908);
                 border-radius: 25px 25px;
-                width: 128px;
+                width: calc(128px / 2);
                 height: 70px;
-                cursor: pointer;
             }
+        }
 
-            & #input-vocab,
-            #remove-one {
-                font-size: 26px;
-            }
+        & .activator-buttons {
+            font-family: "Comforta-Bold";
+            text-align: center;
+            font-size: 20px;
+            margin: 10px;
+            padding: 8px;
+            border: 3px rgba(0, 0, 0, 0.355) solid;
+            background: rgba(0, 0, 0, 0.200);
+            color: rgba(255, 255, 255, 0.908);
+            border-radius: 25px 25px;
+            width: 128px;
+            height: 70px;
+            cursor: pointer;
+        }
 
-            & #sort-words {
-                font-size: 26px;
-            }
+        & #input-vocab,
+        #remove-one {
+            font-size: 26px;
+        }
 
-            & #input-vocab:hover,
-            #remove-one:hover,
-            #remove-all:hover,
-            #pick-mode:hover,
-            #shuffle-words:hover,
-            #sort-words:hover {
-                background: rgba(0, 0, 0, 0.640);
-            }
+        & #sort-words {
+            font-size: 26px;
+        }
+
+        & #input-vocab:hover,
+        #remove-one:hover,
+        #remove-all:hover,
+        #pick-mode:hover,
+        #shuffle-words:hover,
+        #sort-words:hover {
+            background: rgba(0, 0, 0, 0.640);
         }
     }
 }
@@ -553,7 +573,7 @@ toggle-button-container {
 }
 
 .toggle input:checked~.toggle__fill {
-    background: #009578;
+    background: rgb(120, 139, 151);
 }
 
 .toggle__fill::after {
