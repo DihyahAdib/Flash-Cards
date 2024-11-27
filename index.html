@@ -43,10 +43,10 @@
         </modes>
         <div class="modal-explanation">
           <button id="close-modal-explanation">&#10094;</button>
-          <c>
+          <con>
             <h2 id="current-mode-explain-name"></h2>
             <p id="explaination-area"></p>
-          </c>
+          </con>
         </div>
       </div>
 
@@ -150,11 +150,12 @@
         shouldShowModalPickModeClass,
         shouldShowModalEXPModeClass,
         shouldShowModalCardModeClass,
+        shouldShowModalCardBTNModeClass,
+        buildFlashCardContainerHTML,
         buildWordsContainerHTML,
         getModeNameText,
         getModeNameColor,
         getModeDescription,
-        buildFlashCardContainerHTML,
       } from "./scripts/updateUi.js";
       const state = new AppState();
       window.getState = function getState() {
@@ -162,7 +163,7 @@
       };
 
       state
-        .onSet(function ({ wordBank, cardIndex, currentView }) {
+        .onSet(function updateUI({ wordBank, cardIndex, currentView }) {
           $("body")
             .toggleClass(
               "modal-pick-mode",
@@ -175,6 +176,10 @@
             .toggleClass(
               "modal-play-mode",
               shouldShowModalCardModeClass(currentView)
+            )
+            .toggleClass(
+              "modal-ctrl-panel",
+              shouldShowModalCardBTNModeClass(currentView)
             );
 
           $(".mode-name")
@@ -239,6 +244,9 @@
         state.set("currentView", VIEW.MEMO_MODE)
       );
 
+      $("#cntrl-panel").on("click", () =>
+        state.set("currentView", VIEW.CASUAL_MODE)
+      );
       $("#remove-all").on(
         "click",
         () =>

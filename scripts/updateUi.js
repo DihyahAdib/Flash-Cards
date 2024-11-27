@@ -21,6 +21,13 @@ export function shouldShowModalCardModeClass(currentView) {
   return currentView === VIEW.CASUAL_MODE || currentView === VIEW.MEMO_MODE;
 }
 
+export function shouldShowModalCardBTNModeClass(currentView) {
+  return (
+    currentView === VIEW.CASUAL_MODE ||
+    currentView === VIEW.MEMO_MODE ||
+    currentView !== VIEW.BTN_MODE
+  );
+}
 export function getWordButtonText({ word, definition }, currentView) {
   if (currentView === VIEW.COVER_MODE) {
     return `${word}`;

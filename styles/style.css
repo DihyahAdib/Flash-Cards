@@ -183,7 +183,7 @@ modes {
     background: rgba(0, 0, 0, 0.3);
 }
 
-c {
+con {
     display: flex;
     gap: 15px;
     flex-direction: column;
@@ -551,9 +551,6 @@ body.modal-pick-mode {
         transition: transform var(--transition-duration);
     }
 }
-
-/*modal explain visibility & invisibility transition handler */
-
 
 body.modal-play-mode {
     overlay {

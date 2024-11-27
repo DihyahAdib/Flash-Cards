@@ -10,6 +10,7 @@ export const VIEW = {
   COVER_MODE: "COVER_MODE",
   CASUAL_MODE: "CASUAL_MODE",
   MEMO_MODE: "MEMO_MODE",
+  BTN_MODE: "BTN_MODE",
 };
 
 export const startingState = {
@@ -36,17 +37,8 @@ export class AppState extends State {
     }
   }
 
-  async plusCards(n) {
-    this.set("cardIndex", this.get("cardIndex") + n);
-    await this.showCards(this.get("cardIndex"));
-  }
-
   async showCards(n) {
-    let cards = $(".flash-card-object");
-
-    if (n > cards.length) this.set("cardIndex", 1);
-    if (n < 1) this.set("cardIndex", cards.length);
-
+    const cards = $(".flash-card-object");
     cards.css("display", "none");
     cards.eq(this.get("cardIndex") - 1).css("display", "grid");
 
@@ -59,24 +51,34 @@ export class AppState extends State {
   }
 
   async right() {
-    let cards = $(".flash-card-object");
-    cards.eq(this.get("cardIndex") - 1).addClass("slideOutToRight");
-    await wait(600);
-    cards.removeClass("slideOutToRight");
-    cards.eq(this.get("cardIndex") - 1).addClass("slideInFromLeft");
-    await wait(600);
-    await this.plusCards(1);
-    cards.removeClass("slideInFromLeft");
+    // debugger;
+    const $currentCard = $(".flash-card-object").eq(this.get("cardIndex"));
+
+    $currentCard.addClass("slideOutToRight");
+    await wait(2000);
+    $(".flash-card-object").removeClass("slideOutToRight");
+
+    $currentCard.addClass("slideInFromLeft");
+    await wait(2000);
+    $(".flash-card-object").removeClass("slideInFromLeft");
+
+    if (this.get("cardIndex") > $(".flash-card-object").length - 1)
+      this.set("cardIndex", 0);
+    this.set("cardIndex", this.get("cardIndex") + 1);
+    await this.showCards(this.get("cardIndex"));
   }
 
   async left() {
-    let cards = $(".flash-card-object");
-    cards.eq(this.get("cardIndex") - 1).addClass("slideOutToLeft");
-    await wait(600);
-    cards.removeClass("slideOutToLeft");
-    cards.eq(this.get("cardIndex") - 1).addClass("slideInFromRight");
-    await wait(600);
-    await this.plusCards(-1);
-    cards.removeClass("slideInFromRight");
+    const $currentCard = $(".flash-card-object").eq(this.get("cardIndex"));
+    $currentCard.addClass("slideOutToLeft");
+    await wait(2000);
+    $currentCard.removeClass("slideOutToLeft");
+    $currentCard.addClass("slideInFromRight");
+    await wait(2000);
+    $currentCard.removeClass("slideInFromRight");
+    if (this.get("cardIndex") < 0)
+      this.set("cardIndex", $(".flash-card-object").length - 1);
+    this.set("cardIndex", this.get("cardIndex") - 1);
+    await this.showCards(this.get("cardIndex"));
   }
 }
