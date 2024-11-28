@@ -3,7 +3,6 @@ import { VIEW } from "./classes/AppState.js";
 export function shouldShowModalPickModeClass(currentView) {
   return (
     currentView === VIEW.PICK_MODE_NO_EXPLAIN ||
-    currentView === VIEW.EXPLAIN_COVER ||
     currentView === VIEW.EXPLAIN_CASUAL ||
     currentView === VIEW.EXPLAIN_MEMO
   );
@@ -11,9 +10,7 @@ export function shouldShowModalPickModeClass(currentView) {
 
 export function shouldShowModalEXPModeClass(currentView) {
   return (
-    currentView === VIEW.EXPLAIN_COVER ||
-    currentView === VIEW.EXPLAIN_CASUAL ||
-    currentView === VIEW.EXPLAIN_MEMO
+    currentView === VIEW.EXPLAIN_CASUAL || currentView === VIEW.EXPLAIN_MEMO
   );
 }
 
@@ -28,8 +25,8 @@ export function shouldShowModalCardBTNModeClass(currentView) {
     currentView !== VIEW.BTN_MODE
   );
 }
-export function getWordButtonText(wordObj = {}, coverDefinition) {
-  const { word = "Unknown", definition = "No Definition" } = wordObj;
+export function getWordButtonText(wordBank, coverDefinition) {
+  const { word, definition } = wordBank || [];
   if (coverDefinition === true) {
     return `${word}`;
   }

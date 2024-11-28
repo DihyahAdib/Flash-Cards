@@ -23,6 +23,14 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+
+    & h2-2 {
+        /*query*/
+        text-align: center;
+        font-family: "Dreams";
+        font-weight: 1000;
+        font-size: 30px;
+    }
 }
 
 body {
@@ -54,12 +62,11 @@ overlay {
 .modal {
     position: relative;
     padding: 1rem;
-    margin: 0px;
-    border-radius: 8px;
+    border-radius: 18px;
     background: rgba(120, 139, 151, 0.973);
     box-shadow: 0 6px 10px rgb(0, 0, 0);
     text-align: center;
-    width: 30%;
+    width: 25%;
     height: 50%;
     z-index: 25;
     transform: scale(0.7);
@@ -140,54 +147,14 @@ modes {
     }
 }
 
-.modal-explanation {
-    position: absolute;
-    overflow: auto;
-    background: rgba(120, 139, 151, 0.973);
-    padding: 20px;
-    border-radius: 10px;
-    top: 6%;
-    right: 15%;
-    width: 42%;
-    height: 85%;
-    opacity: 0;
-    visibility: hidden;
-    box-shadow: 0 6px 10px rgb(0, 0, 0);
-    text-align: center;
-    transform: translateX(20%);
-    transition: transform var(--transition-duration-short),
-        opacity var(--transition-duration-short),
-        visibility 0s var(--transition-duration-short);
-}
-
-#close-modal-explanation {
-    position: absolute;
-    left: -16.5%;
-    height: 90%;
-    width: 30%;
-    border: none;
-    cursor: pointer;
-    border-radius: 70%;
-    padding: 8px 13px;
-    font-size: 25px;
-    text-align: end;
-    font-weight: 900;
-    color: rgba(0, 0, 0, 0.2);
-    background: rgba(0, 0, 0, 0);
-    transition: color 0.25s ease, background 0.25s ease;
-}
-
-#close-modal-explanation:hover,
-#cntrl-panel:hover {
-    color: rgba(0, 0, 0, 0.6);
-    background: rgba(0, 0, 0, 0.3);
-}
 
 con {
     display: flex;
     gap: 15px;
     flex-direction: column;
     justify-content: center;
+    width: fit-content;
+    width: 50%;
 
     & h2 {
         font-family: "Nexa";
@@ -200,12 +167,15 @@ con {
     }
 
     & p {
-        font-family: "Comforta-bold";
+        text-wrap: wrap;
+
     }
 }
 
 flash-cards {
     position: fixed;
+    display: flex;
+    visibility: hidden;
     align-items: center;
     background-color: rgb(88, 136, 139);
     box-shadow: 0 6px 10px rgb(0, 0, 0);
@@ -213,33 +183,23 @@ flash-cards {
     padding: 10px;
     width: 40vw;
     height: 70vh;
-    z-index: 100;
+    z-index: 50;
     opacity: 0;
-    visibility: hidden;
     transform: scale(0.7);
     transition: transform var(--transition-duration), opacity var(--transition-duration), visibility 0s var(--transition-duration);
 
     btn-panel-modal {
         position: absolute;
         overflow: hidden;
-        gap: 10px;
+        background-color: rgb(88, 136, 139);
         width: 25%;
-        height: 55%;
-        left: -27%;
-        padding: 20px;
-        opacity: 1;
-        visibility: visible;
-        box-shadow: 0 6px 10px rgb(0, 0, 0);
+        height: 66%;
+        left: -26%;
+        /*query*/
+        padding: 10px;
         text-align: center;
-        transform: translateX(0%);
-        transition: transform var(--transition-duration-short),
-            opacity var(--transition-duration-short),
-            visibility 0s var(--transition-duration-short);
-        background: linear-gradient(135deg, rgba(0, 238, 255, 0.1), rgba(0, 0, 0, 0));
-        backdrop-filter: blur(15px);
         border-radius: 20px;
-        border: 1px solid rgba(255, 255, 255, 0.18);
-        box-shadow: 0 8px 32px 0 rgba(255, 255, 255, 0.3);
+        box-shadow: 0 6px 10px rgb(0, 0, 0);
 
         h2 {
             text-align: center;
@@ -265,33 +225,9 @@ flash-cards {
                 height: 70px;
                 cursor: pointer;
 
-                &#sort-words-ctr {
-                    font-size: 26px;
-                }
-
-                &#shuffle-words-ctr:hover,
-                #sort-words-ctr:hover {
+                &.ctr:hover {
                     background: rgba(0, 0, 0, 0.640);
                 }
-            }
-
-            #cntrl-panel {
-                position: absolute;
-                overflow: hidden;
-                right: -15%;
-                top: 15px;
-                height: 90%;
-                width: 30%;
-                border: none;
-                border-radius: 70%;
-                padding: 8px 8px;
-                font-size: 25px;
-                text-align: start;
-                font-weight: 900;
-                cursor: pointer;
-                color: rgba(255, 255, 255, 0.3);
-                background: rgba(0, 0, 0, 0);
-                transition: color 0.25s ease, background 0.25s ease;
             }
         }
     }
@@ -361,39 +297,19 @@ content {
         align-items: center;
         justify-content: center;
         justify-items: center;
-        padding-top: 15px;
 
-        add-and-remove {
-            display: flex;
-            flex-direction: row;
-
-            & .activator-btn {
-                font-family: "Comforta-Bold";
-                text-align: center;
-                font-size: 20px;
-                margin: 2px;
-                padding: 8px;
-                border: 3px rgba(0, 0, 0, 0.355) solid;
-                background: rgba(0, 0, 0, 0.200);
-                color: rgba(255, 255, 255, 0.908);
-                border-radius: 25px 25px;
-                width: calc(128px / 2);
-                height: 70px;
-            }
-        }
-
-        & .activator-buttons {
+        & .activator-btn {
             font-family: "Comforta-Bold";
             text-align: center;
             font-size: 20px;
             margin: 10px;
-            padding: 8px;
+            padding: 5px;
             border: 3px rgba(0, 0, 0, 0.355) solid;
             background: rgba(0, 0, 0, 0.200);
             color: rgba(255, 255, 255, 0.908);
             border-radius: 25px 25px;
-            width: 128px;
-            height: 70px;
+            width: 120px;
+            height: 60px;
             cursor: pointer;
         }
 
@@ -536,19 +452,10 @@ txtarea-panel {
 
 toggle-button-container {
     display: flex;
-    padding-top: 45px;
+    justify-content: center;
+    padding-top: 5px;
     margin: 0px;
 }
-
-/* #descriptor-for-toggle {
-    font-family: "Nexa";
-    font-size: 20px;
-    white-space: normal;
-    word-break: break-word;
-    width: fit-content;
-    width: 93px;
-    padding-right: 5px;
-} */
 
 .toggle {
     --width: 80px;
@@ -603,27 +510,6 @@ button-close-flash-cards {
     right: 7px;
 }
 
-body.modal-ctrl-panel {
-    btn-panel-modal {
-        opacity: 0;
-        visibility: hidden;
-        transform: translateX(130%);
-        transition: transform var(--transition-duration-short),
-            opacity var(--transition-duration-short),
-            visibility 0s var(--transition-duration-short);
-    }
-}
-
-body.modal-pick-mode-explain {
-    .modal-explanation {
-        visibility: visible;
-        opacity: 1;
-        transform: translateX(145%);
-        transition: transform var(--transition-duration-short),
-            opacity var(--transition-duration-short),
-            visibility 0s;
-    }
-}
 
 body.modal-pick-mode {
     overlay {

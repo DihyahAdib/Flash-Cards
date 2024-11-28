@@ -37,38 +37,17 @@
         <h2>Pick Mode</h2>
         <p>Hover over buttons for description of the mode.</p>
         <modes>
-          <button class="modebtn" id="casual">Casual Mode</button>
-          <button class="modebtn" id="memo-mode">Memorization Mode</button>
-        </modes>
-        <div class="modal-explanation">
-          <button id="close-modal-explanation">&#10094;</button>
+          <button class="modebtn" id="casual">Casual</button>
+          <button class="modebtn" id="memo-mode">Memorize</button>
           <con>
             <h2 id="current-mode-explain-name"></h2>
             <p id="explaination-area"></p>
           </con>
-        </div>
+        </modes>
       </div>
 
       <flash-cards>
-        <btn-panel-modal>
-          <h2>control panel</h2>
-
-          <btn-c>
-            <button class="shuffle-words-ctr ctr" id="shuffle-words-ctr">
-              <i class="fas fa-random" aria-hidden="true"></i>
-            </button>
-            <button class="ctr sort-words-ctr" id="sort-words-ctr">
-              &#8645;
-            </button>
-          </btn-c>
-        </btn-panel-modal>
-
         <modal-text>
-          <button id="cntrl-panel">&#10095;</button>
-          <label class="toggle">
-            <input id="cover-for-cards" type="checkbox" />Cover Mode:
-            <cm-active></cm-active>
-          </label>
           <h2 class="mode-name"></h2>
           <button id="close-modal-cards">&#9747;</button>
         </modal-text>
@@ -81,6 +60,28 @@
           <a class="prev">&#10094;</a>
           <a class="next">&#10095;</a>
         </arrow-container>
+
+        <btn-panel-modal>
+          <h2-2>control panel</h2-2>
+          <btn-c>
+            <button class="randomize-cards ctr">
+              <i class="fas fa-random" aria-hidden="true"></i>
+            </button>
+            <button class="ctr" id="sort-words-ctr">&#8645;</button>
+          </btn-c>
+          <h2-2>Cover Words</h2-2>
+          <toggle-button-container>
+            <label class="toggle">
+              <input
+                class="toggle__input"
+                id="cover-for-cards"
+                type="checkbox"
+              />
+              <div class="toggle__fill"></div>
+              <cm-active></cm-active>
+            </label>
+          </toggle-button-container>
+        </btn-panel-modal>
       </flash-cards>
     </overlay>
 
@@ -90,20 +91,19 @@
           <h2>Control</h2>
           <p>Panel</p>
           <button-container>
-            <add-and-remove>
-              <button class="activator-btn" id="input-vocab">&#43;</button>
-              <button class="activator-btn" id="remove-one">&#8722;</button>
-            </add-and-remove>
-            <button class="activator-buttons" id="remove-all">&#128465;</button>
-            <button class="activator-buttons shuffle-words" id="shuffle-words">
+            <button class="activator-btn" id="input-vocab">&#43;</button>
+            <button class="activator-btn" id="remove-one">&#8722;</button>
+            <button class="activator-btn" id="remove-all">&#128465;</button>
+            <button class="activator-btn shuffle-words" id="shuffle-words">
               <i class="fas fa-random" aria-hidden="true"></i>
             </button>
-            <button class="activator-buttons sort-words" id="sort-words">
+            <button class="activator-btn sort-words" id="sort-words">
               &#8645;
             </button>
-            <button class="activator-buttons" id="pick-mode">
+            <button class="activator-btn" id="pick-mode">
               <i class="fa-solid fa-arrow-up-right-from-square"></i>
             </button>
+            <h2-2>Cover Words</h2-2>
             <toggle-button-container>
               <label class="toggle">
                 <input
@@ -255,9 +255,6 @@
       $("#close-modal-cards").on("click", () =>
         state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
       );
-      $("#close-modal-explanation").on("click", () =>
-        state.set("currentView", VIEW.PICK_MODE_NO_EXPLAIN)
-      );
 
       $("#casual").on("mouseover", () =>
         state.set("currentView", VIEW.EXPLAIN_CASUAL)
@@ -273,10 +270,6 @@
 
       $("#memo-mode").on("click", () =>
         state.set("currentView", VIEW.MEMO_MODE)
-      );
-
-      $("#cntrl-panel").on("click", () =>
-        state.set("currentView", VIEW.CASUAL_MODE)
       );
 
       $("#cover-for-bank").on("click", function () {
