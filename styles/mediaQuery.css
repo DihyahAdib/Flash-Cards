@@ -54,7 +54,7 @@
 
         content button-container {
 
-            .activator-buttons {
+            .activator-btn {
                 width: 100px;
                 height: 60px;
             }

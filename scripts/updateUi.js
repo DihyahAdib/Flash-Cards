@@ -3,7 +3,6 @@ import { VIEW } from "./classes/AppState.js";
 export function shouldShowModalPickModeClass(currentView) {
   return (
     currentView === VIEW.PICK_MODE_NO_EXPLAIN ||
-    currentView === VIEW.EXPLAIN_COVER ||
     currentView === VIEW.EXPLAIN_CASUAL ||
     currentView === VIEW.EXPLAIN_MEMO
   );
@@ -11,9 +10,7 @@ export function shouldShowModalPickModeClass(currentView) {
 
 export function shouldShowModalEXPModeClass(currentView) {
   return (
-    currentView === VIEW.EXPLAIN_COVER ||
-    currentView === VIEW.EXPLAIN_CASUAL ||
-    currentView === VIEW.EXPLAIN_MEMO
+    currentView === VIEW.EXPLAIN_CASUAL || currentView === VIEW.EXPLAIN_MEMO
   );
 }
 
@@ -28,9 +25,13 @@ export function shouldShowModalCardBTNModeClass(currentView) {
     currentView !== VIEW.BTN_MODE
   );
 }
-export function getWordButtonText(wordObj = {}, coverDefinition) {
-  const { word = "Unknown", definition = "No Definition" } = wordObj;
-  if (coverDefinition === true) {
+export function getWordButtonText(wordObj, cardCover) {
+  if (typeof wordObj.word === "undefined")
+    throw new Error(
+      "getWordButtonText expects A word Object but it's undefined"
+    );
+  const { word, definition } = wordObj;
+  if (cardCover === true) {
     return `${word}`;
   }
   return `${word} : ${definition}`;
