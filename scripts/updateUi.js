@@ -25,9 +25,13 @@ export function shouldShowModalCardBTNModeClass(currentView) {
     currentView !== VIEW.BTN_MODE
   );
 }
-export function getWordButtonText(wordBank, coverDefinition) {
-  const { word, definition } = wordBank || [];
-  if (coverDefinition === true) {
+export function getWordButtonText(wordObj, cardCover) {
+  if (typeof wordObj.word === "undefined")
+    throw new Error(
+      "getWordButtonText expects A word Object but it's undefined"
+    );
+  const { word, definition } = wordObj;
+  if (cardCover === true) {
     return `${word}`;
   }
   return `${word} : ${definition}`;

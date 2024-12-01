@@ -616,3 +616,7 @@ flash-card.slideInFromLeft {
 flash-card.slideOutToRight {
     animation: slideOutToRight 0.5s linear forwards;
 }
+
+flash-card.scaleOut {
+    animation: scaleOut 0.2s linear forwards;
+}

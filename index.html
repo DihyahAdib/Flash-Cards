@@ -67,7 +67,7 @@
             <button class="randomize-cards ctr">
               <i class="fas fa-random" aria-hidden="true"></i>
             </button>
-            <button class="ctr" id="sort-words-ctr">&#8645;</button>
+            <button class="sort-cards ctr">&#8645;</button>
           </btn-c>
           <h2-2>Cover Words</h2-2>
           <toggle-button-container>
@@ -221,6 +221,7 @@
                 state.removeArrayItem("wordBank", clickedWord),
             })
           );
+
           $("flash-card").text(
             getWordButtonText(wordBank[cardIndex], cardCover)
           );
@@ -238,7 +239,7 @@
         })
         .load({
           wordBank: [],
-          cardIndex: 1,
+          cardIndex: 0,
           currentView: VIEW.STARTING,
           bankCover: false,
           cardCover: false,
@@ -345,6 +346,7 @@
       $(".shuffle-words").on("click", () => state.shuffle("wordBank"));
       $(".randomize-cards").on("click", () => state.shuffle("wordBank"));
       $(".sort-words").on("click", () => state.sort("wordBank"));
+      $(".sort-cards").on("click", () => state.sort("wordBank"));
       $("#input-vocab").on("click", state.addWords.bind(state));
     </script>
   </div>
