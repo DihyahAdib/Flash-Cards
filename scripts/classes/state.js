@@ -8,10 +8,24 @@ export class State {
   }
 
   load(fallbackState) {
-    this.obj =
-      JSON.parse(localStorage.getItem("currentState")) || fallbackState;
-    this.onSetCallback(this.obj);
-    return this;
+    try {
+      this.obj =
+        JSON.parse(localStorage.getItem("currentState")) || fallbackState;
+
+      if (!Array.isArray(this.obj.wordBank) || this.obj.cardIndex < 0) {
+        this.obj = fallbackState;
+      }
+      if (this.onSetCallback) {
+        this.onSetCallback(this.obj);
+      } else {
+        console.error("No onSetCallback defined");
+      }
+
+      return this;
+    } catch (error) {
+      console.error("Error loading state:", error);
+      return this.load(fallbackState);
+    }
   }
 
   save() {

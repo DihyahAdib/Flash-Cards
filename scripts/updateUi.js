@@ -26,13 +26,13 @@ export function shouldShowModalCardBTNModeClass(currentView) {
   );
 }
 export function getWordButtonText(wordObj, cardCover) {
-  if (typeof wordObj.word === "undefined")
-    throw new Error(
-      "getWordButtonText expects A word Object but it's undefined"
-    );
-  const { word, definition } = wordObj;
+  if (!wordObj) {
+    console.error("No word object provided");
+    return "No word available";
+  }
+  const { word = "", definition = "" } = wordObj;
   if (cardCover === true) {
-    return `${word}`;
+    return word;
   }
   return `${word} : ${definition}`;
 }
